@@ -1,6 +1,8 @@
 # Custom Opt-Out Styles Piwik Plugin
 
-Add a new Admin tab, to change the Opt-Out CSS Styles for a single website.
+Add a new admin tab, to change the opt-out CSS Styles for each website.
+
+Notice: This plugin is still in development, so use it on your own risk!
 
 ## Requirements
 

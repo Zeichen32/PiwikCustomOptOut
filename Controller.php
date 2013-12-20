@@ -89,7 +89,7 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
         $language = Common::getRequestVar('language', '');
 
         $siteId = Common::getRequestVar('idSite', 0, 'integer');
-        $site = APISiteManager::getInstance()->getSiteFromId($siteId);
+        $site = API::getInstance()->getSiteDataId($siteId);
 
         if ($nonce !== false && Nonce::verifyNonce('Piwik_OptOut', $nonce)) {
             Nonce::discardNonce('Piwik_OptOut');

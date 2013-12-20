@@ -33,4 +33,20 @@ class API extends \Piwik\Plugin\API
         $bind = array($customCss, $customFile, $siteId);
         Db::query($query, $bind);
     }
+
+    /**
+     * Returns the website information : name, main_url
+     *
+     * @throws Exception if the site ID doesn't exist or the user doesn't have access to it
+     * @param int $idSite
+     * @return array
+     */
+    public function getSiteDataId($idSite)
+    {
+        $site = Db::get()->fetchRow("SELECT idsite, custom_css, custom_css_file
+    								FROM " . Common::prefixTable("site") . "
+    								WHERE idsite = ?", $idSite);
+
+        return $site;
+    }
 }
