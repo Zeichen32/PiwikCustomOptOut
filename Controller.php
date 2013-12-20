@@ -42,7 +42,7 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
                         continue;
                     }
 
-                    API::getInstance()->saveSite($id, $site['css'], $site['file']);
+                    API::getInstance()->saveSite($id, Common::unsanitizeInputValue($site['css']), Common::unsanitizeInputValue($site['file']));
                 }
 
                 // Redirect to, clear POST vars

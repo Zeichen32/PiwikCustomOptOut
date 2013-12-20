@@ -9,7 +9,7 @@
 
     {% if site.custom_css %}
         <style type="text/css">
-            {{ site.custom_css }}
+            {{ site.custom_css|raw }}
         </style>
     {% endif %}
 </head>
