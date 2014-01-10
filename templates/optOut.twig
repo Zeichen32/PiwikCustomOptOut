@@ -14,6 +14,7 @@
     {% endif %}
 </head>
 <body>
+<p>
 {% if not trackVisits %}
     {{ 'CoreAdminHome_OptOutComplete'|translate }}
     <br/>
@@ -23,7 +24,7 @@
     <br/>
     {{ 'CoreAdminHome_YouMayOptOutBis'|translate }}
 {% endif %}
-<br/><br/>
+</p>
 
 <form method="post" action="?module=CustomOptOut&amp;action=optOut{% if language %}&amp;language={{ language }}{% endif %}&amp;idSite={{ site.idsite }}">
     <input type="hidden" name="nonce" value="{{ nonce }}" />
