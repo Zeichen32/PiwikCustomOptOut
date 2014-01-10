@@ -30,8 +30,7 @@ class API extends \Piwik\Plugin\API
             " SET custom_css = ?, custom_css_file = ?" .
             " WHERE idsite = ?";
 
-        $bind = array($customCss, $customFile, $siteId);
-        Db::query($query, $bind);
+        Db::query($query, array($customCss, $customFile, $siteId));
     }
 
     /**
@@ -45,7 +44,7 @@ class API extends \Piwik\Plugin\API
     {
         $site = Db::get()->fetchRow("SELECT idsite, custom_css, custom_css_file
     								FROM " . Common::prefixTable("site") . "
-    								WHERE idsite = ?", $idSite);
+    								WHERE idsite = ?", array($idSite));
 
         return $site;
     }

@@ -33,7 +33,9 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
         Piwik::checkUserHasSomeAdminAccess();
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $postedSiteData = Common::getRequestVar('site', array(), 'array');
+
+            // Cannot use Common::getRequestVar, because the function remove whitespaces and newline breaks
+            $postedSiteData = isset($_POST['site']) ? $_POST['site'] : null;
 
             if(is_array($postedSiteData) && count($postedSiteData) > 0) {
                 foreach($postedSiteData as $id => $site) {
@@ -42,7 +44,7 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
                         continue;
                     }
 
-                    API::getInstance()->saveSite($id, Common::unsanitizeInputValue($site['css']), Common::unsanitizeInputValue($site['file']));
+                    API::getInstance()->saveSite($id, $site['css'], $site['file']);
                 }
 
                 // Redirect to, clear POST vars
@@ -90,6 +92,10 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
 
         $siteId = Common::getRequestVar('idSite', 0, 'integer');
         $site = API::getInstance()->getSiteDataId($siteId);
+
+        if(!$site) {
+            throw new \Exception('Website was not found!');
+        }
 
         if ($nonce !== false && Nonce::verifyNonce('Piwik_OptOut', $nonce)) {
             Nonce::discardNonce('Piwik_OptOut');
