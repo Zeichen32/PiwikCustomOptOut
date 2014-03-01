@@ -37,7 +37,7 @@
                 <textarea cols="30" rows="3" name="site[{{ site.idsite|escape('html_attr') }}][css]" style="width: 500px; height: 200px">{{- site.custom_css|raw -}}</textarea>
             </td>
             <td style="vertical-align: top">
-                <input type="url" size="30" name="site[{{ site.idsite|escape('html_attr') }}][file]" value="{{- site.custom_css_file -}}"/>
+                <input type="text" size="30" name="site[{{ site.idsite|escape('html_attr') }}][file]" value="{{- site.custom_css_file -}}"/>
             </td>
         </tr>
         <tr>
