@@ -25,22 +25,26 @@ class CustomOptOut extends \Piwik\Plugin
     public function getListHooksRegistered()
     {
         return array(
-            'AssetManager.getJavaScriptFiles' => 'getJsFiles',
             'Menu.Admin.addItems' => 'addMenuItems',
         );
     }
 
-    public function getJsFiles(&$jsFiles)
-    {
-        $jsFiles[] = 'plugins/CustomOptOut/javascripts/plugin.js';
+    public function addMenuItems() {
+
+    // Piwik >= 2.1
+    if(method_exists('Piwik\Piwik', 'hasUserSuperUserAccess')) {
+        $superUserAccess = Piwik::hasUserSuperUserAccess();
+
+        // Piwik < 2.1
+    } else {
+        $superUserAccess = Piwik::isUserIsSuperUser();
     }
 
-    public function addMenuItems() {
         MenuAdmin::getInstance()->add(
             'General_Settings',
             'Custom Opt-Out',
             array('module' => 'CustomOptOut', 'action' => 'index'),
-            $showOnlyIf = Piwik::isUserIsSuperUser(),
+            $superUserAccess,
             $order = 6
         );
     }

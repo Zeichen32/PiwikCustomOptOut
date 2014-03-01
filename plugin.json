@@ -1,20 +1,23 @@
 {
- "name": "CustomOptOut",
- "version": "0.1.3",
- "description": "Create your own opt-out iframe css styles",
- "keywords": ["Opt-Out", "CSS"],
- "theme": false,
- "license": "GPL-3.0+",
- "homepage": "https://github.com/Zeichen32/PiwikCustomOptOut",
- "require": {
-     "piwik": ">=2.0.0",
-     "php": ">=5.3.0"
- },
- "authors": [
-    {
-        "name": "Jens Averkamp",
-        "email": "j.averkamp@two-developers.com",
-        "homepage": "https://github.com/Zeichen32"
-    }
- ]
+     "name": "CustomOptOut",
+     "version": "0.1.3",
+     "description": "Create your own opt-out iframe css styles",
+     "keywords": ["Opt-Out", "CSS"],
+     "theme": false,
+     "license": "GPL-3.0+",
+     "homepage": "https://github.com/Zeichen32/PiwikCustomOptOut",
+     "require": {
+         "piwik": ">=2.0.0",
+         "php": ">=5.3.0"
+     },
+    "donate": {
+        "paypal": "info@two-developers.com"
+    },
+     "authors": [
+        {
+            "name": "Jens Averkamp",
+            "email": "j.averkamp@two-developers.com",
+            "homepage": "https://github.com/Zeichen32"
+        }
+     ]
 }

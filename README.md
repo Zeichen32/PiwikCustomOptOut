@@ -1,18 +1,37 @@
 # Custom Opt-Out Styles Piwik Plugin
 
-Add a new admin tab, to change the opt-out CSS Styles for each website.
+## Description
 
-Notice: This plugin is still in development, so use it on your own risk!
+Add a new admin tab, to change the opt-out CSS Styles for each website.
 
 ## Requirements
 
 + Piwik >= 2.0.0
+
+## Changelog
+
+#### CustomOptOut 0.1.4:
+* Issue #3 Code updated to support Piwik 2.1 and newer
+* Issue #2 Allow relative urls in css file field
+
+#### CustomOptOut 0.1.3:
+* Issue #1 Added a p-tag around the opt-out text for better markup and easier styling. (christianseel)
+
+#### CustomOptOut 0.1.2:
+* Fix wrong css escaping
+
+#### CustomOptOut 0.1.1:
+* Initial Version
+
 
 ## Authors
 
 **Jens Averkamp**
 
 + [https://github.com/Zeichen32](https://github.com/Zeichen32)
+
+## Support
+**Please direct any feedback to [https://github.com/Zeichen32/PiwikCustomOptOut](https://github.com/Zeichen32/PiwikCustomOptOut)**
 
 ## Copyright and license
 
