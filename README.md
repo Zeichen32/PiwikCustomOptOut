@@ -10,6 +10,9 @@ Add a new admin tab, to change the opt-out CSS Styles for each website.
 
 ## Changelog
 
+#### CustomOptOut 0.1.5:
+* Issue #6 Disable AngularJs form binding
+
 #### CustomOptOut 0.1.4:
 * Issue #3 Code updated to support Piwik 2.1 and newer
 * Issue #2 Allow relative urls in css file field
@@ -29,6 +32,10 @@ Add a new admin tab, to change the opt-out CSS Styles for each website.
 **Jens Averkamp**
 
 + [https://github.com/Zeichen32](https://github.com/Zeichen32)
+
+**Sven Motz**
+
++ [https://github.com/xMysteriox](https://github.com/xMysteriox)
 
 ## Support
 **Please direct any feedback to [https://github.com/Zeichen32/PiwikCustomOptOut](https://github.com/Zeichen32/PiwikCustomOptOut)**
