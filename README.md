@@ -1,5 +1,7 @@
 # Custom Opt-Out Styles Piwik Plugin
 
+[![Build Status](https://travis-ci.org/Zeichen32/PiwikCustomOptOut.png?branch=master)](https://travis-ci.org/Zeichen32/PiwikCustomOptOut)
+
 ## Description
 
 Add a new admin tab, to change the opt-out CSS Styles for each website.
