@@ -1,0 +1,41 @@
+language: php
+
+php:
+- 5.3
+
+env:
+  matrix:
+    - TEST_SUITE=CoreTests MYSQL_ADAPTER=PDO_MYSQL
+    - TEST_SUITE=PluginTests MYSQL_ADAPTER=PDO_MYSQL
+
+script: ./travis.sh
+
+install:
+  - TEST_PIWIK_VERSION=$(wget builds.piwik.org/LATEST_BETA -q -O -)
+  - echo $TEST_PIWIK_VERSION
+  - TEST_PIWIK_VERSION=`echo $TEST_PIWIK_VERSION | tr -d ' ' | tr -d '\n'`
+  - mkdir CustomOptOut
+  - cp -R !(CustomOptOut) CustomOptOut
+  - git clone https://github.com/piwik/piwik.git piwik
+  - cd piwik
+  - git checkout "$TEST_PIWIK_VERSION"
+  - git submodule init
+  - git submodule update
+  - composer install
+  - rm -rf plugins/CustomOptOut
+  - cd ../
+  - mv CustomOptOut piwik/plugins
+
+before_script:
+  - cd piwik
+  - uname -a
+  - date
+  - mysql -e 'create database piwik_tests;'
+  - ./tests/travis/prepare.sh
+  - ./tests/travis/setup_webserver.sh
+  - wget https://raw.github.com/piwik/piwik-tests-plugins/master/activateplugin.php
+  - php activateplugin.php CustomOptOut
+  - cd tests/PHPUnit
+
+after_script:
+  - cat /var/log/nginx/error.log
