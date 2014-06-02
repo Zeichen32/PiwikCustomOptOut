@@ -19,14 +19,43 @@ use Piwik\Piwik;
  */
 class CustomOptOut extends \Piwik\Plugin
 {
+
     /**
      * @see Piwik\Plugin::getListHooksRegistered
      */
     public function getListHooksRegistered()
     {
         return array(
-            'Menu.Admin.addItems' => 'addMenuItems',
+            'Menu.Admin.addItems'               => 'addMenuItems',
+            'AssetManager.getJavaScriptFiles'   => 'getJsFiles',
+            'AssetManager.getStylesheetFiles'   => 'getStylesheetFiles'
         );
+    }
+
+    public function getJsFiles(&$jsFiles)
+    {
+        // CodeMirror
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/codemirror.js";
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/mode/css/css.js";
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/show-hint.js";
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/css-hint.js";
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/lint.js";
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/css-lint.js";
+
+        // CSS Lint for CodeMirror
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/csslint/csslint.js";
+
+        // Plugin
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/plugin.js";
+
+    }
+
+    public function getStylesheetFiles(&$stylesheets)
+    {
+        // CodeMirror CSS
+        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/codemirror.css";
+        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/lint.css";
+        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/show-hint.css";
     }
 
     public function addMenuItems() {

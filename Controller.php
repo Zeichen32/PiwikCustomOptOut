@@ -33,7 +33,7 @@ class Controller extends ControllerAdmin
     {
         Piwik::checkUserHasSomeAdminAccess();
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(isset($_SERVER['REQUEST_METHOD']) && 'POST' == $_SERVER['REQUEST_METHOD']) {
 
             // Cannot use Common::getRequestVar, because the function remove whitespaces and newline breaks
             $postedSiteData = isset($_POST['site']) ? $_POST['site'] : null;
@@ -83,9 +83,13 @@ class Controller extends ControllerAdmin
             $site['alias_urls'] = APISiteManager::getInstance()->getSiteUrlsFromId($site['idsite']);
         }
 
+        // Load Setting
+        $setting = new Settings('CustomOptOut');
+
         $view->adminSites = $sites;
         $view->adminSitesCount = count($sites);
         $view->language = LanguagesManager::getLanguageCodeForCurrentUser();
+        $view->isEditorEnabled = $setting->enableEditor->getValue();
         $this->setBasicVariablesView($view);
 
         return $view->render();

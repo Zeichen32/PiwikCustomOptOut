@@ -1,0 +1,6 @@
+{
+    "CustomOptOut": {
+        "ShowEditorOptionName"  : "CSS Editor aktivieren",
+        "ShowEditorDescription" : "Wenn aktiviert, wird der \"Custom Css\" Code in einem einfachen CSS Editor angezeigt."
+    }
+}

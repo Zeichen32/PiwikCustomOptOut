@@ -24,19 +24,19 @@
         <tbody>
         {% for i,site in adminSites %}
         <tr id="row{{ site.idsite }}" data-keep-url-fragments="{{ site.keep_url_fragment }}">
-            <td style="vertical-align: top">{{ site.idsite }}</td>
-            <td style="vertical-align: top" class="editableSite">
+            <td style="vertical-align: top; width: 10%;">{{ site.idsite }}</td>
+            <td style="vertical-align: top; width: 10%;" class="editableSite">
                 {{- site.name|raw -}}
             </td>
-            <td style="vertical-align: top" class="editableSite">
+            <td style="vertical-align: top; width: 10%;" class="editableSite">
                 {%- for url in site.alias_urls -%}
                     {{- url|trim|replace({'http://': ''})|raw -}}<br />
                 {%- endfor -%}
             </td>
-            <td>
-                <textarea cols="30" rows="3" name="site[{{ site.idsite|escape('html_attr') }}][css]" style="width: 500px; height: 200px">{{- site.custom_css|raw -}}</textarea>
+            <td style="vertical-align: top; width: 50%;">
+                <textarea cols="30" rows="3" {% if isEditorEnabled %}class="codemirror-textarea" id="codemirror-textarea-{{ site.idsite|escape('html_attr') }}"{% endif %} name="site[{{ site.idsite|escape('html_attr') }}][css]" style="width: 500px; height: 200px">{{- site.custom_css|raw -}}</textarea>
             </td>
-            <td style="vertical-align: top">
+            <td style="vertical-align: top; width: 20%;">
                 <input type="text" size="30" name="site[{{ site.idsite|escape('html_attr') }}][file]" value="{{- site.custom_css_file -}}"/>
             </td>
         </tr>

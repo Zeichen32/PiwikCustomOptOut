@@ -12,6 +12,9 @@ Add a new admin tab, to change the opt-out CSS Styles for each website.
 
 ## Changelog
 
+#### CustomOptOut 0.1.6:
+* Add [CodeMirror Editor](http://codemirror.net) to highlight the CSS Code
+
 #### CustomOptOut 0.1.5:
 * Issue #6 Disable AngularJs form binding
 

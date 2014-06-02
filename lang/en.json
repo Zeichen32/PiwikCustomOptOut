@@ -1,0 +1,6 @@
+{
+    "CustomOptOut": {
+        "ShowEditorOptionName"  : "Enable css editor",
+        "ShowEditorDescription" : "Enable this option to show the \"custom css\" code in a simple css editor."
+    }
+}
