@@ -1,16 +1,16 @@
 <?php
 /**
- * Created by Two Developers - Sven Motz und Jens Averkamp GbR
- * http://www.two-developers.com
+ * Piwik - Open source web analytics
  *
- * Developer: Jens Averkamp
- * Date: 02.06.2014
- * Time: 15:42
+ * @link http://piwik.org
+ * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
+ *
+ * @category Piwik_Plugins
+ * @package CustomOptOut
  */
 
 namespace Piwik\Plugins\CustomOptOut;
 
-use Piwik\Settings\SystemSetting;
 use Piwik\Settings\UserSetting;
 use Piwik\Piwik;
 
@@ -45,4 +45,4 @@ class Settings extends \Piwik\Plugin\Settings {
         $this->addSetting($this->enableEditor);
     }
 
-} 
+}

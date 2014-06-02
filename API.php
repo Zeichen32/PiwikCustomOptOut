@@ -6,8 +6,9 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
  * @category Piwik_Plugins
- * @package Piwik_CustomOptOut
+ * @package CustomOptOut
  */
+
 namespace Piwik\Plugins\CustomOptOut;
 
 use Piwik\Common;
@@ -47,5 +48,22 @@ class API extends \Piwik\Plugin\API
     								WHERE idsite = ?", array($idSite));
 
         return $site;
+    }
+
+    /**
+     * Returns true if the left menu is enabled for the current user.
+     *
+     * @return bool
+     */
+    public function isCssEditorEnabled()
+    {
+        $settings = new Settings('CustomOptOut');
+        $value  = (bool) $settings->enableEditor->getValue();
+
+        if (!$settings->enableEditor->isReadableByCurrentUser() || $value === false) {
+            return false;
+        }
+
+        return true;
     }
 }

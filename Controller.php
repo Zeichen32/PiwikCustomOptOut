@@ -8,6 +8,7 @@
  * @category Piwik_Plugins
  * @package CustomOptOut
  */
+
 namespace Piwik\Plugins\CustomOptOut;
 
 use Piwik\Common;
@@ -112,7 +113,7 @@ class Controller extends ControllerAdmin
             throw new \Exception('Website was not found!');
         }
 
-        if ($nonce !== false && Nonce::verifyNonce('Piwik_OptOut', $nonce)) {
+        if (false !== $nonce && Nonce::verifyNonce('Piwik_OptOut', $nonce)) {
             Nonce::discardNonce('Piwik_OptOut');
             IgnoreCookie::setIgnoreCookie();
             $trackVisits = !$trackVisits;

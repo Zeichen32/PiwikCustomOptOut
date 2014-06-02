@@ -8,7 +8,9 @@
  * @category Piwik_Plugins
  * @package CustomOptOut
  */
+
 namespace Piwik\Plugins\CustomOptOut;
+
 use Piwik\Common;
 use Piwik\Db;
 use Piwik\Menu\MenuAdmin;
@@ -28,7 +30,7 @@ class CustomOptOut extends \Piwik\Plugin
         return array(
             'Menu.Admin.addItems'               => 'addMenuItems',
             'AssetManager.getJavaScriptFiles'   => 'getJsFiles',
-            'AssetManager.getStylesheetFiles'   => 'getStylesheetFiles'
+            'AssetManager.getStylesheetFiles'   => 'getStylesheetFiles',
         );
     }
 
@@ -106,3 +108,4 @@ class CustomOptOut extends \Piwik\Plugin
         }
     }
 }
+
