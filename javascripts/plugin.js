@@ -11,10 +11,13 @@ $(document).ready(function () {
 
     $("textarea.codemirror-textarea").each(function() {
 
-        var myCodeMirror = CodeMirror.fromTextArea(this, {
+        var theme = $(this).attr('data-codemirror-theme');
+
+        CodeMirror.fromTextArea(this, {
             mode : 'css',
             lineNumbers: true,
             gutters: ["CodeMirror-lint-markers"],
+            theme: (theme == "default" ? "default" : "blackboard"),
             lint: true
         });
     });

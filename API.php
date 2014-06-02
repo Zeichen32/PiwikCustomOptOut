@@ -66,4 +66,15 @@ class API extends \Piwik\Plugin\API
 
         return true;
     }
+
+    public function getEditorTheme() {
+        $settings = new Settings('CustomOptOut');
+        $value  = $settings->editorTheme->getValue();
+
+        if (!$settings->editorTheme->isReadableByCurrentUser() || $value == 'default') {
+            return 'default';
+        }
+
+        return 'blackboard';
+    }
 }

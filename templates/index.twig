@@ -34,7 +34,7 @@
                 {%- endfor -%}
             </td>
             <td style="vertical-align: top; width: 50%;">
-                <textarea cols="30" rows="3" {% if isEditorEnabled %}class="codemirror-textarea" id="codemirror-textarea-{{ site.idsite|escape('html_attr') }}"{% endif %} name="site[{{ site.idsite|escape('html_attr') }}][css]" style="width: 500px; height: 200px">{{- site.custom_css|raw -}}</textarea>
+                <textarea cols="30" rows="3" {% if isEditorEnabled %}class="codemirror-textarea" data-codemirror-theme="{{ editorTheme }}"{% endif %} name="site[{{ site.idsite|escape('html_attr') }}][css]" style="width: 500px; height: 200px">{{- site.custom_css|raw -}}</textarea>
             </td>
             <td style="vertical-align: top; width: 20%;">
                 <input type="text" size="30" name="site[{{ site.idsite|escape('html_attr') }}][file]" value="{{- site.custom_css_file -}}"/>

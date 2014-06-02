@@ -89,6 +89,7 @@ class Controller extends ControllerAdmin
         $view->adminSitesCount = count($sites);
         $view->language = LanguagesManager::getLanguageCodeForCurrentUser();
         $view->isEditorEnabled = API::getInstance()->isCssEditorEnabled();
+        $view->editorTheme = API::getInstance()->getEditorTheme();
         $this->setBasicVariablesView($view);
 
         return $view->render();

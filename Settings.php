@@ -22,6 +22,11 @@ class Settings extends \Piwik\Plugin\Settings {
     public $enableEditor;
 
     /**
+     * @var UserSetting
+     */
+    public $editorTheme;
+
+    /**
      * Implemented by descendants. This method should define plugin settings (via the
      * {@link addSetting()}) method and set the introduction text (via the
      * {@link setIntroduction()}).
@@ -31,6 +36,7 @@ class Settings extends \Piwik\Plugin\Settings {
         $this->setIntroduction('Here you can specify the settings for this plugin.');
 
         $this->createEnableEditorSetting();
+        $this->createThemeSetting();
     }
 
     private function createEnableEditorSetting() {
@@ -43,6 +49,22 @@ class Settings extends \Piwik\Plugin\Settings {
         $this->enableEditor->defaultValue   = true;
 
         $this->addSetting($this->enableEditor);
+    }
+
+    private function createThemeSetting() {
+        $this->editorTheme                 = new UserSetting('editorTheme',
+            Piwik::translate('CustomOptOut_EditorThemeOptionName'));
+
+        $this->editorTheme->type           = static::TYPE_STRING;
+        $this->editorTheme->uiControlType  = static::CONTROL_SINGLE_SELECT;
+        $this->editorTheme->description    = Piwik::translate('CustomOptOut_EditorThemeDescription');
+        $this->editorTheme->defaultValue   = 'default';
+        $this->editorTheme->availableValues = array(
+            'default'       => 'Bright Theme',
+            'blackboard'    => 'Dark Theme',
+        );
+
+        $this->addSetting($this->editorTheme);
     }
 
 }

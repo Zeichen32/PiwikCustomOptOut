@@ -56,6 +56,7 @@ class CustomOptOut extends \Piwik\Plugin
     {
         // CodeMirror CSS
         $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/codemirror.css";
+        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/theme/blackboard.css";
         $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/lint.css";
         $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/show-hint.css";
     }

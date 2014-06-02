@@ -1,6 +1,8 @@
 {
     "CustomOptOut": {
         "ShowEditorOptionName"  : "CSS Editor aktivieren",
-        "ShowEditorDescription" : "Wenn aktiviert, wird der \"Custom Css\" Code in einem einfachen CSS Editor angezeigt."
+        "ShowEditorDescription" : "Wenn aktiviert, wird der \"Custom Css\" Code in einem einfachen CSS Editor angezeigt.",
+        "EditorThemeOptionName" : "Editor Theme",
+        "EditorThemeDescription" : "Wähle einen Theme für den CSS Editor."
     }
 }
