@@ -60,7 +60,7 @@ class API extends \Piwik\Plugin\API
         $settings = new Settings('CustomOptOut');
         $value  = (bool) $settings->enableEditor->getValue();
 
-        if (!$settings->enableEditor->isReadableByCurrentUser() || $value === false) {
+        if ($value === false) {
             return false;
         }
 
@@ -71,7 +71,7 @@ class API extends \Piwik\Plugin\API
         $settings = new Settings('CustomOptOut');
         $value  = $settings->editorTheme->getValue();
 
-        if (!$settings->editorTheme->isReadableByCurrentUser() || $value == 'default') {
+        if ($value == 'default') {
             return 'default';
         }
 
