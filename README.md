@@ -4,7 +4,33 @@
 
 ## Description
 
-Add a new admin tab, to change the opt-out CSS Styles for each website.
+Adds a new admin tab allowing to change the opt-out CSS Styles for each website.
+
+## Usage
+
+1) Click on the "Settings" link located in the top menue on the right
+
+2) Click on the "Custom Opt-Out" tab located in the "Settings" section of the sidebar on the left
+
+3) Enter your custom CSS code into the textarea input field called "Custom Css" e.g.
+```css     
+  body {
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 12px;
+    color: #ddd;
+    line-height: 160%;
+    margin: 10px;
+    padding: 0;
+  }
+```
+or insert a link to the file containing your custom CSS into the input field called "External CSS File" e.g.
+
+  ``http://www.example.org/styles/piwikcustom.css``
+
+4) Click the "Save" button.
+
+5) Use the iframe code provided below the input fields to add the Piwiki Opt-Out to your website.
+
 
 ## Requirements
 
@@ -12,7 +38,7 @@ Add a new admin tab, to change the opt-out CSS Styles for each website.
 
 ## Changelog
 
-#### CustomOptOut 0.1.6:
+#### CustomOptOut 0.1.7:
 * Add [CodeMirror Editor](http://codemirror.net) to highlight the CSS Code
 
 #### CustomOptOut 0.1.5:
