@@ -38,7 +38,7 @@ or insert a URL to the file containing your custom CSS into the input field call
 
 ## Changelog
 
-#### CustomOptOut 0.1.7:
+#### CustomOptOut 0.1.6:
 * Add [CodeMirror Editor](http://codemirror.net) to highlight the CSS Code
 
 #### CustomOptOut 0.1.5:
