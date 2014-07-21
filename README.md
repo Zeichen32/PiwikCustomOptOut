@@ -42,7 +42,7 @@ or insert a URL to the file containing your custom CSS into the input field call
 * (MR #15) Make the opt-out form work even if JavaScript is disabled (craue)
 
 #### CustomOptOut 0.1.7:
-* Update Readme (kghbln)
+* (MR #14) Update Readme (kghbln)
 
 #### CustomOptOut 0.1.6:
 * Add [CodeMirror Editor](http://codemirror.net) to highlight the CSS Code
