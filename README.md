@@ -39,7 +39,7 @@ or insert a URL to the file containing your custom CSS into the input field call
 ## Changelog
 
 #### CustomOptOut 0.1.8:
-* Make the opt-out form work even if JavaScript is disabled (craue)
+* (MR #15) Make the opt-out form work even if JavaScript is disabled (craue)
 
 #### CustomOptOut 0.1.7:
 * Update Readme (kghbln)
@@ -48,14 +48,14 @@ or insert a URL to the file containing your custom CSS into the input field call
 * Add [CodeMirror Editor](http://codemirror.net) to highlight the CSS Code
 
 #### CustomOptOut 0.1.5:
-* Issue #6 Disable AngularJs form binding
+* (Issue #6) Disable AngularJs form binding
 
 #### CustomOptOut 0.1.4:
-* Issue #3 Code updated to support Piwik 2.1 and newer
-* Issue #2 Allow relative urls in css file field
+* (Issue #3) Code updated to support Piwik 2.1 and newer
+* (Issue #2) Allow relative urls in css file field
 
 #### CustomOptOut 0.1.3:
-* Issue #1 Added a p-tag around the opt-out text for better markup and easier styling. (christianseel)
+* (MR #1) Added a p-tag around the opt-out text for better markup and easier styling. (christianseel)
 
 #### CustomOptOut 0.1.2:
 * Fix wrong css escaping
