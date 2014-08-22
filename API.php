@@ -21,42 +21,53 @@ use Piwik\Piwik;
  * @package CustomOptOut
  * @method static \Piwik\Plugins\CustomOptOut\API getInstance()
  */
-class API extends \Piwik\Plugin\API
-{
-    public function saveSite($siteId, $customCss = null, $customFile = null)
-    {
+class API extends \Piwik\Plugin\API {
+
+	/**
+	 * Save the custom css and custom css file
+	 *
+	 * @param $siteId
+	 * @param null $customCss
+	 * @param null $customFile
+	 */
+	public function saveSite($siteId, $customCss = null, $customFile = null) {
+
         Piwik::checkUserHasAdminAccess($siteId);
 
         $query = "UPDATE " . Common::prefixTable("site") .
-            " SET custom_css = ?, custom_css_file = ?" .
-            " WHERE idsite = ?";
+                 " SET custom_css = ?, custom_css_file = ?" .
+                 " WHERE idsite = ?";
 
         Db::query($query, array($customCss, $customFile, $siteId));
+
     }
 
     /**
-     * Returns the website information : name, main_url
+     * Returns the website information : id, custom css, custom css file
      *
-     * @throws Exception if the site ID doesn't exist or the user doesn't have access to it
+     * @throws Exception If the site ID doesn't exist or the user doesn't have access to it
      * @param int $idSite
      * @return array
      */
-    public function getSiteDataId($idSite)
-    {
-        $site = Db::get()->fetchRow("SELECT idsite, custom_css, custom_css_file
-    								FROM " . Common::prefixTable("site") . "
-    								WHERE idsite = ?", array($idSite));
+    public function getSiteDataId($idSite) {
+
+	    $query = "SELECT idsite, custom_css, custom_css_file" .
+                 " FROM " . Common::prefixTable("site") .
+                 " WHERE idsite = ?";
+
+        $site = Db::get()->fetchRow($query, array($idSite));
 
         return $site;
+
     }
 
     /**
-     * Returns true if the left menu is enabled for the current user.
+     * Returns true if the css editor is enabled
      *
      * @return bool
      */
-    public function isCssEditorEnabled()
-    {
+    public function isCssEditorEnabled() {
+
         $settings = new Settings('CustomOptOut');
         $value  = (bool) $settings->enableEditor->getValue();
 
@@ -65,9 +76,16 @@ class API extends \Piwik\Plugin\API
         }
 
         return true;
+
     }
 
-    public function getEditorTheme() {
+	/**
+	 * Return the current css editor theme
+	 *
+	 * @return string
+	 */
+	public function getEditorTheme() {
+
         $settings = new Settings('CustomOptOut');
         $value  = $settings->editorTheme->getValue();
 
@@ -76,5 +94,6 @@ class API extends \Piwik\Plugin\API
         }
 
         return 'blackboard';
+
     }
 }

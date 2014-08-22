@@ -27,11 +27,16 @@ use Piwik\Site;
  *
  * @package CustomOptOut
  */
-class Controller extends ControllerAdmin
-{
+class Controller extends ControllerAdmin {
 
-    public function index()
-    {
+	/**
+	 * Main Plugin Index
+	 *
+	 * @return mixed
+	 * @throws \Exception
+	 */
+	public function index() {
+
         Piwik::checkUserHasSomeAdminAccess();
 
         if(isset($_SERVER['REQUEST_METHOD']) && 'POST' == $_SERVER['REQUEST_METHOD']) {
@@ -40,6 +45,7 @@ class Controller extends ControllerAdmin
             $postedSiteData = isset($_POST['site']) ? $_POST['site'] : null;
 
             if(is_array($postedSiteData) && count($postedSiteData) > 0) {
+
                 foreach($postedSiteData as $id => $site) {
 
                     if(!isset($site['css'], $site['file'])) {
@@ -47,11 +53,13 @@ class Controller extends ControllerAdmin
                     }
 
                     API::getInstance()->saveSite($id, $site['css'], $site['file']);
+
                 }
 
                 // Redirect to, clear POST vars
                 $this->redirectToIndex('CustomOptOut', 'index');
                 return;
+
             }
         }
 
@@ -60,30 +68,40 @@ class Controller extends ControllerAdmin
 
         // Piwik >= 2.1
         if(method_exists('Piwik\Piwik', 'hasUserSuperUserAccess')) {
+
             $superUserAccess = Piwik::hasUserSuperUserAccess();
 
         // Piwik < 2.1
         } else {
+
             $superUserAccess = Piwik::isUserIsSuperUser();
+
         }
 
         if ($superUserAccess) {
+
             $sitesRaw = APISiteManager::getInstance()->getAllSites();
+
         } else {
+
             $sitesRaw = APISiteManager::getInstance()->getSitesWithAdminAccess();
+
         }
 
         // Gets sites after Site.setSite hook was called
         $sites = array_values( Site::getSites() );
 
         if(count($sites) != count($sitesRaw)) {
+
             throw new \Exception("One or more website are missing or invalid.");
+
         }
 
         foreach ($sites as &$site) {
-            $site['alias_urls'] = APISiteManager::getInstance()->getSiteUrlsFromId($site['idsite']);
-        }
 
+            $site['alias_urls'] = APISiteManager::getInstance()->getSiteUrlsFromId($site['idsite']);
+
+        }
 
         $view->adminSites = $sites;
         $view->adminSitesCount = count($sites);
@@ -93,13 +111,14 @@ class Controller extends ControllerAdmin
         $this->setBasicVariablesView($view);
 
         return $view->render();
+
     }
 
     /**
      * Shows the "Track Visits" checkbox.
      */
-    public function optOut()
-    {
+    public function optOut() {
+
         $trackVisits = !IgnoreCookie::isIgnoreCookieFound();
 
         $nonce = Common::getRequestVar('nonce', false);
@@ -109,13 +128,17 @@ class Controller extends ControllerAdmin
         $site = API::getInstance()->getSiteDataId($siteId);
 
         if(!$site) {
+
             throw new \Exception('Website was not found!');
+
         }
 
         if (false !== $nonce && Nonce::verifyNonce('Piwik_OptOut', $nonce)) {
+
             Nonce::discardNonce('Piwik_OptOut');
             IgnoreCookie::setIgnoreCookie();
             $trackVisits = !$trackVisits;
+
         }
 
         $view = new View('@CustomOptOut/optOut');
@@ -127,5 +150,6 @@ class Controller extends ControllerAdmin
             : LanguagesManager::getLanguageCodeForCurrentUser();
 
         return $view->render();
+
     }
 }
