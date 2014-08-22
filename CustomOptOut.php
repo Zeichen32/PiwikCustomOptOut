@@ -21,79 +21,79 @@ use Piwik\Piwik;
  */
 class CustomOptOut extends \Piwik\Plugin {
 
-    /**
-     * @see Piwik\Plugin::getListHooksRegistered
-     */
-    public function getListHooksRegistered() {
+	/**
+	 * @see Piwik\Plugin::getListHooksRegistered
+	 */
+	public function getListHooksRegistered() {
 
-        return array(
-            'Menu.Admin.addItems'               => 'addMenuItems',
-            'AssetManager.getJavaScriptFiles'   => 'getJsFiles',
-            'AssetManager.getStylesheetFiles'   => 'getStylesheetFiles',
-        );
+		return array(
+		    'Menu.Admin.addItems'               => 'addMenuItems',
+		    'AssetManager.getJavaScriptFiles'   => 'getJsFiles',
+		    'AssetManager.getStylesheetFiles'   => 'getStylesheetFiles',
+		);
 
-    }
+	}
 
 	/**
 	 * @param $jsFiles
 	 */
 	public function getJsFiles(&$jsFiles) {
 
-        // CodeMirror
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/codemirror.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/mode/css/css.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/show-hint.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/css-hint.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/lint.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/css-lint.js";
+		// CodeMirror
+		$jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/codemirror.js";
+		$jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/mode/css/css.js";
+		$jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/show-hint.js";
+		$jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/css-hint.js";
+		$jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/lint.js";
+		$jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/css-lint.js";
 
-        // CSS Lint for CodeMirror
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/csslint/csslint.js";
+		// CSS Lint for CodeMirror
+		$jsFiles[] = "plugins/CustomOptOut/javascripts/csslint/csslint.js";
 
-        // Plugin
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/plugin.js";
+		// Plugin
+		$jsFiles[] = "plugins/CustomOptOut/javascripts/plugin.js";
 
-    }
+	}
 
 	/**
 	 * @param $stylesheets
 	 */
 	public function getStylesheetFiles(&$stylesheets) {
 
-        // CodeMirror CSS
-        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/codemirror.css";
-        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/theme/blackboard.css";
-        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/lint.css";
-        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/show-hint.css";
+		// CodeMirror CSS
+		$stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/codemirror.css";
+		$stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/theme/blackboard.css";
+		$stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/lint.css";
+		$stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/show-hint.css";
 
-    }
+	}
 
 	/**
 	 * Add Menu Item to the Sidebar
 	 */
 	public function addMenuItems() {
 
-	    // Piwik >= 2.1
-	    if(method_exists('Piwik\Piwik', 'hasUserSuperUserAccess')) {
+		// Piwik >= 2.1
+		if(method_exists('Piwik\Piwik', 'hasUserSuperUserAccess')) {
 
-	        $superUserAccess = Piwik::hasUserSuperUserAccess();
+		    $superUserAccess = Piwik::hasUserSuperUserAccess();
 
-	        // Piwik < 2.1
-	    } else {
+		    // Piwik < 2.1
+		} else {
 
-	        $superUserAccess = Piwik::isUserIsSuperUser();
+		    $superUserAccess = Piwik::isUserIsSuperUser();
 
-	    }
+		}
 
-	    MenuAdmin::getInstance()->add(
-	        'General_Settings',
-	        'Custom Opt-Out',
-	        array('module' => 'CustomOptOut', 'action' => 'index'),
-	        $superUserAccess,
-	        $order = 6
-	    );
+		MenuAdmin::getInstance()->add(
+		    'General_Settings',
+		    'Custom Opt-Out',
+		    array('module' => 'CustomOptOut', 'action' => 'index'),
+		    $superUserAccess,
+		    $order = 6
+		);
 
-    }
+	}
 
 	/**
 	 * Plugin install hook
@@ -102,25 +102,25 @@ class CustomOptOut extends \Piwik\Plugin {
 	 */
 	public function install() {
 
-        try {
+		try {
 
-            $sql = sprintf(
-	            "ALTER TABLE %s" .
-	            " ADD COLUMN `custom_css` TEXT NULL AFTER `keep_url_fragment`," .
-	            " ADD COLUMN `custom_css_file` VARCHAR(255) NULL AFTER `custom_css`;", Common::prefixTable('site')
-            );
+		    $sql = sprintf(
+		        "ALTER TABLE %s" .
+		        " ADD COLUMN `custom_css` TEXT NULL AFTER `keep_url_fragment`," .
+		        " ADD COLUMN `custom_css_file` VARCHAR(255) NULL AFTER `custom_css`;", Common::prefixTable('site')
+		    );
 
-            Db::exec($sql);
+		    Db::exec($sql);
 
-        } catch(\Exception $exp) {
+		} catch(\Exception $exp) {
 
-            if(!Db::get()->isErrNo($exp, '1060')) {
-                throw $exp;
-            }
+		    if(!Db::get()->isErrNo($exp, '1060')) {
+		        throw $exp;
+		    }
 
-        }
+		}
 
-    }
+	}
 
 	/**
 	 * Plugin uninstall hook
@@ -129,24 +129,24 @@ class CustomOptOut extends \Piwik\Plugin {
 	 */
 	public function uninstall() {
 
-        try {
+		try {
 
-            $sql = sprintf(
-	            "ALTER TABLE %s" .
-	            " DROP COLUMN `custom_css`," .
-	            " DROP COLUMN `custom_css_file`;", Common::prefixTable('site')
-            );
+		    $sql = sprintf(
+		        "ALTER TABLE %s" .
+		        " DROP COLUMN `custom_css`," .
+		        " DROP COLUMN `custom_css_file`;", Common::prefixTable('site')
+		    );
 
-            Db::exec($sql);
+		    Db::exec($sql);
 
-        } catch(\Exception $exp) {
+		} catch(\Exception $exp) {
 
-            if(!Db::get()->isErrNo($exp, '1091')) {
-                throw $exp;
-            }
+		    if(!Db::get()->isErrNo($exp, '1091')) {
+		        throw $exp;
+		    }
 
-        }
+		}
 
-    }
+	}
 }
 
