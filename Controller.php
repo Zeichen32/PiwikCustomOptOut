@@ -141,15 +141,19 @@ class Controller extends ControllerAdmin {
 
 		}
 
+        $lang = APILanguagesManager::getInstance()->isLanguageAvailable($language)
+            ? $language
+            : LanguagesManager::getLanguageCodeForCurrentUser();
+
+
 		$view = new View('@CustomOptOut/optOut');
 		$view->site = $site;
-		$view->trackVisits = $trackVisits;
-		$view->nonce = Nonce::getNonce('Piwik_OptOut', 3600);
-		$view->language = APILanguagesManager::getInstance()->isLanguageAvailable($language)
-		    ? $language
-		    : LanguagesManager::getLanguageCodeForCurrentUser();
+        $view->setXFrameOptions('allow');
+        $view->trackVisits = $trackVisits;
+        $view->nonce = Nonce::getNonce('Piwik_OptOut', 3600);
+        $view->language = $lang;
 
-		return $view->render();
+        return $view->render();
 
 	}
 }

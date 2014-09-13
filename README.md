@@ -38,6 +38,9 @@ or insert a URL to the file containing your custom CSS into the input field call
 
 ## Changelog
 
+#### CustomOptOut 0.1.9:
+* Add XFrameOption [See Piwik Commit](https://github.com/piwik/piwik/commit/25545fdc55a1decd13548c1f3f6479789956e56c)
+
 #### CustomOptOut 0.1.8:
 * (MR #15) Make the opt-out form work even if JavaScript is disabled (craue)
 
