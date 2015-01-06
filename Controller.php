@@ -141,6 +141,8 @@ class Controller extends ControllerAdmin {
 
 		}
 
+		CustomOptOut::changeSiteTranslations($siteId);
+
         $lang = APILanguagesManager::getInstance()->isLanguageAvailable($language)
             ? $language
             : LanguagesManager::getLanguageCodeForCurrentUser();

@@ -15,6 +15,7 @@ use Piwik\Common;
 use Piwik\Db;
 use Piwik\Menu\MenuAdmin;
 use Piwik\Piwik;
+use Piwik\Translate;
 
 /**
  * @package CustomOptOut
@@ -33,6 +34,89 @@ class CustomOptOut extends \Piwik\Plugin {
 		);
 
 	}
+
+	public function postLoad()
+	{
+		if(
+			isset($GLOBALS['Piwik_translations'], $GLOBALS['Piwik_translations']['CustomOptOut'])
+			&& is_array($GLOBALS['Piwik_translations']['CustomOptOut'])
+		) {
+			$currentLanguage = Translate::getLanguageLoaded();
+			$fallbackLanguage = Translate::getLanguageDefault();
+
+			$translations = array();
+
+			if(is_file(__DIR__ . '/lang/sites/' . $currentLanguage . '.json')) {
+				$translations = json_decode(file_get_contents(__DIR__ . '/lang/sites/' . $currentLanguage . '.json'), true);
+			} elseif(is_file(__DIR__ . '/lang/sites/' . $fallbackLanguage . '.json')) {
+				$translations = json_decode(file_get_contents(__DIR__ . '/lang/sites/' . $fallbackLanguage . '.json'), true);
+			}
+
+			$GLOBALS['Piwik_CustomOptOut_Translations'] = $translations;
+		} else {
+			$GLOBALS['Piwik_CustomOptOut_Translations'] = array();
+		}
+
+		return parent::postLoad();
+	}
+
+	private static function getSiteTranslations($siteId = null) {
+
+		if(!isset($GLOBALS['Piwik_CustomOptOut_Translations'])) {
+			return self::getDefaultSiteTranslations();
+		}
+
+		$isGlobalAvailable = array_key_exists('Global', $GLOBALS['Piwik_CustomOptOut_Translations']);
+
+		$translation = self::getDefaultSiteTranslations();
+		if(null !== $siteId && array_key_exists((string) $siteId, $GLOBALS['Piwik_CustomOptOut_Translations'])) {
+
+			if($isGlobalAvailable) {
+				$translation = array('CustomOptOut' =>
+					array_merge($translation['CustomOptOut'], $GLOBALS['Piwik_CustomOptOut_Translations']['Global'])
+				);
+			}
+
+			$translation = array('CustomOptOut' =>
+				array_merge($translation['CustomOptOut'], $GLOBALS['Piwik_CustomOptOut_Translations'][$siteId])
+			);
+		} elseif($isGlobalAvailable) {
+			$translation = array('CustomOptOut' =>
+				array_merge($translation['CustomOptOut'], $GLOBALS['Piwik_CustomOptOut_Translations']['Global'])
+			);
+		}
+
+		return $translation;
+	}
+
+	private static function getDefaultSiteTranslations() {
+		return array('CustomOptOut' => array(
+			'OptOutComplete' 	=> Piwik::translate('CoreAdminHome_OptOutComplete'),
+			'OptOutCompleteBis' => Piwik::translate('CoreAdminHome_OptOutCompleteBis'),
+			'YouAreOptedIn' 	=> Piwik::translate('CoreAdminHome_YouAreOptedIn'),
+			'YouAreOptedOut' 	=> Piwik::translate('CoreAdminHome_YouAreOptedOut'),
+			'YouMayOptOut' 		=> Piwik::translate('CoreAdminHome_YouMayOptOut'),
+			'YouMayOptOutBis' 	=> Piwik::translate('CoreAdminHome_YouMayOptOutBis'),
+			'ClickHereToOptIn' 	=> Piwik::translate('CoreAdminHome_ClickHereToOptIn'),
+			'ClickHereToOptOut' => Piwik::translate('CoreAdminHome_ClickHereToOptOut'),
+		));
+	}
+
+	public static function changeSiteTranslations($siteId = null) {
+
+		if(
+			!isset($GLOBALS['Piwik_CustomOptOut_Translations'])
+			|| !is_array($GLOBALS['Piwik_CustomOptOut_Translations'])
+			|| count($GLOBALS['Piwik_CustomOptOut_Translations']) < 1
+		) {
+			$translation = self::getDefaultSiteTranslations();
+		} else {
+			$translation = self::getSiteTranslations($siteId);
+		}
+
+		Translate::mergeTranslationArray($translation);
+	}
+
 
 	/**
 	 * @param $jsFiles

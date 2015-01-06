@@ -16,13 +16,13 @@
 <body>
 <p>
 {% if not trackVisits %}
-    {{ 'CoreAdminHome_OptOutComplete'|translate }}
+    {{ 'CustomOptOut_OptOutComplete'|translate }}
     <br/>
-    {{ 'CoreAdminHome_OptOutCompleteBis'|translate }}
+    {{ 'CustomOptOut_OptOutCompleteBis'|translate }}
 {% else %}
-    {{ 'CoreAdminHome_YouMayOptOut'|translate }}
+    {{ 'CustomOptOut_YouMayOptOut'|translate }}
     <br/>
-    {{ 'CoreAdminHome_YouMayOptOutBis'|translate }}
+    {{ 'CustomOptOut_YouMayOptOutBis'|translate }}
 {% endif %}
 </p>
 
@@ -32,9 +32,9 @@
     <input onclick="this.form.submit()" type="checkbox" id="trackVisits" name="trackVisits" {% if trackVisits %}checked="checked"{% endif %} />
     <label for="trackVisits"><strong>
         {% if trackVisits %}
-            {{ 'CoreAdminHome_YouAreOptedIn'|translate }} {{ 'CoreAdminHome_ClickHereToOptOut'|translate }}
+            {{ 'CustomOptOut_YouAreOptedIn'|translate }} {{ 'CustomOptOut_ClickHereToOptOut'|translate }}
         {% else %}
-            {{ 'CoreAdminHome_YouAreOptedOut'|translate }} {{ 'CoreAdminHome_ClickHereToOptIn'|translate }}
+            {{ 'CustomOptOut_YouAreOptedOut'|translate }} {{ 'CustomOptOut_ClickHereToOptIn'|translate }}
         {% endif %}
     </strong></label>
     <noscript>

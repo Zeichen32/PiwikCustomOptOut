@@ -1,0 +1,16 @@
+{
+    "Global": {
+        "OptOutComplete"  : "Opt-out complete; your visits to this website will not be recorded by the Web Analytics tool.",
+        "OptOutCompleteBis" : "Note that if you clear your cookies, delete the opt-out cookie, or if you change computers or Web browsers, you will need to perform the opt-out procedure again.",
+        "YouAreOptedIn" : "You are currently opted in.",
+        "YouAreOptedOut" : "You are currently opted out.",
+        "YouMayOptOut" : "You may choose not to have a unique web analytics cookie identification number assigned to your computer to avoid the aggregation and analysis of data collected on this website.",
+        "YouMayOptOutBis" : "To make that choice, please click below to receive an opt-out cookie.",
+        "ClickHereToOptIn": "Click here to opt in.",
+        "ClickHereToOptOut": "Click here to opt out."
+    },
+    "3": {
+        "OptOutComplete"  : "OptOut Complete",
+        "OptOutCompleteBis" : "OptOutComplete Bis"
+    }
+}
