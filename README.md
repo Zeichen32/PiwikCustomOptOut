@@ -72,6 +72,9 @@ If you ommit the "Global" section, the plugin will use the Piwik default transla
 
 ## Changelog
 
+#### CustomOptOut 0.2.0:
+* Add possibility to change opt-out text for each website
+
 #### CustomOptOut 0.1.9:
 * Add XFrameOption [See Piwik Commit](https://github.com/piwik/piwik/commit/25545fdc55a1decd13548c1f3f6479789956e56c)
 
