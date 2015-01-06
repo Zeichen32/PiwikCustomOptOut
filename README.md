@@ -64,6 +64,8 @@ Insert the following content into this file or remove the .example suffix from t
 The first section "Global" defines the default translations for all sites.
 The next sections ("1" and "2") define the translations for the websites with the ID 1 and 2.
 
+If you ommit the "Global" section, the plugin will use the Piwik default translations.
+
 ## Requirements
 
 + Piwik >= 2.0.0
