@@ -31,6 +31,38 @@ or insert a URL to the file containing your custom CSS into the input field call
 
 5) Use the iframe code provided below the input fields to add the Piwiki Opt-Out to your website.
 
+## How to change the opt-out text
+
+You need to create a language file for each language you want to edit:
+  plugins/CoreOptOut/lang/sites/{languageCode}.json (Example: de.json)
+  
+Insert the following content into this file or remove the .example suffix from the exist file (en.json.example):
+
+```json
+{
+    "Global": {
+        "OptOutComplete"  : "Opt-out complete; your visits to this website will not be recorded by the Web Analytics tool.",
+        "OptOutCompleteBis" : "Note that if you clear your cookies, delete the opt-out cookie, or if you change computers or Web browsers, you will need to perform the opt-out procedure again.",
+        "YouAreOptedIn" : "You are currently opted in.",
+        "YouAreOptedOut" : "You are currently opted out.",
+        "YouMayOptOut" : "You may choose not to have a unique web analytics cookie identification number assigned to your computer to avoid the aggregation and analysis of data collected on this website.",
+        "YouMayOptOutBis" : "To make that choice, please click below to receive an opt-out cookie.",
+        "ClickHereToOptIn": "Click here to opt in.",
+        "ClickHereToOptOut": "Click here to opt out."
+    },
+    "1": {
+        "OptOutComplete"  : "OptOut Complete",
+        "OptOutCompleteBis" : "OptOutComplete Bis"
+    },
+    "2": {
+        "OptOutComplete"  : "OptOut Complete",
+        "OptOutCompleteBis" : "OptOutComplete Bis"
+    }    
+}
+```
+
+The first section "Global" defines the default translations for all sites.
+The next sections ("1" and "2") define the translations for the websites with the ID 1 and 2.
 
 ## Requirements
 
