@@ -19,6 +19,7 @@ use Piwik\Plugins\LanguagesManager\LanguagesManager;
 use Piwik\Plugins\SitesManager\API as APISiteManager;
 use Piwik\Plugins\LanguagesManager\API as APILanguagesManager;
 use Piwik\Tracker\IgnoreCookie;
+use Piwik\Plugins\CustomOptOut\Manager\LanguageManager as CustomLanguageManager;
 use Piwik\View;
 use Piwik\Piwik;
 use Piwik\Site;
@@ -141,7 +142,7 @@ class Controller extends ControllerAdmin {
 
 		}
 
-		CustomOptOut::changeSiteTranslations($siteId);
+		CustomLanguageManager::changeSiteTranslations($siteId);
 
         $lang = APILanguagesManager::getInstance()->isLanguageAvailable($language)
             ? $language
