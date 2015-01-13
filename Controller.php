@@ -15,6 +15,7 @@ use Piwik\Common;
 use Piwik\Db;
 use Piwik\Nonce;
 use Piwik\Plugin\ControllerAdmin;
+use Piwik\Plugins\CustomOptOut\Manager\LanguageManager;
 use Piwik\Plugins\LanguagesManager\LanguagesManager;
 use Piwik\Plugins\SitesManager\API as APISiteManager;
 use Piwik\Plugins\LanguagesManager\API as APILanguagesManager;
@@ -111,6 +112,69 @@ class Controller extends ControllerAdmin {
 		$view->editorTheme = API::getInstance()->getEditorTheme();
 		$this->setBasicVariablesView($view);
 
+		return $view->render();
+
+	}
+
+	public function changeTranslation() {
+
+		Piwik::checkUserHasSomeAdminAccess();
+
+		$siteId = Common::getRequestVar('idSite', 0, 'integer');
+		$lang 	= Common::getRequestVar('language', '');
+
+		if($siteId > 0) {
+			$site = API::getInstance()->getSiteDataId($siteId);
+
+			if(!$site) {
+				throw new \Exception('Website was not found!');
+			}
+		} else {
+			$site = null;
+			$siteId = null;
+		}
+
+		if(!$lang || !APILanguagesManager::getInstance()->isLanguageAvailable($lang)) {
+			$view = new View('@CustomOptOut/changeTranslation');
+			$view->selectLanguage = true;
+			$view->site = $site;
+			$view->idSite = $siteId;
+			$view->languages = APILanguagesManager::getInstance()->getAvailableLanguageNames();
+			$this->setBasicVariablesView($view);
+			return $view->render();
+		}
+
+		LanguageManager::loadLanguages($lang);
+		$values = LanguageManager::getSiteTranslationsForEdit($siteId);
+		$defaults = LanguageManager::getSiteTranslations();
+		$isPostRequest = isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST';
+
+		$values['CustomOptOut']['OptOutComplete'] = Common::getRequestVar('OptOutComplete', $isPostRequest ? '' : $values['CustomOptOut']['OptOutComplete'], 'string');
+		$values['CustomOptOut']['OptOutCompleteBis'] = Common::getRequestVar('OptOutCompleteBis', $isPostRequest ? '' :$values['CustomOptOut']['OptOutCompleteBis'], 'string');
+		$values['CustomOptOut']['YouAreOptedIn'] = Common::getRequestVar('YouAreOptedIn', $isPostRequest ? '' :$values['CustomOptOut']['YouAreOptedIn'], 'string');
+		$values['CustomOptOut']['YouAreOptedOut'] = Common::getRequestVar('YouAreOptedOut', $isPostRequest ? '' :$values['CustomOptOut']['YouAreOptedOut'], 'string');
+		$values['CustomOptOut']['YouMayOptOut'] = Common::getRequestVar('YouMayOptOut', $isPostRequest ? '' :$values['CustomOptOut']['YouMayOptOut'], 'string');
+		$values['CustomOptOut']['YouMayOptOutBis'] = Common::getRequestVar('YouMayOptOutBis', $isPostRequest ? '' :$values['CustomOptOut']['YouMayOptOutBis'], 'string');
+		$values['CustomOptOut']['ClickHereToOptIn'] = Common::getRequestVar('ClickHereToOptIn', $isPostRequest ? '' :$values['CustomOptOut']['ClickHereToOptIn'], 'string');
+		$values['CustomOptOut']['ClickHereToOptOut'] = Common::getRequestVar('ClickHereToOptOut', $isPostRequest ? '' :$values['CustomOptOut']['ClickHereToOptOut'], 'string');
+
+		if($isPostRequest) {
+			LanguageManager::saveSiteTranslation($lang, $values['CustomOptOut'], $siteId);
+
+			// Redirect to, clear POST vars
+			$this->redirectToIndex('CustomOptOut', 'changeTranslation', null, null, null, array('idSite' => $siteId, 'language' => $lang));
+			return;
+		}
+
+		$view = new View('@CustomOptOut/changeTranslation');
+		$view->selectLanguage = false;
+		$view->site = $site;
+		$view->idSite = $siteId;
+		$view->languages = APILanguagesManager::getInstance()->getAvailableLanguageNames();
+		$view->selectedLanguage = $lang;
+		$view->values = $values;
+		$view->defaults = $defaults;
+		$this->setBasicVariablesView($view);
 		return $view->render();
 
 	}

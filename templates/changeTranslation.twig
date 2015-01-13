@@ -1,0 +1,109 @@
+{% extends 'admin.twig' %}
+
+{% block content %}
+
+{# load macros #}
+{% import 'macros.twig' as piwik %}
+{% import 'ajaxMacros.twig' as ajax %}
+
+<h2>Change opt-out translation for site {{ site.name | default('Global') }}</h2>
+
+{% if selectLanguage %}
+    <form method="get" action="" ng-non-bindable>
+        <input type="hidden" name="module" value="CustomOptOut" />
+        <input type="hidden" name="action" value="changeTranslation" />
+        <input type="hidden" name="idSite" value="{{ idSite }}" />
+
+        <label for="custom-language">Please select a language:</label>
+        <select name="language" id="custom-language" size="1">
+            {% for language in languages %}
+                <option value="{{ language.code }}">{{ language.english_name }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Next" />
+
+        <a href="?module=CustomOptOut&action=index" style="display: block; margin-top: 20px;">Abbrechen</a>
+    </form>
+
+{% else %}
+    <form method="post" action="" ng-non-bindable>
+        <table class="adminTable entityTable dataTable" id="editSites" style="width: 900px;">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="vertical-align: top; width: 20%;"><label for="OptOutComplete">OptOutComplete</label></td>
+                    <td style="vertical-align: top; width: 80%;">
+                        <textarea cols="30" rows="10" name="OptOutComplete" style="width: 100%;" placeholder="{{ defaults.CustomOptOut.OptOutComplete }}">{{ values.CustomOptOut.OptOutComplete }}</textarea>
+                        <a href="#" class="custom-opt-out-use-placeholder">Restore default value</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; width: 20%;"><label for="OptOutCompleteBis">OptOutCompleteBis</label></td>
+                    <td style="vertical-align: top; width: 80%;">
+                        <textarea cols="30" rows="10" name="OptOutCompleteBis" style="width: 100%;" placeholder="{{ defaults.CustomOptOut.OptOutCompleteBis }}">{{ values.CustomOptOut.OptOutCompleteBis }}</textarea>
+                        <a href="#" class="custom-opt-out-use-placeholder">Restore default value</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; width: 20%;"><label for="YouAreOptedIn">YouAreOptedIn</label></td>
+                    <td style="vertical-align: top; width: 80%;">
+                        <textarea cols="30" rows="10" name="YouAreOptedIn" style="width: 100%;" placeholder="{{ defaults.CustomOptOut.YouAreOptedIn }}">{{ values.CustomOptOut.YouAreOptedIn }}</textarea>
+                        <a href="#" class="custom-opt-out-use-placeholder">Restore default value</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; width: 20%;"><label for="YouAreOptedOut">YouAreOptedOut</label></td>
+                    <td style="vertical-align: top; width: 80%;">
+                        <textarea cols="30" rows="10" name="YouAreOptedOut" style="width: 100%;" placeholder="{{ defaults.CustomOptOut.YouAreOptedOut }}">{{ values.CustomOptOut.YouAreOptedOut }}</textarea>
+                        <a href="#" class="custom-opt-out-use-placeholder">Restore default value</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; width: 20%;"><label for="YouMayOptOut">YouMayOptOut</label></td>
+                    <td style="vertical-align: top; width: 80%;">
+                        <textarea cols="30" rows="10" name="YouMayOptOut" style="width: 100%;" placeholder="{{ defaults.CustomOptOut.YouMayOptOut }}">{{ values.CustomOptOut.YouMayOptOut }}</textarea>
+                        <a href="#" class="custom-opt-out-use-placeholder">Restore default value</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; width: 20%;"><label for="YouMayOptOutBis">YouMayOptOutBis</label></td>
+                    <td style="vertical-align: top; width: 80%;">
+                        <textarea cols="30" rows="10" name="YouMayOptOutBis" style="width: 100%;" placeholder="{{ defaults.CustomOptOut.YouMayOptOutBis }}">{{ values.CustomOptOut.YouMayOptOutBis }}</textarea>
+                        <a href="#" class="custom-opt-out-use-placeholder">Restore default value</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; width: 20%;"><label for="ClickHereToOptIn">ClickHereToOptIn</label></td>
+                    <td style="vertical-align: top; width: 80%;">
+                        <textarea cols="30" rows="10" name="ClickHereToOptIn" style="width: 100%;" placeholder="{{ defaults.CustomOptOut.ClickHereToOptIn }}">{{ values.CustomOptOut.ClickHereToOptIn }}</textarea>
+                        <a href="#" class="custom-opt-out-use-placeholder">Restore default value</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; width: 20%;"><label for="ClickHereToOptOut">ClickHereToOptOut</label></td>
+                    <td style="vertical-align: top; width: 80%;">
+                        <textarea cols="30" rows="10" name="ClickHereToOptOut" style="width: 100%;" placeholder="{{ defaults.CustomOptOut.ClickHereToOptOut }}">{{ values.CustomOptOut.ClickHereToOptOut }}</textarea>
+                        <a href="#" class="custom-opt-out-use-placeholder">Restore default value</a>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="2">
+                    <input type="hidden" value="{{ selectedLanguage }}" name="language" />
+                    <input type="submit" class="submit" value="Save" style="margin-left: 0;" />
+                    <a href="?module=CustomOptOut&action=changeTranslation&idSite={{ idSite|escape('url') }}" style="margin-left: 10px; display: inline-block;">Back</a>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+{% endif %}
+
+{% endblock %}

@@ -51,7 +51,7 @@ class API extends \Piwik\Plugin\API {
 	 */
 	public function getSiteDataId($idSite) {
 
-		$query = "SELECT idsite, custom_css, custom_css_file" .
+		$query = "SELECT idsite, name, custom_css, custom_css_file" .
 		         " FROM " . Common::prefixTable("site") .
 		         " WHERE idsite = ?";
 

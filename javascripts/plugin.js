@@ -4,6 +4,12 @@
 
 $(document).ready(function () {
 
+    $(".custom-opt-out-use-placeholder").on('click', function() {
+        var content = $(this).parent().find('textarea').attr('placeholder') || '';
+        $(this).parent().find('textarea').val(content);
+        return false;
+    });
+
     // Check for CodeMirror
     if(typeof CodeMirror == "undefined") {
         return;

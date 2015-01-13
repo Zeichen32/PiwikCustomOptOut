@@ -41,6 +41,14 @@
             </td>
         </tr>
         <tr>
+            <td>
+                <a href="{{ piwikUrl }}index.php?module=CustomOptOut&action=changeTranslation&idSite={{ site.idsite|escape('url') }}">Change translation</a>
+            </td><td colspan="2">
+                <a href="{{ piwikUrl }}index.php?module=CustomOptOut&action=changeTranslation&idSite=0">Change global translation</a>
+            </td>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
             <td colspan="5">
                 {% set optOutUrl %}{% spaceless %}
                     {{ piwikUrl }}index.php?module=CustomOptOut&action=optOut&idSite={{ site.idsite|escape('url') }}&language={{ language }}

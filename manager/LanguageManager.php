@@ -16,14 +16,20 @@ use Piwik\Translate;
 
 class LanguageManager {
 
-    public static function loadLanguages() {
+    public static function loadLanguages($language = null) {
 
         if(
             isset($GLOBALS['Piwik_translations'], $GLOBALS['Piwik_translations']['CustomOptOut'])
             && is_array($GLOBALS['Piwik_translations']['CustomOptOut'])
         ) {
-            $currentLanguage = Translate::getLanguageLoaded();
-            $fallbackLanguage = Translate::getLanguageDefault();
+
+            if(null === $language) {
+                $currentLanguage = Translate::getLanguageLoaded();
+                $fallbackLanguage = Translate::getLanguageDefault();
+            } else {
+                $currentLanguage = $language;
+                $fallbackLanguage = $language;
+            }
 
             $translations = array();
 
@@ -39,7 +45,7 @@ class LanguageManager {
         }
     }
 
-    private static function getSiteTranslations($siteId = null) {
+    public static function getSiteTranslations($siteId = null) {
 
         if(!isset($GLOBALS['Piwik_CustomOptOut_Translations'])) {
             return self::getDefaultSiteTranslations();
@@ -138,14 +144,14 @@ class LanguageManager {
 
         $translation = array();
 
-        !isset($data['OptOutComplete'])      ?: $translation['OptOutComplete']       = $data['OptOutComplete'];
-        !isset($data['OptOutCompleteBis'])   ?: $translation['OptOutCompleteBis']    = $data['OptOutCompleteBis'];
-        !isset($data['YouAreOptedIn'])       ?: $translation['YouAreOptedIn']        = $data['YouAreOptedIn'];
-        !isset($data['YouAreOptedOut'])      ?: $translation['YouAreOptedOut']       = $data['YouAreOptedOut'];
-        !isset($data['YouMayOptOut'])        ?: $translation['YouMayOptOut']         = $data['YouMayOptOut'];
-        !isset($data['YouMayOptOutBis'])     ?: $translation['YouMayOptOutBis']      = $data['YouMayOptOutBis'];
-        !isset($data['ClickHereToOptIn'])    ?: $translation['ClickHereToOptIn']     = $data['ClickHereToOptIn'];
-        !isset($data['ClickHereToOptOut'])   ?: $translation['ClickHereToOptOut']    = $data['ClickHereToOptOut'];
+        empty($data['OptOutComplete'])      ?: $translation['OptOutComplete']       = $data['OptOutComplete'];
+        empty($data['OptOutCompleteBis'])   ?: $translation['OptOutCompleteBis']    = $data['OptOutCompleteBis'];
+        empty($data['YouAreOptedIn'])       ?: $translation['YouAreOptedIn']        = $data['YouAreOptedIn'];
+        empty($data['YouAreOptedOut'])      ?: $translation['YouAreOptedOut']       = $data['YouAreOptedOut'];
+        empty($data['YouMayOptOut'])        ?: $translation['YouMayOptOut']         = $data['YouMayOptOut'];
+        empty($data['YouMayOptOutBis'])     ?: $translation['YouMayOptOutBis']      = $data['YouMayOptOutBis'];
+        empty($data['ClickHereToOptIn'])    ?: $translation['ClickHereToOptIn']     = $data['ClickHereToOptIn'];
+        empty($data['ClickHereToOptOut'])   ?: $translation['ClickHereToOptOut']    = $data['ClickHereToOptOut'];
 
         // Delete site section if no translation submitted
         if(count($translation) < 1 && null !== $siteId && isset($translations[$siteId])) {
