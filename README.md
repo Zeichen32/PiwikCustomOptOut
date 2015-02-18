@@ -31,12 +31,21 @@ or insert a URL to the file containing your custom CSS into the input field call
 
 5) Use the iframe code provided below the input fields to add the Piwiki Opt-Out to your website.
 
+## How to change the opt-out text
+
+I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](https://github.com/piwik/piwik/blob/master/CHANGELOG.md#piwik-2110)
 
 ## Requirements
 
 + Piwik >= 2.0.0
 
 ## Changelog
+
+#### CustomOptOut 0.2.1:
+* (Issue #21) Remove possibility to change opt-out text for each website (Breaking Changes in [Piwik 2.11.0](https://github.com/piwik/piwik/blob/master/CHANGELOG.md#piwik-2110))
+
+#### CustomOptOut 0.2.0:
+* Add possibility to change opt-out text for each website
 
 #### CustomOptOut 0.1.9:
 * Add XFrameOption [See Piwik Commit](https://github.com/piwik/piwik/commit/25545fdc55a1decd13548c1f3f6479789956e56c)
