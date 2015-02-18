@@ -18,10 +18,9 @@
   CodeMirror.registerHelper("hint", "css", function(cm) {
     var cur = cm.getCursor(), token = cm.getTokenAt(cur);
     var inner = CodeMirror.innerMode(cm.getMode(), token.state);
-      console.log(inner.mode.name);
     if (inner.mode.name != "css") return;
 
-    var word = token.string, start = token.start, end = token.end;
+    var start = token.start, end = cur.ch, word = token.string.slice(0, end - start);
     if (/[^\w$_-]/.test(word)) {
       word = ""; start = end = cur.ch;
     }
