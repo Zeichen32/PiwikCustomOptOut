@@ -41,6 +41,9 @@ I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](ht
 
 ## Changelog
 
+#### CustomOptOut 0.2.2:
+* Update [CodeMirror Editor](http://codemirror.net)
+
 #### CustomOptOut 0.2.1:
 * (Issue #21) Remove possibility to change opt-out text for each website (Breaking Changes in [Piwik 2.11.0](https://github.com/piwik/piwik/blob/master/CHANGELOG.md#piwik-2110))
 
