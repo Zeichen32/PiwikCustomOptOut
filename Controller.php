@@ -19,6 +19,7 @@ use Piwik\Plugins\LanguagesManager\LanguagesManager;
 use Piwik\Plugins\SitesManager\API as APISiteManager;
 use Piwik\Plugins\LanguagesManager\API as APILanguagesManager;
 use Piwik\Tracker\IgnoreCookie;
+use Piwik\UrlHelper;
 use Piwik\View;
 use Piwik\Piwik;
 use Piwik\Site;
@@ -51,6 +52,11 @@ class Controller extends ControllerAdmin {
 		            if(!isset($site['css'], $site['file'])) {
 		                continue;
 		            }
+
+                    // Check URL
+                    if(!UrlHelper::isLookLikeUrl($site['file'])) {
+                        continue;
+                    }
 
 		            API::getInstance()->saveSite($id, $site['css'], $site['file']);
 

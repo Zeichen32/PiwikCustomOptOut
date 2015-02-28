@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 
     {% if site.custom_css_file %}
-        <link rel="stylesheet" type="text/css" href="{{ site.custom_css_file|escape('html_attr') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ site.custom_css_file|raw }}" />
     {% endif %}
 
     {% if site.custom_css %}
@@ -26,7 +26,7 @@
 {% endif %}
 </p>
 
-<form method="post" action="?module=CustomOptOut&amp;action=optOut{% if language %}&amp;language={{ language }}{% endif %}&amp;idSite={{ site.idsite }}">
+<form method="post" action="?module=CustomOptOut&action=optOut{% if language %}&language={{ language|escape('url') }}{% endif %}&idSite={{ site.idsite|escape('url') }}">
     <input type="hidden" name="nonce" value="{{ nonce }}" />
     <input type="hidden" name="fuzz" value="{{ "now"|date }}" />
     <input onclick="this.form.submit()" type="checkbox" id="trackVisits" name="trackVisits" {% if trackVisits %}checked="checked"{% endif %} />
