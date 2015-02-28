@@ -37,9 +37,13 @@ I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](ht
 
 ## Requirements
 
-+ Piwik >= 2.0.0
++ Piwik >= 2.7.0
 
 ## Changelog
+
+#### CustomOptOut 0.2.3:
+* (Issue #22) Remove escaping from externel css url
+* Fix PluginSettings
 
 #### CustomOptOut 0.2.2:
 * Update [CodeMirror Editor](http://codemirror.net)
