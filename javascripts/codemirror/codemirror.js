@@ -3519,8 +3519,10 @@
                     extendSelection(cm.doc, start);
                 display.input.focus();
                 // Work around unexplainable focus problem in IE9 (#2127)
-                if (ie && ie_version == 9)
+                if (webkit || ie && ie_version == 9)
                     setTimeout(function() {document.body.focus(); display.input.focus();}, 20);
+                else
+                    display.input.focus();
             }
         });
         // Let the drag handler handle this.

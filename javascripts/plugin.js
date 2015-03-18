@@ -18,7 +18,8 @@ $(document).ready(function () {
             lineNumbers: true,
             gutters: ["CodeMirror-lint-markers"],
             theme: (theme == "default" ? "default" : "blackboard"),
-            lint: true
+            lint: true,
+            lineWrapping: true
         });
     });
 });
