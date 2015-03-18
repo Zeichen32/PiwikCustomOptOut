@@ -41,6 +41,10 @@ I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](ht
 
 ## Changelog
 
+#### CustomOptOut 0.2.4:
+* (Issue #23) Check DNT in OptOut Page
+* Update [CodeMirror Editor](http://codemirror.net)
+
 #### CustomOptOut 0.2.3:
 * (Issue #22) Remove escaping from externel css url
 * Fix PluginSettings
