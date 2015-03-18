@@ -18,6 +18,7 @@ use Piwik\Piwik;
 use Piwik\Plugin\ControllerAdmin;
 use Piwik\Plugins\LanguagesManager\API as APILanguagesManager;
 use Piwik\Plugins\LanguagesManager\LanguagesManager;
+use Piwik\Plugins\PrivacyManager\DoNotTrackHeaderChecker;
 use Piwik\Plugins\SitesManager\API as APISiteManager;
 use Piwik\Site;
 use Piwik\Tracker\IgnoreCookie;
@@ -28,7 +29,8 @@ use Piwik\View;
  *
  * @package CustomOptOut
  */
-class Controller extends ControllerAdmin {
+class Controller extends ControllerAdmin
+{
 
     /**
      * Main Plugin Index
@@ -36,64 +38,66 @@ class Controller extends ControllerAdmin {
      * @return mixed
      * @throws \Exception
      */
-    public function index() {
+    public function index()
+    {
 
         Piwik::checkUserHasSomeAdminAccess();
 
-        if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' == $_SERVER['REQUEST_METHOD'] ) {
+        if (isset($_SERVER['REQUEST_METHOD']) && 'POST' == $_SERVER['REQUEST_METHOD']) {
 
             // Cannot use Common::getRequestVar, because the function remove whitespaces and newline breaks
-            $postedSiteData = isset( $_POST['site'] ) ? $_POST['site'] : null;
+            $postedSiteData = isset($_POST['site']) ? $_POST['site'] : null;
 
-            if ( is_array( $postedSiteData ) && count( $postedSiteData ) > 0 ) {
+            if (is_array($postedSiteData) && count($postedSiteData) > 0) {
 
-                foreach ( $postedSiteData as $id => $site ) {
+                foreach ($postedSiteData as $id => $site) {
 
-                    if ( ! isset( $site['css'], $site['file'] ) ) {
+                    if (!isset($site['css'], $site['file'])) {
                         continue;
                     }
 
                     // Check URL
-                    if ( ! UrlHelper::isLookLikeUrl( $site['file'] ) ) {
+                    if (!UrlHelper::isLookLikeUrl($site['file'])) {
                         $site['file'] = null;
                     }
 
-                    API::getInstance()->saveSite( $id, $site['css'], $site['file'] );
+                    API::getInstance()->saveSite($id, $site['css'], $site['file']);
                 }
 
                 // Redirect to, clear POST vars
-                $this->redirectToIndex( 'CustomOptOut', 'index' );
+                $this->redirectToIndex('CustomOptOut', 'index');
+
                 return;
 
             }
         }
 
-        $view = new View( '@CustomOptOut/index.twig' );
+        $view = new View('@CustomOptOut/index.twig');
         Site::clearCache();
 
-        if ( Piwik::hasUserSuperUserAccess() ) {
+        if (Piwik::hasUserSuperUserAccess()) {
             $sitesRaw = APISiteManager::getInstance()->getAllSites();
         } else {
             $sitesRaw = APISiteManager::getInstance()->getSitesWithAdminAccess();
         }
 
         // Gets sites after Site.setSite hook was called
-        $sites = array_values( Site::getSites() );
+        $sites = array_values(Site::getSites());
 
-        if ( count( $sites ) != count( $sitesRaw ) ) {
-            throw new \Exception( "One or more website are missing or invalid." );
+        if (count($sites) != count($sitesRaw)) {
+            throw new \Exception("One or more website are missing or invalid.");
         }
 
-        foreach ( $sites as &$site ) {
-            $site['alias_urls'] = APISiteManager::getInstance()->getSiteUrlsFromId( $site['idsite'] );
+        foreach ($sites as &$site) {
+            $site['alias_urls'] = APISiteManager::getInstance()->getSiteUrlsFromId($site['idsite']);
         }
 
-        $view->adminSites      = $sites;
-        $view->adminSitesCount = count( $sites );
-        $view->language        = LanguagesManager::getLanguageCodeForCurrentUser();
+        $view->adminSites = $sites;
+        $view->adminSitesCount = count($sites);
+        $view->language = LanguagesManager::getLanguageCodeForCurrentUser();
         $view->isEditorEnabled = API::getInstance()->isCssEditorEnabled();
-        $view->editorTheme     = API::getInstance()->getEditorTheme();
-        $this->setBasicVariablesView( $view );
+        $view->editorTheme = API::getInstance()->getEditorTheme();
+        $this->setBasicVariablesView($view);
 
         return $view->render();
     }
@@ -101,37 +105,51 @@ class Controller extends ControllerAdmin {
     /**
      * Shows the "Track Visits" checkbox.
      */
-    public function optOut() {
+    public function optOut()
+    {
 
-        $trackVisits = ! IgnoreCookie::isIgnoreCookieFound();
+        $trackVisits = !IgnoreCookie::isIgnoreCookieFound();
 
-        $nonce    = Common::getRequestVar( 'nonce', false );
-        $language = Common::getRequestVar( 'language', '' );
+        $nonce = Common::getRequestVar('nonce', false);
+        $language = Common::getRequestVar('language', '');
 
-        $siteId = Common::getRequestVar( 'idSite', 0, 'integer' );
-        $site   = API::getInstance()->getSiteDataId( $siteId );
+        $siteId = Common::getRequestVar('idSite', 0, 'integer');
+        $site = API::getInstance()->getSiteDataId($siteId);
 
-        if ( ! $site ) {
-            throw new \Exception( 'Website was not found!' );
+        if (!$site) {
+            throw new \Exception('Website was not found!');
         }
 
-        if ( false !== $nonce && Nonce::verifyNonce( 'Piwik_OptOut', $nonce ) ) {
-            Nonce::discardNonce( 'Piwik_OptOut' );
+        if (false !== $nonce && Nonce::verifyNonce('Piwik_OptOut', $nonce)) {
+            Nonce::discardNonce('Piwik_OptOut');
             IgnoreCookie::setIgnoreCookie();
-            $trackVisits = ! $trackVisits;
+            $trackVisits = !$trackVisits;
         }
 
-        $lang = APILanguagesManager::getInstance()->isLanguageAvailable( $language )
+        $lang = APILanguagesManager::getInstance()->isLanguageAvailable($language)
             ? $language
             : LanguagesManager::getLanguageCodeForCurrentUser();
 
-        $view       = new View( '@CustomOptOut/optOut' );
+        // Find Translation Key -- BC Compatible Piwik < 2.12.0
+        if (version_compare(\Piwik\Version::VERSION, '2.12.0', '<=') ||
+            \Piwik\Piwik::translate('CoreAdminHome_OptOutDntFound') == 'CoreAdminHome_OptOutDntFound'
+        ) {
+            $dntTranslationKey = 'CustomOptOut_OptOutDntFound';
+        } else {
+            $dntTranslationKey = 'CoreAdminHome_OptOutDntFound';
+        }
+
+        $dntChecker = new DoNotTrackHeaderChecker();
+
+        $view = new View('@CustomOptOut/optOut');
+        $view->setXFrameOptions('allow');
         $view->site = $site;
-        $view->setXFrameOptions( 'allow' );
+        $view->dntFound = $dntChecker->isDoNotTrackFound();
+        $view->dntTranslationKey = $dntTranslationKey;
         $view->trackVisits = $trackVisits;
-        $view->nonce       = Nonce::getNonce( 'Piwik_OptOut', 3600 );
-        $view->language    = $lang;
+        $view->nonce = Nonce::getNonce('Piwik_OptOut', 3600);
+        $view->language = $lang;
 
         return $view->render();
-	}
+    }
 }

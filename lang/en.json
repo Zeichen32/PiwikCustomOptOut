@@ -3,6 +3,7 @@
         "ShowEditorOptionName"  : "Enable css editor",
         "ShowEditorDescription" : "Enable this option to show the \"custom css\" code in a simple css editor.",
         "EditorThemeOptionName" : "Editor Theme",
-        "EditorThemeDescription" : "Choose a theme for the editor."
+        "EditorThemeDescription" : "Choose a theme for the editor.",
+        "OptOutDntFound"        : "You are not being tracked since your browser is reporting that you do not want to. This is a setting of your browser so you won't be able to opt-in until you disable the 'Do Not Track' feature."
     }
 }
