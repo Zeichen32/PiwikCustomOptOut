@@ -41,6 +41,10 @@ I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](ht
 
 ## Changelog
 
+#### CustomOptOut 0.2.5: (HotFix)
+* Fix [CodeMirror Editor](http://codemirror.net) Textarea with large css code
+* Fix invalid html in optout template
+
 #### CustomOptOut 0.2.4:
 * (Issue #23) Check DNT in OptOut Page
 * Update [CodeMirror Editor](http://codemirror.net)
@@ -49,7 +53,7 @@ I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](ht
 * (Issue #22) Remove escaping from externel css url
 * Fix PluginSettings
 
-#### CustomOptOut 0.2.2:
+#### CustomOptOut 0.2.2: (HotFix)
 * Update [CodeMirror Editor](http://codemirror.net)
 
 #### CustomOptOut 0.2.1:
@@ -70,7 +74,7 @@ I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](ht
 #### CustomOptOut 0.1.6:
 * Add [CodeMirror Editor](http://codemirror.net) to highlight the CSS Code
 
-#### CustomOptOut 0.1.5:
+#### CustomOptOut 0.1.5: (HotFix)
 * (Issue #6) Disable AngularJs form binding
 
 #### CustomOptOut 0.1.4:
