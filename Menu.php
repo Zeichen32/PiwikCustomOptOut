@@ -16,10 +16,12 @@ use Piwik\Piwik;
  * To configure a menu (such as Admin Menu, Reporting Menu, User Menu...) simply call the corresponding methods as
  * described in the API-Reference http://developer.piwik.org/api-reference/Piwik/Menu/MenuAbstract
  */
-class Menu extends \Piwik\Plugin\Menu {
-    public function configureAdminMenu( MenuAdmin $menu ) {
-        if ( Piwik::isUserHasSomeAdminAccess() ) {
-            $menu->addSettingsItem( 'Custom OptOut', $this->urlForDefaultAction() );
+class Menu extends \Piwik\Plugin\Menu
+{
+    public function configureAdminMenu(MenuAdmin $menu)
+    {
+        if (Piwik::isUserHasSomeAdminAccess()) {
+            $menu->addSettingsItem('Custom OptOut', $this->urlForDefaultAction());
         }
     }
 }

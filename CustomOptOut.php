@@ -17,12 +17,14 @@ use Piwik\Db;
 /**
  * @package CustomOptOut
  */
-class CustomOptOut extends \Piwik\Plugin {
+class CustomOptOut extends \Piwik\Plugin
+{
 
     /**
      * @see Piwik\Plugin::getListHooksRegistered
      */
-    public function getListHooksRegistered() {
+    public function getListHooksRegistered()
+    {
 
         return array(
             'AssetManager.getJavaScriptFiles' => 'getJsFiles',
@@ -34,7 +36,8 @@ class CustomOptOut extends \Piwik\Plugin {
     /**
      * @param $jsFiles
      */
-    public function getJsFiles( &$jsFiles ) {
+    public function getJsFiles(&$jsFiles)
+    {
 
         // CodeMirror
         $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/codemirror.js";
@@ -55,7 +58,8 @@ class CustomOptOut extends \Piwik\Plugin {
     /**
      * @param $stylesheets
      */
-    public function getStylesheetFiles( &$stylesheets ) {
+    public function getStylesheetFiles(&$stylesheets)
+    {
 
         // CodeMirror CSS
         $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/codemirror.css";
@@ -70,21 +74,23 @@ class CustomOptOut extends \Piwik\Plugin {
      *
      * @throws \Exception
      */
-    public function install() {
+    public function install()
+    {
 
         try {
 
             $sql = sprintf(
                 "ALTER TABLE %s" .
                 " ADD COLUMN `custom_css` TEXT NULL AFTER `keep_url_fragment`," .
-                " ADD COLUMN `custom_css_file` VARCHAR(255) NULL AFTER `custom_css`;", Common::prefixTable( 'site' )
+                " ADD COLUMN `custom_css_file` VARCHAR(255) NULL AFTER `custom_css`;",
+                Common::prefixTable('site')
             );
 
-            Db::exec( $sql );
+            Db::exec($sql);
 
-        } catch ( \Exception $exp ) {
+        } catch (\Exception $exp) {
 
-            if ( ! Db::get()->isErrNo( $exp, '1060' ) ) {
+            if (!Db::get()->isErrNo($exp, '1060')) {
                 throw $exp;
             }
 
@@ -97,21 +103,23 @@ class CustomOptOut extends \Piwik\Plugin {
      *
      * @throws \Exception
      */
-    public function uninstall() {
+    public function uninstall()
+    {
 
         try {
 
             $sql = sprintf(
                 "ALTER TABLE %s" .
                 " DROP COLUMN `custom_css`," .
-                " DROP COLUMN `custom_css_file`;", Common::prefixTable( 'site' )
+                " DROP COLUMN `custom_css_file`;",
+                Common::prefixTable('site')
             );
 
-            Db::exec( $sql );
+            Db::exec($sql);
 
-        } catch ( \Exception $exp ) {
+        } catch (\Exception $exp) {
 
-            if ( ! Db::get()->isErrNo( $exp, '1091' ) ) {
+            if (!Db::get()->isErrNo($exp, '1091')) {
                 throw $exp;
             }
 

@@ -21,7 +21,8 @@ use Piwik\Settings\UserSetting;
  * $settings->metric->getValue();
  *
  */
-class Settings extends \Piwik\Plugin\Settings {
+class Settings extends \Piwik\Plugin\Settings
+{
     /**
      * @var UserSetting
      */
@@ -32,44 +33,49 @@ class Settings extends \Piwik\Plugin\Settings {
      */
     public $editorTheme;
 
-    protected function init() {
-        $this->setIntroduction( 'Custom OptOut' );
+    protected function init()
+    {
+        $this->setIntroduction('Custom OptOut');
 
         $this->createEnableEditorSetting();
         $this->createThemeSetting();
     }
 
-    private function createEnableEditorSetting() {
+    private function createEnableEditorSetting()
+    {
 
-        $this->enableEditor = new SystemSetting( 'enableEditor',
-            Piwik::translate( 'CustomOptOut_ShowEditorOptionName' ) );
+        $this->enableEditor = new SystemSetting(
+            'enableEditor',
+            Piwik::translate('CustomOptOut_ShowEditorOptionName')
+        );
 
-        $this->enableEditor->type          = static::TYPE_BOOL;
+        $this->enableEditor->type = static::TYPE_BOOL;
         $this->enableEditor->uiControlType = static::CONTROL_CHECKBOX;
-        $this->enableEditor->description   = Piwik::translate( 'CustomOptOut_ShowEditorDescription' );
-        $this->enableEditor->defaultValue  = true;
+        $this->enableEditor->description = Piwik::translate('CustomOptOut_ShowEditorDescription');
+        $this->enableEditor->defaultValue = true;
 
-        $this->addSetting( $this->enableEditor );
+        $this->addSetting($this->enableEditor);
 
     }
 
-    private function createThemeSetting() {
+    private function createThemeSetting()
+    {
 
         $this->editorTheme = new SystemSetting(
             'editorTheme',
-            Piwik::translate( 'CustomOptOut_EditorThemeOptionName' )
+            Piwik::translate('CustomOptOut_EditorThemeOptionName')
         );
 
-        $this->editorTheme->type            = static::TYPE_STRING;
-        $this->editorTheme->uiControlType   = static::CONTROL_SINGLE_SELECT;
-        $this->editorTheme->description     = Piwik::translate( 'CustomOptOut_EditorThemeDescription' );
-        $this->editorTheme->defaultValue    = 'default';
+        $this->editorTheme->type = static::TYPE_STRING;
+        $this->editorTheme->uiControlType = static::CONTROL_SINGLE_SELECT;
+        $this->editorTheme->description = Piwik::translate('CustomOptOut_EditorThemeDescription');
+        $this->editorTheme->defaultValue = 'default';
         $this->editorTheme->availableValues = array(
-            'default'    => 'Bright Theme',
+            'default' => 'Bright Theme',
             'blackboard' => 'Dark Theme',
         );
 
-        $this->addSetting( $this->editorTheme );
+        $this->addSetting($this->editorTheme);
 
     }
 }

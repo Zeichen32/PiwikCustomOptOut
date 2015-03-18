@@ -21,79 +21,84 @@ use Piwik\Piwik;
  * @package CustomOptOut
  * @method static \Piwik\Plugins\CustomOptOut\API getInstance()
  */
-class API extends \Piwik\Plugin\API {
+class API extends \Piwik\Plugin\API
+{
 
-	/**
-	 * Save the custom css and custom css file
-	 *
-	 * @param $siteId
-	 * @param null $customCss
-	 * @param null $customFile
-	 */
-	public function saveSite($siteId, $customCss = null, $customFile = null) {
+    /**
+     * Save the custom css and custom css file
+     *
+     * @param $siteId
+     * @param null $customCss
+     * @param null $customFile
+     */
+    public function saveSite($siteId, $customCss = null, $customFile = null)
+    {
 
-	    Piwik::checkUserHasAdminAccess($siteId);
+        Piwik::checkUserHasAdminAccess($siteId);
 
-		$query = "UPDATE " . Common::prefixTable("site") .
-		         " SET custom_css = ?, custom_css_file = ?" .
-		         " WHERE idsite = ?";
+        $query = "UPDATE ".Common::prefixTable("site") .
+            " SET custom_css = ?, custom_css_file = ?" .
+            " WHERE idsite = ?";
 
-	    Db::query($query, array($customCss, $customFile, $siteId));
+        Db::query($query, array($customCss, $customFile, $siteId));
 
-	}
+    }
 
-	/**
-	 * Returns the website information : id, custom css, custom css file
-	 *
-	 * @throws Exception If the site ID doesn't exist or the user doesn't have access to it
-	 * @param int $idSite
-	 * @return array
-	 */
-	public function getSiteDataId($idSite) {
+    /**
+     * Returns the website information : id, custom css, custom css file
+     *
+     * @throws Exception If the site ID doesn't exist or the user doesn't have access to it
+     * @param int $idSite
+     * @return array
+     */
+    public function getSiteDataId($idSite)
+    {
 
-		$query = "SELECT idsite, custom_css, custom_css_file" .
-		         " FROM " . Common::prefixTable("site") .
-		         " WHERE idsite = ?";
+        $query = "SELECT idsite, custom_css, custom_css_file" .
+            " FROM ".Common::prefixTable("site") .
+            " WHERE idsite = ?";
 
-	    $site = Db::get()->fetchRow($query, array($idSite));
+        $site = Db::get()->fetchRow($query, array($idSite));
 
-	    return $site;
+        return $site;
 
-	}
+    }
 
-	/**
-	 * Returns true if the css editor is enabled
-	 *
-	 * @return bool
-	 */
-	public function isCssEditorEnabled() {
+    /**
+     * Returns true if the css editor is enabled
+     *
+     * @return bool
+     */
+    public function isCssEditorEnabled()
+    {
 
-	    $settings = new Settings('CustomOptOut');
-	    $value  = (bool) $settings->enableEditor->getValue();
+        $settings = new Settings('CustomOptOut');
+        $value = (bool)$settings->enableEditor->getValue();
 
-	    if ($value === false) {
-	        return false;
-	    }
+        if ($value === false) {
+            return false;
+        }
 
-	    return true;
+        return true;
 
-	}
+    }
 
-	/**
-	 * Return the current css editor theme
-	 *
-	 * @return string
-	 */
-	public function getEditorTheme() {
+    /**
+     * Return the current css editor theme
+     *
+     * @return string
+     */
+    public function getEditorTheme()
+    {
 
-		$settings = new Settings('CustomOptOut');
-		$value  = $settings->editorTheme->getValue();
+        $settings = new Settings('CustomOptOut');
+        $value = $settings->editorTheme->getValue();
 
-		if ($value == 'default') {
-		    return 'default';
-		}
+        if ($value == 'default') {
+            return 'default';
+        }
 
-		return 'blackboard';
+        return 'blackboard';
 
-	}
+    }
 }
