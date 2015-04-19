@@ -8,7 +8,7 @@
     ],
     "theme": false,
     "license": "GPL-3.0+",
-    "homepage": "https:\/\/github.com\/Zeichen32\/PiwikCustomOptOut",
+    "homepage": "https:\/\/www.zwei-entwickler.de",
     "require": {
         "piwik": ">=2.7.0",
         "php": ">=5.3.0"
