@@ -26,12 +26,19 @@ class CustomOptOut extends \Piwik\Plugin
      */
     public function getListHooksRegistered()
     {
-        return array(
+        $hooks = array(
             'AssetManager.getJavaScriptFiles' => 'getJsFiles',
             'AssetManager.getStylesheetFiles' => 'getStylesheetFiles',
-            'Controller.CoreAdminHome.optOut' => 'addOptOutStyles'
         );
 
+        // If new OptOut Manager is available add OptOut Event
+        if (version_compare(\Piwik\Version::VERSION, '2.14.1', '>=') &&
+            class_exists('\Piwik\Plugins\CoreAdminHome\OptOutManager')
+        ) {
+            $hooks['Controller.CoreAdminHome.optOut'] = 'addOptOutStyles';
+        }
+
+        return $hooks;
     }
 
     /**

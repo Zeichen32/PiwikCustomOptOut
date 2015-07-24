@@ -123,6 +123,7 @@ class Controller extends ControllerAdmin
             // Remove action and module parameter to avoid endless redirect
             unset($params['action']);
             unset($params['module']);
+            unset($params['idSite']);
 
             $this->redirectToIndex('CoreAdminHome', 'optOut', $siteId, null, null, $params);
             return;

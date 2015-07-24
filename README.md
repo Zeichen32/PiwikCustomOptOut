@@ -41,6 +41,11 @@ I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](ht
 
 ## Changelog
 
+#### CustomOptOut 0.3.0:
+* Use the new OptOut Manager, so this Plugin can change the style of the core OptOut View
+* Update Transifex translations
+* Update [CodeMirror Editor](http://codemirror.net)
+
 #### CustomOptOut 0.2.5: (HotFix)
 * Fix [CodeMirror Editor](http://codemirror.net) Textarea with large css code
 * Fix invalid html in optout template
