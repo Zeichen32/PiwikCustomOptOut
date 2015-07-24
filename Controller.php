@@ -124,7 +124,7 @@ class Controller extends ControllerAdmin
             unset($params['action']);
             unset($params['module']);
 
-            $this->redirectToIndex('CoreAdminHome', 'optOut', $siteId, null, null);
+            $this->redirectToIndex('CoreAdminHome', 'optOut', $siteId, null, null, $params);
             return;
         }
 
