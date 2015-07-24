@@ -12,6 +12,7 @@
 namespace Piwik\Plugins\CustomOptOut;
 
 use Piwik\Common;
+use Piwik\Container\StaticContainer;
 use Piwik\Db;
 
 /**
@@ -25,10 +26,10 @@ class CustomOptOut extends \Piwik\Plugin
      */
     public function getListHooksRegistered()
     {
-
         return array(
             'AssetManager.getJavaScriptFiles' => 'getJsFiles',
             'AssetManager.getStylesheetFiles' => 'getStylesheetFiles',
+            'Controller.CoreAdminHome.optout' => 'addOptOutStyles'
         );
 
     }
@@ -67,6 +68,29 @@ class CustomOptOut extends \Piwik\Plugin
         $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/lint.css";
         $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/show-hint.css";
 
+    }
+
+    public function addOptOutStyles()
+    {
+        /** @var \Piwik\Plugins\CoreAdminHome\OptOutManager $manager */
+        $manager = StaticContainer::get('Piwik\Plugins\CoreAdminHome\OptOutManager');
+
+        $siteId = Common::getRequestVar('idSite', 0, 'integer');
+        $site = API::getInstance()->getSiteDataId($siteId);
+
+        if (!$site) {
+            return;
+        }
+
+        // Add CSS file if set
+        if (!empty($site['custom_css_file'])) {
+            $manager->addStylesheet($site['custom_css_file'], false);
+        }
+
+        // Add CSS Inline Styles if set
+        if (!empty($site['custom_css'])) {
+            $manager->addStylesheet($site['custom_css'], true);
+        }
     }
 
     /**

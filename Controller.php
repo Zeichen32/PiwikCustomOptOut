@@ -97,6 +97,8 @@ class Controller extends ControllerAdmin
         $view->language = LanguagesManager::getLanguageCodeForCurrentUser();
         $view->isEditorEnabled = API::getInstance()->isCssEditorEnabled();
         $view->editorTheme = API::getInstance()->getEditorTheme();
+        $view->showOldLinks = version_compare(\Piwik\Version::VERSION, '2.14.1', '<');
+
         $this->setBasicVariablesView($view);
 
         return $view->render();
@@ -107,18 +109,32 @@ class Controller extends ControllerAdmin
      */
     public function optOut()
     {
-
-        $trackVisits = !IgnoreCookie::isIgnoreCookieFound();
-
-        $nonce = Common::getRequestVar('nonce', false);
-        $language = Common::getRequestVar('language', '');
-
         $siteId = Common::getRequestVar('idSite', 0, 'integer');
+
+        // Redirect to default OptOut Method if OptOut Manager available
+        if (version_compare(\Piwik\Version::VERSION, '2.14.1', '>=') &&
+            class_exists('\Piwik\Plugins\CoreAdminHome\OptOutManager')
+        ) {
+            $params = $_GET;
+
+            // Remove action and module parameter to avoid endless redirect
+            unset($params['action']);
+            unset($params['module']);
+
+            $this->redirectToIndex('CoreAdminHome', 'optOut', $siteId, null, null);
+            return;
+        }
+
         $site = API::getInstance()->getSiteDataId($siteId);
 
         if (!$site) {
             throw new \Exception('Website was not found!');
         }
+
+        $trackVisits = !IgnoreCookie::isIgnoreCookieFound();
+
+        $nonce = Common::getRequestVar('nonce', false);
+        $language = Common::getRequestVar('language', '');
 
         if (false !== $nonce && Nonce::verifyNonce('Piwik_OptOut', $nonce)) {
             Nonce::discardNonce('Piwik_OptOut');
