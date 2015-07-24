@@ -29,7 +29,7 @@ class CustomOptOut extends \Piwik\Plugin
         return array(
             'AssetManager.getJavaScriptFiles' => 'getJsFiles',
             'AssetManager.getStylesheetFiles' => 'getStylesheetFiles',
-            'Controller.CoreAdminHome.optout' => 'addOptOutStyles'
+            'Controller.CoreAdminHome.optOut' => 'addOptOutStyles'
         );
 
     }
@@ -70,6 +70,9 @@ class CustomOptOut extends \Piwik\Plugin
 
     }
 
+    /**
+     * @throws \Exception
+     */
     public function addOptOutStyles()
     {
         /** @var \Piwik\Plugins\CoreAdminHome\OptOutManager $manager */

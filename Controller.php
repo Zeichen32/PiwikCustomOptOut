@@ -106,6 +106,9 @@ class Controller extends ControllerAdmin
 
     /**
      * Shows the "Track Visits" checkbox.
+     * @deprecated This action is introduced only to keep BC with older piwik versions <= 2.14.1
+     *             If action is called in newer piwik versions, the user will be redirected to
+     *             CoreAdminHome:optOut
      */
     public function optOut()
     {
@@ -146,7 +149,7 @@ class Controller extends ControllerAdmin
             ? $language
             : LanguagesManager::getLanguageCodeForCurrentUser();
 
-        // Find Translation Key -- BC Compatible Piwik < 2.12.0
+        // Find Translation Key -- BC Piwik < 2.12.0
         if (version_compare(\Piwik\Version::VERSION, '2.12.0', '<=') ||
             \Piwik\Piwik::translate('CoreAdminHome_OptOutDntFound') == 'CoreAdminHome_OptOutDntFound'
         ) {
