@@ -85,12 +85,26 @@ class CustomOptOut extends \Piwik\Plugin
         /** @var \Piwik\Plugins\CoreAdminHome\OptOutManager $manager */
         $manager = StaticContainer::get('Piwik\Plugins\CoreAdminHome\OptOutManager');
 
-        $siteId = Common::getRequestVar('idSite', 0, 'integer');
+        // See Issue #33
+        $siteId = Common::getRequestVar('idsite', 0, 'integer');
+
+        // Is still available for BC
+        if (!$siteId) {
+            $siteId = Common::getRequestVar('idSite', 0, 'integer');
+        }
+
+        // Try to find siteId in Session
+        if (!$siteId) {
+            $siteId = !empty($_SESSION['CustomOptOut']['idSite']) ? $_SESSION['CustomOptOut']['idSite'] : 0;
+        }
+
         $site = API::getInstance()->getSiteDataId($siteId);
 
         if (!$site) {
             return;
         }
+
+        $_SESSION['CustomOptOut']['idSite'] = $siteId;
 
         // Add CSS file if set
         if (!empty($site['custom_css_file'])) {

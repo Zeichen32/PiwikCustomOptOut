@@ -112,7 +112,18 @@ class Controller extends ControllerAdmin
      */
     public function optOut()
     {
-        $siteId = Common::getRequestVar('idSite', 0, 'integer');
+        // See Issue #33
+        $siteId = Common::getRequestVar('idsite', 0, 'integer');
+
+        // Is still available for BC
+        if (!$siteId) {
+            $siteId = Common::getRequestVar('idSite', 0, 'integer');
+        }
+
+        // Try to find siteId in Session
+        if (!$siteId) {
+            $siteId = !empty($_SESSION['CustomOptOut']['idSite']) ? $_SESSION['CustomOptOut']['idSite'] : 0;
+        }
 
         // Redirect to default OptOut Method if OptOut Manager available
         if (version_compare(\Piwik\Version::VERSION, '2.14.1', '>=') &&

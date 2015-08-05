@@ -45,9 +45,9 @@
             <td colspan="5">
                 {% set optOutUrl %}{% spaceless %}
                     {% if showOldLinks %}
-                        {{ piwikUrl }}index.php?module=CustomOptOut&action=optOut&idSite={{ site.idsite|escape('url') }}&language={{ language }}
+                        {{ piwikUrl }}index.php?module=CustomOptOut&action=optOut&idsite={{ site.idsite|escape('url') }}&language={{ language }}
                     {% else %}
-                        {{ piwikUrl }}index.php?module=CoreAdminHome&action=optOut&idSite={{ site.idsite|escape('url') }}&language={{ language }}
+                        {{ piwikUrl }}index.php?module=CoreAdminHome&action=optOut&idsite={{ site.idsite|escape('url') }}&language={{ language }}
                     {% endif %}
             {% endspaceless %}{% endset %}
                 {% set iframeOptOut %}
