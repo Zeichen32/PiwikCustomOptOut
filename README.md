@@ -41,6 +41,10 @@ I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](ht
 
 ## Changelog
 
+#### CustomOptOut 0.3.1:
+* (Issue #32) Use idsite instead of idSite parameter
+* (Issue #33) Loose site id between switching Opt Out states
+
 #### CustomOptOut 0.3.0:
 * Use the new OptOut Manager, so this Plugin can change the style of the core OptOut View
 * Update Transifex translations
