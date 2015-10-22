@@ -1,7 +1,5 @@
 # Custom Opt-Out Styles Piwik Plugin
 
-[![Build Status](https://travis-ci.org/Zeichen32/PiwikCustomOptOut.png?branch=master)](https://travis-ci.org/Zeichen32/PiwikCustomOptOut)
-
 ## Description
 
 Adds a new admin tab allowing to change the opt-out CSS Styles for each website.
@@ -37,9 +35,14 @@ I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](ht
 
 ## Requirements
 
-+ Piwik >= 2.7.0
++ Piwik >= 2.15.0
 
 ## Changelog
+
+#### CustomOptOut 0.4.0:
+* Use new OptOutManager
+* Drop support for Piwik < 2.15.0
+* Use piwiks default OptOutView and Controller
 
 #### CustomOptOut 0.3.1:
 * (Issue #32) Use idsite instead of idSite parameter

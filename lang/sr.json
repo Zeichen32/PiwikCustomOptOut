@@ -1,0 +1,9 @@
+{
+    "CustomOptOut": {
+        "ShowEditorOptionName": "Omogući CSS editor",
+        "ShowEditorDescription": "Uključite ovu opciju kako biste prikazali korisnički definisan CSS kod u CSS editoru.",
+        "EditorThemeOptionName": "Tema editora",
+        "EditorThemeDescription": "Izaberite temu za ovaj editor.",
+        "OptOutDntFound": "Vaše akcije se ne beleže pošto vaš brauzer kaže da vi to ne želite. U pitanju je podešavanje u vašem brauzeru tako da nećete moći da se prijavite sve dok ne isključite 'Nemoj da me pratiš' opciju."
+    }
+}

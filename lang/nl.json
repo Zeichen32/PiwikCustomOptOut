@@ -1,5 +1,9 @@
 {
     "CustomOptOut": {
+        "ShowEditorOptionName": "Schakel css editor in",
+        "ShowEditorDescription": "Schakel deze optie in om de \"custom css\" in een simpele css Editor weer te geven.",
+        "EditorThemeOptionName": "Editor Thema",
+        "EditorThemeDescription": "Kies een thema voor de editor",
         "OptOutDntFound": "Je bezoek wordt niet gemeten omdat je browser aangeeft dat je dat niet wil. Dit is een instelling van je browser, dus je kunt geen gebruik maken van opt-in, totdat je de 'Volg mij Niet' functie uitschakelt."
     }
 }

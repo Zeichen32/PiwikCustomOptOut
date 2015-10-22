@@ -26,19 +26,11 @@ class CustomOptOut extends \Piwik\Plugin
      */
     public function getListHooksRegistered()
     {
-        $hooks = array(
+        return array(
             'AssetManager.getJavaScriptFiles' => 'getJsFiles',
             'AssetManager.getStylesheetFiles' => 'getStylesheetFiles',
+            'Controller.CoreAdminHome.optOut' => 'addOptOutStyles',
         );
-
-        // If new OptOut Manager is available add OptOut Event
-        if (version_compare(\Piwik\Version::VERSION, '2.14.1', '>=') &&
-            class_exists('\Piwik\Plugins\CoreAdminHome\OptOutManager')
-        ) {
-            $hooks['Controller.CoreAdminHome.optOut'] = 'addOptOutStyles';
-        }
-
-        return $hooks;
     }
 
     /**
@@ -95,7 +87,7 @@ class CustomOptOut extends \Piwik\Plugin
 
         // Try to find siteId in Session
         if (!$siteId) {
-            $siteId = !empty($_SESSION['CustomOptOut']['idSite']) ? $_SESSION['CustomOptOut']['idSite'] : 0;
+            return;
         }
 
         $site = API::getInstance()->getSiteDataId($siteId);
@@ -104,7 +96,7 @@ class CustomOptOut extends \Piwik\Plugin
             return;
         }
 
-        $_SESSION['CustomOptOut']['idSite'] = $siteId;
+        $manager->addQueryParameter('idsite', $siteId);
 
         // Add CSS file if set
         if (!empty($site['custom_css_file'])) {

@@ -1,5 +1,9 @@
 {
     "CustomOptOut": {
+        "ShowEditorOptionName": "Ativar editor css",
+        "ShowEditorDescription": "Ative essa opção para mostrar o código \"css personalizado\" em um simples editor css.",
+        "EditorThemeOptionName": "Tema do Editor",
+        "EditorThemeDescription": "Escolha um tema para o editor.",
         "OptOutDntFound": "Você não está sendo monitorado desde que o seu navegador está informando que você não quer isso. Essa é uma configuração do seu navegador portanto você não será capaz de aceitar ser rastreado até que você desative o recurso \"Do Not Track\"."
     }
 }
