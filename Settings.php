@@ -24,14 +24,24 @@ use Piwik\Settings\UserSetting;
 class Settings extends \Piwik\Plugin\Settings
 {
     /**
-     * @var UserSetting
+     * @var SystemSetting
      */
     public $enableEditor;
 
     /**
-     * @var UserSetting
+     * @var SystemSetting
      */
     public $editorTheme;
+
+    /**
+     * @var SystemSetting
+     */
+    public $defaultCssStyles;
+
+    /**
+     * @var SystemSetting
+     */
+    public $defaultCssFile;
 
     protected function init()
     {
@@ -39,6 +49,8 @@ class Settings extends \Piwik\Plugin\Settings
 
         $this->createEnableEditorSetting();
         $this->createThemeSetting();
+        $this->createDefaultCssStylesSetting();
+        $this->createDefaultCssFileSetting();
     }
 
     private function createEnableEditorSetting()
@@ -76,6 +88,40 @@ class Settings extends \Piwik\Plugin\Settings
         );
 
         $this->addSetting($this->editorTheme);
+
+    }
+
+    private function createDefaultCssStylesSetting()
+    {
+
+        $this->defaultCssStyles = new SystemSetting(
+            'defaultCssStyles',
+            Piwik::translate('CustomOptOut_DefaultCssStyles')
+        );
+
+        $this->defaultCssStyles->type = static::TYPE_STRING;
+        $this->defaultCssStyles->uiControlType = static::CONTROL_TEXTAREA;
+        $this->defaultCssStyles->description = Piwik::translate('CustomOptOut_DefaultCssStylesDescription');
+        $this->defaultCssStyles->defaultValue = 'body { font-family: Arial; }';
+
+        $this->addSetting($this->defaultCssStyles);
+
+    }
+
+    private function createDefaultCssFileSetting()
+    {
+
+        $this->defaultCssFile = new SystemSetting(
+            'defaultCssFile',
+            Piwik::translate('CustomOptOut_DefaultCssFile')
+        );
+
+        $this->defaultCssFile->type = static::TYPE_STRING;
+        $this->defaultCssFile->uiControlType = static::CONTROL_TEXT;
+        $this->defaultCssFile->description = Piwik::translate('CustomOptOut_DefaultCssFileDescription');
+        $this->defaultCssFile->defaultValue = null;
+
+        $this->addSetting($this->defaultCssFile);
 
     }
 }

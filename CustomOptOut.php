@@ -14,6 +14,7 @@ namespace Piwik\Plugins\CustomOptOut;
 use Piwik\Common;
 use Piwik\Container\StaticContainer;
 use Piwik\Db;
+use Piwik\Plugins\CustomOptOut\Settings;
 
 /**
  * @package CustomOptOut
@@ -77,6 +78,8 @@ class CustomOptOut extends \Piwik\Plugin
         /** @var \Piwik\Plugins\CoreAdminHome\OptOutManager $manager */
         $manager = StaticContainer::get('Piwik\Plugins\CoreAdminHome\OptOutManager');
 
+        $settings = new Settings();
+
         // See Issue #33
         $siteId = Common::getRequestVar('idsite', 0, 'integer');
 
@@ -87,12 +90,28 @@ class CustomOptOut extends \Piwik\Plugin
 
         // Try to find siteId in Session
         if (!$siteId) {
+            if ($settings->defaultCssStyles->getValue()) {
+                $manager->addStylesheet($settings->defaultCssStyles->getValue());
+            }
+
+            if ($settings->defaultCssFile->getValue()) {
+                $manager->addStylesheet($settings->defaultCssFile->getValue(), false);
+            }
+
             return;
         }
 
         $site = API::getInstance()->getSiteDataId($siteId);
 
         if (!$site) {
+            if ($settings->defaultCssStyles->getValue()) {
+                $manager->addStylesheet($settings->defaultCssStyles->getValue());
+            }
+
+            if ($settings->defaultCssFile->getValue()) {
+                $manager->addStylesheet($settings->defaultCssFile->getValue(), false);
+            }
+
             return;
         }
 
