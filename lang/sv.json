@@ -3,7 +3,6 @@
         "ShowEditorOptionName": "Aktivera CSS-editor",
         "ShowEditorDescription": "Aktivera detta val för att visa anpassad CSS-kod i simple CSS editor.",
         "EditorThemeOptionName": "Tema",
-        "EditorThemeDescription": "Välj tema för editorn.",
-        "OptOutDntFound": "Du spåras inte eftersom din webbläsare rapporterar att du inte vill det. Detta är en inställning i webbläsaren så du kan inte delta för än du avaktiverat 'Do Not Track'."
+        "EditorThemeDescription": "Välj tema för editorn."
     }
 }

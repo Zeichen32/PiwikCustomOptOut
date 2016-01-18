@@ -3,7 +3,6 @@
         "ShowEditorOptionName": "Abilita editor css",
         "ShowEditorDescription": "Abilita questa opzione per mostrare il codice \"css personalizzato\" in un semplice editor css.",
         "EditorThemeOptionName": "Editor Tema",
-        "EditorThemeDescription": "Scegli un tema per l'editor.",
-        "OptOutDntFound": "Non vieni tracciato poiché il tuo browser comunica che non lo desideri. Questa è un'impostazione del tuo browser, dunque non potrai effettuare l'opt-in finchè non disabiliti la funzionalità \"Non Tracciare\"."
+        "EditorThemeDescription": "Scegli un tema per l'editor."
     }
 }

@@ -4,6 +4,9 @@
         "ShowEditorDescription": "Wenn aktiviert, wird der \"Custom Css\" Code in einem einfachen CSS Editor angezeigt.",
         "EditorThemeOptionName": "Editor Theme",
         "EditorThemeDescription": "Wähle einen Theme für den CSS Editor.",
-        "OptOutDntFound": "Das Tracking ist bei Ihnen derzeit nicht aktiv, denn Ihr Browser hat uns mitgeteilt, dass Sie kein Tracking wünschen. Hierbei handelt es sich um eine Browsereinstellung. Um das Tracking wieder zu aktivieren, müssten Sie die sogenannte \"Do Not Track\"-Einstellung in Ihren Browsereinstellungen deaktivieren."
+        "DefaultCssStyles" : "Standard Stylesheets",
+        "DefaultCssStylesDescription": "Diese Stylesheets werden verwendet, wenn keine Seite ausgewählt wurde.",
+        "DefaultCssFile": "Standard Stylesheet-Datei",
+        "DefaultCssFileDescription": "Diese Stylesheet-Datei wird verwendet, wenn keine Seite ausgewählt wurde."
     }
 }

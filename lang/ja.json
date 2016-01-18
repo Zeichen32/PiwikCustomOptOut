@@ -3,7 +3,6 @@
         "ShowEditorOptionName": "CSS エディタを有効にします",
         "ShowEditorDescription": "このエディターの単純な css の「カスタム css」コードを表示するオプション有効にします。",
         "EditorThemeOptionName": "エディターのテーマ",
-        "EditorThemeDescription": "エディターのテーマを選択します。",
-        "OptOutDntFound": "ユーザーにより、このブラウザではトラッキングしない設定になっております。これはブラウザの設定によるもので、'Do Not Track' 機能を無効にするまでオプトインできません。"
+        "EditorThemeDescription": "エディターのテーマを選択します。"
     }
 }
