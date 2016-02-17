@@ -39,6 +39,9 @@ I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](ht
 
 ## Changelog
 
+#### CustomOptOut 0.4.2:
+* (Issue #41) Add missing "readableByCurrentUser" property
+
 #### CustomOptOut 0.4.1:
 * (Issue #38) Add new plugin setting options to define default css styles.
 
