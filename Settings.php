@@ -103,6 +103,7 @@ class Settings extends \Piwik\Plugin\Settings
         $this->defaultCssStyles->uiControlType = static::CONTROL_TEXTAREA;
         $this->defaultCssStyles->description = Piwik::translate('CustomOptOut_DefaultCssStylesDescription');
         $this->defaultCssStyles->defaultValue = 'body { font-family: Arial; }';
+        $this->defaultCssStyles->readableByCurrentUser = true;
 
         $this->addSetting($this->defaultCssStyles);
 
@@ -120,6 +121,7 @@ class Settings extends \Piwik\Plugin\Settings
         $this->defaultCssFile->uiControlType = static::CONTROL_TEXT;
         $this->defaultCssFile->description = Piwik::translate('CustomOptOut_DefaultCssFileDescription');
         $this->defaultCssFile->defaultValue = null;
+        $this->defaultCssFile->readableByCurrentUser = true;
 
         $this->addSetting($this->defaultCssFile);
 
