@@ -39,6 +39,10 @@ I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](ht
 
 ## Changelog
 
+#### CustomOptOut 0.4.3:
+* (Issue #43) Add new feature to inject Javascript to the OptOut iFrame.
+* Update [CodeMirror Editor](http://codemirror.net)
+
 #### CustomOptOut 0.4.2:
 * (Issue #41) Add missing "readableByCurrentUser" property
 

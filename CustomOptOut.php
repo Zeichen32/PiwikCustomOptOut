@@ -31,6 +31,7 @@ class CustomOptOut extends \Piwik\Plugin
             'AssetManager.getJavaScriptFiles' => 'getJsFiles',
             'AssetManager.getStylesheetFiles' => 'getStylesheetFiles',
             'Controller.CoreAdminHome.optOut' => 'addOptOutStyles',
+            'Settings.CustomOptOut.settingsUpdated' => 'onSettingsUpdate'
         );
     }
 
@@ -68,6 +69,12 @@ class CustomOptOut extends \Piwik\Plugin
         $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/lint.css";
         $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/show-hint.css";
 
+    }
+
+    public function onSettingsUpdate(Settings $settings)
+    {
+        $this->install();
+        return;
     }
 
     /**
@@ -126,6 +133,17 @@ class CustomOptOut extends \Piwik\Plugin
         if (!empty($site['custom_css'])) {
             $manager->addStylesheet($site['custom_css'], true);
         }
+
+
+        $jsEnabled = $settings->enableJavascriptInjection->getValue();
+
+        if ($jsEnabled && !empty($site['custom_js_file'])) {
+            $manager->addJavascript($site['custom_js_file'], false);
+        }
+
+        if ($jsEnabled && !empty($site['custom_js'])) {
+            $manager->addJavascript($site['custom_js'], true);
+        }
     }
 
     /**
@@ -155,6 +173,25 @@ class CustomOptOut extends \Piwik\Plugin
 
         }
 
+        try {
+
+            $sql = sprintf(
+                "ALTER TABLE %s" .
+                " ADD COLUMN `custom_js` TEXT NULL AFTER `custom_css`," .
+                " ADD COLUMN `custom_js_file` VARCHAR(255) NULL AFTER `custom_js`;",
+                Common::prefixTable('site')
+            );
+
+            Db::exec($sql);
+
+        } catch (\Exception $exp) {
+
+            if (!Db::get()->isErrNo($exp, '1060')) {
+                throw $exp;
+            }
+
+        }
+
     }
 
     /**
@@ -169,6 +206,8 @@ class CustomOptOut extends \Piwik\Plugin
 
             $sql = sprintf(
                 "ALTER TABLE %s" .
+                " DROP COLUMN `custom_js`," .
+                " DROP COLUMN `custom_js_file`," .
                 " DROP COLUMN `custom_css`," .
                 " DROP COLUMN `custom_css_file`;",
                 Common::prefixTable('site')

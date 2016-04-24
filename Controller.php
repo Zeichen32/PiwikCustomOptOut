@@ -48,16 +48,29 @@ class Controller extends ControllerAdmin
 
                 foreach ($postedSiteData as $id => $site) {
 
-                    if (!isset($site['css'], $site['file'])) {
+                    if (!isset($site['css'], $site['file']) && !isset($site['js'], $site['js_file'])) {
                         continue;
                     }
 
-                    // Check URL
-                    if (!UrlHelper::isLookLikeUrl($site['file'])) {
+                    // Check URL for CSS file
+                    if (empty($site['file']) || !UrlHelper::isLookLikeUrl($site['file'])) {
                         $site['file'] = null;
                     }
 
-                    API::getInstance()->saveSite($id, $site['css'], $site['file']);
+                    // Check URL for JS file
+                    if (empty($site['js_file']) || !UrlHelper::isLookLikeUrl($site['js_file'])) {
+                        $site['js_file'] = null;
+                    }
+
+                    if (empty($site['css'])) {
+                        $site['css'] = null;
+                    }
+
+                    if (empty($site['js'])) {
+                        $site['js'] = null;
+                    }
+
+                    API::getInstance()->saveSite($id, $site['css'], $site['file'], $site['js'], $site['js_file']);
                 }
 
                 // Redirect to, clear POST vars
@@ -88,12 +101,15 @@ class Controller extends ControllerAdmin
             $site['alias_urls'] = APISiteManager::getInstance()->getSiteUrlsFromId($site['idsite']);
         }
 
+        $settings = new Settings();
+
         $view->adminSites = $sites;
         $view->adminSitesCount = count($sites);
         $view->language = LanguagesManager::getLanguageCodeForCurrentUser();
         $view->isEditorEnabled = API::getInstance()->isCssEditorEnabled();
         $view->editorTheme = API::getInstance()->getEditorTheme();
         $view->showOldLinks = false;
+        $view->enableJs = $settings->enableJavascriptInjection->getValue();
 
         $this->setBasicVariablesView($view);
 

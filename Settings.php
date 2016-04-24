@@ -43,6 +43,11 @@ class Settings extends \Piwik\Plugin\Settings
      */
     public $defaultCssFile;
 
+    /**
+     * @var SystemSetting
+     */
+    public $enableJavascriptInjection;
+
     protected function init()
     {
         $this->setIntroduction('Custom OptOut');
@@ -51,6 +56,7 @@ class Settings extends \Piwik\Plugin\Settings
         $this->createThemeSetting();
         $this->createDefaultCssStylesSetting();
         $this->createDefaultCssFileSetting();
+        $this->createEnableJavascriptInjectionSetting();
     }
 
     private function createEnableEditorSetting()
@@ -125,5 +131,21 @@ class Settings extends \Piwik\Plugin\Settings
 
         $this->addSetting($this->defaultCssFile);
 
+    }
+
+    private function createEnableJavascriptInjectionSetting()
+    {
+        $this->enableJavascriptInjection = new SystemSetting(
+            'enableJavascriptInjection',
+            Piwik::translate('CustomOptOut_EnableJavascriptInjection')
+        );
+
+        $this->enableJavascriptInjection->type = static::TYPE_BOOL;
+        $this->enableJavascriptInjection->uiControlType = static::CONTROL_CHECKBOX;
+        $this->enableJavascriptInjection->description = Piwik::translate('CustomOptOut_EnableJavascriptInjectionDescription');
+        $this->enableJavascriptInjection->defaultValue = false;
+        $this->enableJavascriptInjection->readableByCurrentUser = true;
+
+        $this->addSetting($this->enableJavascriptInjection);
     }
 }
