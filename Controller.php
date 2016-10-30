@@ -12,7 +12,6 @@
 namespace Piwik\Plugins\CustomOptOut;
 
 use Piwik\Common;
-use Piwik\Db;
 use Piwik\Piwik;
 use Piwik\Plugin\ControllerAdmin;
 use Piwik\Plugins\LanguagesManager\LanguagesManager;
@@ -101,7 +100,7 @@ class Controller extends ControllerAdmin
             $site['alias_urls'] = APISiteManager::getInstance()->getSiteUrlsFromId($site['idsite']);
         }
 
-        $settings = new Settings();
+        $settings = new SystemSettings();
 
         $view->adminSites = $sites;
         $view->adminSitesCount = count($sites);

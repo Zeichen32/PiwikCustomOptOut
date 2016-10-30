@@ -14,7 +14,7 @@ namespace Piwik\Plugins\CustomOptOut;
 use Piwik\Common;
 use Piwik\Container\StaticContainer;
 use Piwik\Db;
-use Piwik\Plugins\CustomOptOut\Settings;
+use Piwik\Plugins\CustomOptOut\SystemSettings as Settings;
 
 /**
  * @package CustomOptOut
@@ -23,7 +23,7 @@ class CustomOptOut extends \Piwik\Plugin
 {
 
     /**
-     * @see Piwik\Plugin::getListHooksRegistered
+     * {@inheritdoc}
      */
     public function getListHooksRegistered()
     {
@@ -36,6 +36,14 @@ class CustomOptOut extends \Piwik\Plugin
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function registerEvents()
+    {
+        return $this->getListHooksRegistered();
+    }
+
+    /**
      * @param $jsFiles
      */
     public function getJsFiles(&$jsFiles)
@@ -44,10 +52,13 @@ class CustomOptOut extends \Piwik\Plugin
         // CodeMirror
         $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/codemirror.js";
         $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/mode/css/css.js";
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/mode/javascript/javascript.js";
         $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/show-hint.js";
         $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/css-hint.js";
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/javascript-hint.js";
         $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/lint.js";
         $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/css-lint.js";
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/javascript-lint.js";
 
         // CSS Lint for CodeMirror
         $jsFiles[] = "plugins/CustomOptOut/javascripts/csslint/csslint.js";

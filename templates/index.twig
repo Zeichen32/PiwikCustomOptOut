@@ -52,7 +52,7 @@
         <tr id="row-js{{ site.idsite }}" data-keep-url-fragments="{{ site.keep_url_fragment }}">
             <td style="vertical-align: top;" colspan="3">&nbsp;</td>
             <td style="vertical-align: top; width: 50%;">
-                <textarea cols="30" rows="3" {% if isEditorEnabled %}class="codemirror-textarea" data-codemirror-theme="{{ editorTheme }}"{% endif %} name="site[{{ site.idsite|escape('html_attr') }}][js]" style="width: 500px; height: 200px">{{- site.custom_js|raw -}}</textarea>
+                <textarea cols="30" rows="3" {% if isEditorEnabled %}class="codemirror-textarea-js" data-codemirror-theme="{{ editorTheme }}"{% endif %} name="site[{{ site.idsite|escape('html_attr') }}][js]" style="width: 500px; height: 200px">{{- site.custom_js|raw -}}</textarea>
             </td>
             <td style="vertical-align: top;">
                 <input type="text" size="30" name="site[{{ site.idsite|escape('html_attr') }}][js_file]" value="{{- site.custom_js_file -}}"/>
