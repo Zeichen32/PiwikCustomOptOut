@@ -31,17 +31,26 @@ class API extends \Piwik\Plugin\API
      * @param null $customCss
      * @param null $customFile
      */
-    public function saveSite($siteId, $customCss = null, $customFile = null)
+    public function saveSite($siteId, $customCss = null, $customFile = null, $customJs = null, $customJsFile = null)
     {
 
         Piwik::checkUserHasAdminAccess($siteId);
 
-        $query = "UPDATE ".Common::prefixTable("site") .
-            " SET custom_css = ?, custom_css_file = ?" .
-            " WHERE idsite = ?";
+        $params = array($customCss, $customFile);
+        $query = "UPDATE ".Common::prefixTable("site") . " SET custom_css = ?, custom_css_file = ?";
 
-        Db::query($query, array($customCss, $customFile, $siteId));
+        // If js is activate, update its too.
+        $settings = new SystemSettings();
+        if ($settings->enableJavascriptInjection->getValue()) {
+                $query .= ", custom_js = ?, custom_js_file = ?";
+                $params[] = $customJs;
+                $params[] = $customJsFile;
+        }
 
+        $query .= " WHERE idsite = ?";
+        $params[] = $siteId;
+
+        Db::query($query, $params);
     }
 
     /**
@@ -54,14 +63,20 @@ class API extends \Piwik\Plugin\API
     public function getSiteDataId($idSite)
     {
 
-        $query = "SELECT idsite, custom_css, custom_css_file" .
-            " FROM ".Common::prefixTable("site") .
-            " WHERE idsite = ?";
+        $query = "SELECT idsite, custom_css, custom_css_file";
+
+        $settings = new SystemSettings();
+        if ($settings->enableJavascriptInjection->getValue()) {
+            $query .= ", custom_js, custom_js_file";
+        } else {
+            $query .= ", null as custom_js, null as custom_js_file";
+        }
+
+        $query .= " FROM ".Common::prefixTable("site") . " WHERE idsite = ?";
 
         $site = Db::get()->fetchRow($query, array($idSite));
 
         return $site;
-
     }
 
     /**
@@ -72,7 +87,7 @@ class API extends \Piwik\Plugin\API
     public function isCssEditorEnabled()
     {
 
-        $settings = new Settings('CustomOptOut');
+        $settings = new SystemSettings('CustomOptOut');
         $value = (bool)$settings->enableEditor->getValue();
 
         if ($value === false) {
@@ -91,7 +106,7 @@ class API extends \Piwik\Plugin\API
     public function getEditorTheme()
     {
 
-        $settings = new Settings('CustomOptOut');
+        $settings = new SystemSettings('CustomOptOut');
         $value = $settings->editorTheme->getValue();
 
         if ($value == 'default') {

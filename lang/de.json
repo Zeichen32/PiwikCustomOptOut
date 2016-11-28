@@ -7,6 +7,8 @@
         "DefaultCssStyles" : "Standard Stylesheets",
         "DefaultCssStylesDescription": "Diese Stylesheets werden verwendet, wenn keine Seite ausgewählt wurde.",
         "DefaultCssFile": "Standard Stylesheet-Datei",
-        "DefaultCssFileDescription": "Diese Stylesheet-Datei wird verwendet, wenn keine Seite ausgewählt wurde."
+        "DefaultCssFileDescription": "Diese Stylesheet-Datei wird verwendet, wenn keine Seite ausgewählt wurde.",
+        "EnableJavascriptInjectionDescription": "Wenn aktivieren, werden zusätzliche Eingabefelder zum einfügen von JavaScript Code angezeigt. ",
+        "EnableJavascriptInjection": "Javascript Felder aktivieren"
     }
 }

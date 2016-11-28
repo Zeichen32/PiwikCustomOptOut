@@ -10,6 +10,7 @@ namespace Piwik\Plugins\CustomOptOut;
 
 use Piwik\Menu\MenuAdmin;
 use Piwik\Piwik;
+use Piwik\Version;
 
 /**
  * This class allows you to add, remove or rename menu items.
@@ -21,7 +22,11 @@ class Menu extends \Piwik\Plugin\Menu
     public function configureAdminMenu(MenuAdmin $menu)
     {
         if (Piwik::isUserHasSomeAdminAccess()) {
-            $menu->addSettingsItem('Custom OptOut', $this->urlForDefaultAction());
+            if (Version::VERSION >= 3) {
+                $menu->addSystemItem('Custom OptOut', $this->urlForDefaultAction(), 500);
+            } else {
+                $menu->addSettingsItem('Custom OptOut', $this->urlForDefaultAction());
+            }
         }
     }
 }
