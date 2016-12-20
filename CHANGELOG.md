@@ -1,5 +1,8 @@
 ## Changelog
 
+### CustomOptOut 1.0.1
+* Fix settings listener
+
 ### CustomOptOut 1.0.0
 * The first stable final version
 * Drop support for Piwik <= 3.0.0-b1
