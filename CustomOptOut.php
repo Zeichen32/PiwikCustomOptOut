@@ -31,7 +31,8 @@ class CustomOptOut extends \Piwik\Plugin
             'AssetManager.getJavaScriptFiles' => 'getJsFiles',
             'AssetManager.getStylesheetFiles' => 'getStylesheetFiles',
             'Controller.CoreAdminHome.optOut' => 'addOptOutStyles',
-            'Settings.CustomOptOut.settingsUpdated' => 'onSettingsUpdate'
+            'Settings.CustomOptOut.settingsUpdated' => 'onSettingsUpdate',
+            'SystemSettings.updated' => 'onSystemSettingsUpdate',
         );
     }
 
@@ -86,6 +87,12 @@ class CustomOptOut extends \Piwik\Plugin
     {
         $this->install();
         return;
+    }
+
+    public function onSystemSettingsUpdate(\Piwik\Settings\Plugin\SystemSettings $settings) {
+        if ($settings->getPluginName() == 'CustomOptOut') {
+            $this->install();
+        }
     }
 
     /**
