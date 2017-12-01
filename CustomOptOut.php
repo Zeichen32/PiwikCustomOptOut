@@ -64,6 +64,9 @@ class CustomOptOut extends \Piwik\Plugin
         // CSS Lint for CodeMirror
         $jsFiles[] = "plugins/CustomOptOut/javascripts/csslint/csslint.js";
 
+        // CSS Lint for CodeMirror
+        $jsFiles[] = "plugins/CustomOptOut/javascripts/jshint/jshint.js";
+
         // Plugin
         $jsFiles[] = "plugins/CustomOptOut/javascripts/plugin.js";
 

@@ -9,407 +9,412 @@
   else // Plain browser env
     mod(CodeMirror);
 })(function(CodeMirror) {
-  "use strict";
+"use strict";
 
-  CodeMirror.defineMode("css", function(config, parserConfig) {
-    var inline = parserConfig.inline
-    if (!parserConfig.propertyKeywords) parserConfig = CodeMirror.resolveMode("text/css");
+CodeMirror.defineMode("css", function(config, parserConfig) {
+  var inline = parserConfig.inline
+  if (!parserConfig.propertyKeywords) parserConfig = CodeMirror.resolveMode("text/css");
 
-    var indentUnit = config.indentUnit,
-        tokenHooks = parserConfig.tokenHooks,
-        documentTypes = parserConfig.documentTypes || {},
-        mediaTypes = parserConfig.mediaTypes || {},
-        mediaFeatures = parserConfig.mediaFeatures || {},
-        mediaValueKeywords = parserConfig.mediaValueKeywords || {},
-        propertyKeywords = parserConfig.propertyKeywords || {},
-        nonStandardPropertyKeywords = parserConfig.nonStandardPropertyKeywords || {},
-        fontProperties = parserConfig.fontProperties || {},
-        counterDescriptors = parserConfig.counterDescriptors || {},
-        colorKeywords = parserConfig.colorKeywords || {},
-        valueKeywords = parserConfig.valueKeywords || {},
-        allowNested = parserConfig.allowNested,
-        supportsAtComponent = parserConfig.supportsAtComponent === true;
+  var indentUnit = config.indentUnit,
+      tokenHooks = parserConfig.tokenHooks,
+      documentTypes = parserConfig.documentTypes || {},
+      mediaTypes = parserConfig.mediaTypes || {},
+      mediaFeatures = parserConfig.mediaFeatures || {},
+      mediaValueKeywords = parserConfig.mediaValueKeywords || {},
+      propertyKeywords = parserConfig.propertyKeywords || {},
+      nonStandardPropertyKeywords = parserConfig.nonStandardPropertyKeywords || {},
+      fontProperties = parserConfig.fontProperties || {},
+      counterDescriptors = parserConfig.counterDescriptors || {},
+      colorKeywords = parserConfig.colorKeywords || {},
+      valueKeywords = parserConfig.valueKeywords || {},
+      allowNested = parserConfig.allowNested,
+      lineComment = parserConfig.lineComment,
+      supportsAtComponent = parserConfig.supportsAtComponent === true;
 
-    var type, override;
-    function ret(style, tp) { type = tp; return style; }
+  var type, override;
+  function ret(style, tp) { type = tp; return style; }
 
-    // Tokenizers
+  // Tokenizers
 
-    function tokenBase(stream, state) {
-      var ch = stream.next();
-      if (tokenHooks[ch]) {
-        var result = tokenHooks[ch](stream, state);
-        if (result !== false) return result;
-      }
-      if (ch == "@") {
-        stream.eatWhile(/[\w\\\-]/);
-        return ret("def", stream.current());
-      } else if (ch == "=" || (ch == "~" || ch == "|") && stream.eat("=")) {
-        return ret(null, "compare");
-      } else if (ch == "\"" || ch == "'") {
-        state.tokenize = tokenString(ch);
-        return state.tokenize(stream, state);
-      } else if (ch == "#") {
-        stream.eatWhile(/[\w\\\-]/);
-        return ret("atom", "hash");
-      } else if (ch == "!") {
-        stream.match(/^\s*\w*/);
-        return ret("keyword", "important");
-      } else if (/\d/.test(ch) || ch == "." && stream.eat(/\d/)) {
+  function tokenBase(stream, state) {
+    var ch = stream.next();
+    if (tokenHooks[ch]) {
+      var result = tokenHooks[ch](stream, state);
+      if (result !== false) return result;
+    }
+    if (ch == "@") {
+      stream.eatWhile(/[\w\\\-]/);
+      return ret("def", stream.current());
+    } else if (ch == "=" || (ch == "~" || ch == "|") && stream.eat("=")) {
+      return ret(null, "compare");
+    } else if (ch == "\"" || ch == "'") {
+      state.tokenize = tokenString(ch);
+      return state.tokenize(stream, state);
+    } else if (ch == "#") {
+      stream.eatWhile(/[\w\\\-]/);
+      return ret("atom", "hash");
+    } else if (ch == "!") {
+      stream.match(/^\s*\w*/);
+      return ret("keyword", "important");
+    } else if (/\d/.test(ch) || ch == "." && stream.eat(/\d/)) {
+      stream.eatWhile(/[\w.%]/);
+      return ret("number", "unit");
+    } else if (ch === "-") {
+      if (/[\d.]/.test(stream.peek())) {
         stream.eatWhile(/[\w.%]/);
         return ret("number", "unit");
-      } else if (ch === "-") {
-        if (/[\d.]/.test(stream.peek())) {
-          stream.eatWhile(/[\w.%]/);
-          return ret("number", "unit");
-        } else if (stream.match(/^-[\w\\\-]+/)) {
-          stream.eatWhile(/[\w\\\-]/);
-          if (stream.match(/^\s*:/, false))
-            return ret("variable-2", "variable-definition");
-          return ret("variable-2", "variable");
-        } else if (stream.match(/^\w+-/)) {
-          return ret("meta", "meta");
-        }
-      } else if (/[,+>*\/]/.test(ch)) {
-        return ret(null, "select-op");
-      } else if (ch == "." && stream.match(/^-?[_a-z][_a-z0-9-]*/i)) {
-        return ret("qualifier", "qualifier");
-      } else if (/[:;{}\[\]\(\)]/.test(ch)) {
-        return ret(null, ch);
-      } else if ((ch == "u" && stream.match(/rl(-prefix)?\(/)) ||
-          (ch == "d" && stream.match("omain(")) ||
-          (ch == "r" && stream.match("egexp("))) {
-        stream.backUp(1);
-        state.tokenize = tokenParenthesized;
-        return ret("property", "word");
-      } else if (/[\w\\\-]/.test(ch)) {
+      } else if (stream.match(/^-[\w\\\-]+/)) {
         stream.eatWhile(/[\w\\\-]/);
-        return ret("property", "word");
-      } else {
-        return ret(null, null);
+        if (stream.match(/^\s*:/, false))
+          return ret("variable-2", "variable-definition");
+        return ret("variable-2", "variable");
+      } else if (stream.match(/^\w+-/)) {
+        return ret("meta", "meta");
       }
+    } else if (/[,+>*\/]/.test(ch)) {
+      return ret(null, "select-op");
+    } else if (ch == "." && stream.match(/^-?[_a-z][_a-z0-9-]*/i)) {
+      return ret("qualifier", "qualifier");
+    } else if (/[:;{}\[\]\(\)]/.test(ch)) {
+      return ret(null, ch);
+    } else if ((ch == "u" && stream.match(/rl(-prefix)?\(/)) ||
+               (ch == "d" && stream.match("omain(")) ||
+               (ch == "r" && stream.match("egexp("))) {
+      stream.backUp(1);
+      state.tokenize = tokenParenthesized;
+      return ret("property", "word");
+    } else if (/[\w\\\-]/.test(ch)) {
+      stream.eatWhile(/[\w\\\-]/);
+      return ret("property", "word");
+    } else {
+      return ret(null, null);
     }
+  }
 
-    function tokenString(quote) {
-      return function(stream, state) {
-        var escaped = false, ch;
-        while ((ch = stream.next()) != null) {
-          if (ch == quote && !escaped) {
-            if (quote == ")") stream.backUp(1);
-            break;
-          }
-          escaped = !escaped && ch == "\\";
+  function tokenString(quote) {
+    return function(stream, state) {
+      var escaped = false, ch;
+      while ((ch = stream.next()) != null) {
+        if (ch == quote && !escaped) {
+          if (quote == ")") stream.backUp(1);
+          break;
         }
-        if (ch == quote || !escaped && quote != ")") state.tokenize = null;
-        return ret("string", "string");
-      };
+        escaped = !escaped && ch == "\\";
+      }
+      if (ch == quote || !escaped && quote != ")") state.tokenize = null;
+      return ret("string", "string");
+    };
+  }
+
+  function tokenParenthesized(stream, state) {
+    stream.next(); // Must be '('
+    if (!stream.match(/\s*[\"\')]/, false))
+      state.tokenize = tokenString(")");
+    else
+      state.tokenize = null;
+    return ret(null, "(");
+  }
+
+  // Context management
+
+  function Context(type, indent, prev) {
+    this.type = type;
+    this.indent = indent;
+    this.prev = prev;
+  }
+
+  function pushContext(state, stream, type, indent) {
+    state.context = new Context(type, stream.indentation() + (indent === false ? 0 : indentUnit), state.context);
+    return type;
+  }
+
+  function popContext(state) {
+    if (state.context.prev)
+      state.context = state.context.prev;
+    return state.context.type;
+  }
+
+  function pass(type, stream, state) {
+    return states[state.context.type](type, stream, state);
+  }
+  function popAndPass(type, stream, state, n) {
+    for (var i = n || 1; i > 0; i--)
+      state.context = state.context.prev;
+    return pass(type, stream, state);
+  }
+
+  // Parser
+
+  function wordAsValue(stream) {
+    var word = stream.current().toLowerCase();
+    if (valueKeywords.hasOwnProperty(word))
+      override = "atom";
+    else if (colorKeywords.hasOwnProperty(word))
+      override = "keyword";
+    else
+      override = "variable";
+  }
+
+  var states = {};
+
+  states.top = function(type, stream, state) {
+    if (type == "{") {
+      return pushContext(state, stream, "block");
+    } else if (type == "}" && state.context.prev) {
+      return popContext(state);
+    } else if (supportsAtComponent && /@component/.test(type)) {
+      return pushContext(state, stream, "atComponentBlock");
+    } else if (/^@(-moz-)?document$/.test(type)) {
+      return pushContext(state, stream, "documentTypes");
+    } else if (/^@(media|supports|(-moz-)?document|import)$/.test(type)) {
+      return pushContext(state, stream, "atBlock");
+    } else if (/^@(font-face|counter-style)/.test(type)) {
+      state.stateArg = type;
+      return "restricted_atBlock_before";
+    } else if (/^@(-(moz|ms|o|webkit)-)?keyframes$/.test(type)) {
+      return "keyframes";
+    } else if (type && type.charAt(0) == "@") {
+      return pushContext(state, stream, "at");
+    } else if (type == "hash") {
+      override = "builtin";
+    } else if (type == "word") {
+      override = "tag";
+    } else if (type == "variable-definition") {
+      return "maybeprop";
+    } else if (type == "interpolation") {
+      return pushContext(state, stream, "interpolation");
+    } else if (type == ":") {
+      return "pseudo";
+    } else if (allowNested && type == "(") {
+      return pushContext(state, stream, "parens");
     }
+    return state.context.type;
+  };
 
-    function tokenParenthesized(stream, state) {
-      stream.next(); // Must be '('
-      if (!stream.match(/\s*[\"\')]/, false))
-        state.tokenize = tokenString(")");
-      else
-        state.tokenize = null;
-      return ret(null, "(");
+  states.block = function(type, stream, state) {
+    if (type == "word") {
+      var word = stream.current().toLowerCase();
+      if (propertyKeywords.hasOwnProperty(word)) {
+        override = "property";
+        return "maybeprop";
+      } else if (nonStandardPropertyKeywords.hasOwnProperty(word)) {
+        override = "string-2";
+        return "maybeprop";
+      } else if (allowNested) {
+        override = stream.match(/^\s*:(?:\s|$)/, false) ? "property" : "tag";
+        return "block";
+      } else {
+        override += " error";
+        return "maybeprop";
+      }
+    } else if (type == "meta") {
+      return "block";
+    } else if (!allowNested && (type == "hash" || type == "qualifier")) {
+      override = "error";
+      return "block";
+    } else {
+      return states.top(type, stream, state);
     }
+  };
 
-    // Context management
+  states.maybeprop = function(type, stream, state) {
+    if (type == ":") return pushContext(state, stream, "prop");
+    return pass(type, stream, state);
+  };
 
-    function Context(type, indent, prev) {
-      this.type = type;
-      this.indent = indent;
-      this.prev = prev;
+  states.prop = function(type, stream, state) {
+    if (type == ";") return popContext(state);
+    if (type == "{" && allowNested) return pushContext(state, stream, "propBlock");
+    if (type == "}" || type == "{") return popAndPass(type, stream, state);
+    if (type == "(") return pushContext(state, stream, "parens");
+
+    if (type == "hash" && !/^#([0-9a-fA-f]{3,4}|[0-9a-fA-f]{6}|[0-9a-fA-f]{8})$/.test(stream.current())) {
+      override += " error";
+    } else if (type == "word") {
+      wordAsValue(stream);
+    } else if (type == "interpolation") {
+      return pushContext(state, stream, "interpolation");
     }
+    return "prop";
+  };
 
-    function pushContext(state, stream, type, indent) {
-      state.context = new Context(type, stream.indentation() + (indent === false ? 0 : indentUnit), state.context);
-      return type;
-    }
+  states.propBlock = function(type, _stream, state) {
+    if (type == "}") return popContext(state);
+    if (type == "word") { override = "property"; return "maybeprop"; }
+    return state.context.type;
+  };
 
-    function popContext(state) {
-      if (state.context.prev)
-        state.context = state.context.prev;
+  states.parens = function(type, stream, state) {
+    if (type == "{" || type == "}") return popAndPass(type, stream, state);
+    if (type == ")") return popContext(state);
+    if (type == "(") return pushContext(state, stream, "parens");
+    if (type == "interpolation") return pushContext(state, stream, "interpolation");
+    if (type == "word") wordAsValue(stream);
+    return "parens";
+  };
+
+  states.pseudo = function(type, stream, state) {
+    if (type == "meta") return "pseudo";
+
+    if (type == "word") {
+      override = "variable-3";
       return state.context.type;
     }
+    return pass(type, stream, state);
+  };
 
-    function pass(type, stream, state) {
-      return states[state.context.type](type, stream, state);
+  states.documentTypes = function(type, stream, state) {
+    if (type == "word" && documentTypes.hasOwnProperty(stream.current())) {
+      override = "tag";
+      return state.context.type;
+    } else {
+      return states.atBlock(type, stream, state);
     }
-    function popAndPass(type, stream, state, n) {
-      for (var i = n || 1; i > 0; i--)
-        state.context = state.context.prev;
-      return pass(type, stream, state);
-    }
+  };
 
-    // Parser
+  states.atBlock = function(type, stream, state) {
+    if (type == "(") return pushContext(state, stream, "atBlock_parens");
+    if (type == "}" || type == ";") return popAndPass(type, stream, state);
+    if (type == "{") return popContext(state) && pushContext(state, stream, allowNested ? "block" : "top");
 
-    function wordAsValue(stream) {
+    if (type == "interpolation") return pushContext(state, stream, "interpolation");
+
+    if (type == "word") {
       var word = stream.current().toLowerCase();
-      if (valueKeywords.hasOwnProperty(word))
+      if (word == "only" || word == "not" || word == "and" || word == "or")
+        override = "keyword";
+      else if (mediaTypes.hasOwnProperty(word))
+        override = "attribute";
+      else if (mediaFeatures.hasOwnProperty(word))
+        override = "property";
+      else if (mediaValueKeywords.hasOwnProperty(word))
+        override = "keyword";
+      else if (propertyKeywords.hasOwnProperty(word))
+        override = "property";
+      else if (nonStandardPropertyKeywords.hasOwnProperty(word))
+        override = "string-2";
+      else if (valueKeywords.hasOwnProperty(word))
         override = "atom";
       else if (colorKeywords.hasOwnProperty(word))
         override = "keyword";
       else
-        override = "variable";
+        override = "error";
     }
+    return state.context.type;
+  };
 
-    var states = {};
+  states.atComponentBlock = function(type, stream, state) {
+    if (type == "}")
+      return popAndPass(type, stream, state);
+    if (type == "{")
+      return popContext(state) && pushContext(state, stream, allowNested ? "block" : "top", false);
+    if (type == "word")
+      override = "error";
+    return state.context.type;
+  };
 
-    states.top = function(type, stream, state) {
-      if (type == "{") {
-        return pushContext(state, stream, "block");
-      } else if (type == "}" && state.context.prev) {
-        return popContext(state);
-      } else if (supportsAtComponent && /@component/.test(type)) {
-        return pushContext(state, stream, "atComponentBlock");
-      } else if (/^@(-moz-)?document$/.test(type)) {
-        return pushContext(state, stream, "documentTypes");
-      } else if (/^@(media|supports|(-moz-)?document|import)$/.test(type)) {
-        return pushContext(state, stream, "atBlock");
-      } else if (/^@(font-face|counter-style)/.test(type)) {
-        state.stateArg = type;
-        return "restricted_atBlock_before";
-      } else if (/^@(-(moz|ms|o|webkit)-)?keyframes$/.test(type)) {
-        return "keyframes";
-      } else if (type && type.charAt(0) == "@") {
-        return pushContext(state, stream, "at");
-      } else if (type == "hash") {
-        override = "builtin";
-      } else if (type == "word") {
-        override = "tag";
-      } else if (type == "variable-definition") {
-        return "maybeprop";
-      } else if (type == "interpolation") {
-        return pushContext(state, stream, "interpolation");
-      } else if (type == ":") {
-        return "pseudo";
-      } else if (allowNested && type == "(") {
-        return pushContext(state, stream, "parens");
-      }
-      return state.context.type;
-    };
+  states.atBlock_parens = function(type, stream, state) {
+    if (type == ")") return popContext(state);
+    if (type == "{" || type == "}") return popAndPass(type, stream, state, 2);
+    return states.atBlock(type, stream, state);
+  };
 
-    states.block = function(type, stream, state) {
-      if (type == "word") {
-        var word = stream.current().toLowerCase();
-        if (propertyKeywords.hasOwnProperty(word)) {
-          override = "property";
-          return "maybeprop";
-        } else if (nonStandardPropertyKeywords.hasOwnProperty(word)) {
-          override = "string-2";
-          return "maybeprop";
-        } else if (allowNested) {
-          override = stream.match(/^\s*:(?:\s|$)/, false) ? "property" : "tag";
-          return "block";
-        } else {
-          override += " error";
-          return "maybeprop";
-        }
-      } else if (type == "meta") {
-        return "block";
-      } else if (!allowNested && (type == "hash" || type == "qualifier")) {
+  states.restricted_atBlock_before = function(type, stream, state) {
+    if (type == "{")
+      return pushContext(state, stream, "restricted_atBlock");
+    if (type == "word" && state.stateArg == "@counter-style") {
+      override = "variable";
+      return "restricted_atBlock_before";
+    }
+    return pass(type, stream, state);
+  };
+
+  states.restricted_atBlock = function(type, stream, state) {
+    if (type == "}") {
+      state.stateArg = null;
+      return popContext(state);
+    }
+    if (type == "word") {
+      if ((state.stateArg == "@font-face" && !fontProperties.hasOwnProperty(stream.current().toLowerCase())) ||
+          (state.stateArg == "@counter-style" && !counterDescriptors.hasOwnProperty(stream.current().toLowerCase())))
         override = "error";
-        return "block";
-      } else {
-        return states.top(type, stream, state);
+      else
+        override = "property";
+      return "maybeprop";
+    }
+    return "restricted_atBlock";
+  };
+
+  states.keyframes = function(type, stream, state) {
+    if (type == "word") { override = "variable"; return "keyframes"; }
+    if (type == "{") return pushContext(state, stream, "top");
+    return pass(type, stream, state);
+  };
+
+  states.at = function(type, stream, state) {
+    if (type == ";") return popContext(state);
+    if (type == "{" || type == "}") return popAndPass(type, stream, state);
+    if (type == "word") override = "tag";
+    else if (type == "hash") override = "builtin";
+    return "at";
+  };
+
+  states.interpolation = function(type, stream, state) {
+    if (type == "}") return popContext(state);
+    if (type == "{" || type == ";") return popAndPass(type, stream, state);
+    if (type == "word") override = "variable";
+    else if (type != "variable" && type != "(" && type != ")") override = "error";
+    return "interpolation";
+  };
+
+  return {
+    startState: function(base) {
+      return {tokenize: null,
+              state: inline ? "block" : "top",
+              stateArg: null,
+              context: new Context(inline ? "block" : "top", base || 0, null)};
+    },
+
+    token: function(stream, state) {
+      if (!state.tokenize && stream.eatSpace()) return null;
+      var style = (state.tokenize || tokenBase)(stream, state);
+      if (style && typeof style == "object") {
+        type = style[1];
+        style = style[0];
       }
-    };
-
-    states.maybeprop = function(type, stream, state) {
-      if (type == ":") return pushContext(state, stream, "prop");
-      return pass(type, stream, state);
-    };
-
-    states.prop = function(type, stream, state) {
-      if (type == ";") return popContext(state);
-      if (type == "{" && allowNested) return pushContext(state, stream, "propBlock");
-      if (type == "}" || type == "{") return popAndPass(type, stream, state);
-      if (type == "(") return pushContext(state, stream, "parens");
-
-      if (type == "hash" && !/^#([0-9a-fA-f]{3,4}|[0-9a-fA-f]{6}|[0-9a-fA-f]{8})$/.test(stream.current())) {
-        override += " error";
-      } else if (type == "word") {
-        wordAsValue(stream);
-      } else if (type == "interpolation") {
-        return pushContext(state, stream, "interpolation");
-      }
-      return "prop";
-    };
-
-    states.propBlock = function(type, _stream, state) {
-      if (type == "}") return popContext(state);
-      if (type == "word") { override = "property"; return "maybeprop"; }
-      return state.context.type;
-    };
-
-    states.parens = function(type, stream, state) {
-      if (type == "{" || type == "}") return popAndPass(type, stream, state);
-      if (type == ")") return popContext(state);
-      if (type == "(") return pushContext(state, stream, "parens");
-      if (type == "interpolation") return pushContext(state, stream, "interpolation");
-      if (type == "word") wordAsValue(stream);
-      return "parens";
-    };
-
-    states.pseudo = function(type, stream, state) {
-      if (type == "word") {
-        override = "variable-3";
-        return state.context.type;
-      }
-      return pass(type, stream, state);
-    };
-
-    states.documentTypes = function(type, stream, state) {
-      if (type == "word" && documentTypes.hasOwnProperty(stream.current())) {
-        override = "tag";
-        return state.context.type;
-      } else {
-        return states.atBlock(type, stream, state);
-      }
-    };
-
-    states.atBlock = function(type, stream, state) {
-      if (type == "(") return pushContext(state, stream, "atBlock_parens");
-      if (type == "}" || type == ";") return popAndPass(type, stream, state);
-      if (type == "{") return popContext(state) && pushContext(state, stream, allowNested ? "block" : "top");
-
-      if (type == "interpolation") return pushContext(state, stream, "interpolation");
-
-      if (type == "word") {
-        var word = stream.current().toLowerCase();
-        if (word == "only" || word == "not" || word == "and" || word == "or")
-          override = "keyword";
-        else if (mediaTypes.hasOwnProperty(word))
-          override = "attribute";
-        else if (mediaFeatures.hasOwnProperty(word))
-          override = "property";
-        else if (mediaValueKeywords.hasOwnProperty(word))
-          override = "keyword";
-        else if (propertyKeywords.hasOwnProperty(word))
-          override = "property";
-        else if (nonStandardPropertyKeywords.hasOwnProperty(word))
-          override = "string-2";
-        else if (valueKeywords.hasOwnProperty(word))
-          override = "atom";
-        else if (colorKeywords.hasOwnProperty(word))
-          override = "keyword";
-        else
-          override = "error";
-      }
-      return state.context.type;
-    };
-
-    states.atComponentBlock = function(type, stream, state) {
-      if (type == "}")
-        return popAndPass(type, stream, state);
-      if (type == "{")
-        return popContext(state) && pushContext(state, stream, allowNested ? "block" : "top", false);
-      if (type == "word")
-        override = "error";
-      return state.context.type;
-    };
-
-    states.atBlock_parens = function(type, stream, state) {
-      if (type == ")") return popContext(state);
-      if (type == "{" || type == "}") return popAndPass(type, stream, state, 2);
-      return states.atBlock(type, stream, state);
-    };
-
-    states.restricted_atBlock_before = function(type, stream, state) {
-      if (type == "{")
-        return pushContext(state, stream, "restricted_atBlock");
-      if (type == "word" && state.stateArg == "@counter-style") {
-        override = "variable";
-        return "restricted_atBlock_before";
-      }
-      return pass(type, stream, state);
-    };
-
-    states.restricted_atBlock = function(type, stream, state) {
-      if (type == "}") {
-        state.stateArg = null;
-        return popContext(state);
-      }
-      if (type == "word") {
-        if ((state.stateArg == "@font-face" && !fontProperties.hasOwnProperty(stream.current().toLowerCase())) ||
-            (state.stateArg == "@counter-style" && !counterDescriptors.hasOwnProperty(stream.current().toLowerCase())))
-          override = "error";
-        else
-          override = "property";
-        return "maybeprop";
-      }
-      return "restricted_atBlock";
-    };
-
-    states.keyframes = function(type, stream, state) {
-      if (type == "word") { override = "variable"; return "keyframes"; }
-      if (type == "{") return pushContext(state, stream, "top");
-      return pass(type, stream, state);
-    };
-
-    states.at = function(type, stream, state) {
-      if (type == ";") return popContext(state);
-      if (type == "{" || type == "}") return popAndPass(type, stream, state);
-      if (type == "word") override = "tag";
-      else if (type == "hash") override = "builtin";
-      return "at";
-    };
-
-    states.interpolation = function(type, stream, state) {
-      if (type == "}") return popContext(state);
-      if (type == "{" || type == ";") return popAndPass(type, stream, state);
-      if (type == "word") override = "variable";
-      else if (type != "variable" && type != "(" && type != ")") override = "error";
-      return "interpolation";
-    };
-
-    return {
-      startState: function(base) {
-        return {tokenize: null,
-          state: inline ? "block" : "top",
-          stateArg: null,
-          context: new Context(inline ? "block" : "top", base || 0, null)};
-      },
-
-      token: function(stream, state) {
-        if (!state.tokenize && stream.eatSpace()) return null;
-        var style = (state.tokenize || tokenBase)(stream, state);
-        if (style && typeof style == "object") {
-          type = style[1];
-          style = style[0];
-        }
-        override = style;
+      override = style;
+      if (type != "comment")
         state.state = states[state.state](type, stream, state);
-        return override;
-      },
+      return override;
+    },
 
-      indent: function(state, textAfter) {
-        var cx = state.context, ch = textAfter && textAfter.charAt(0);
-        var indent = cx.indent;
-        if (cx.type == "prop" && (ch == "}" || ch == ")")) cx = cx.prev;
-        if (cx.prev) {
-          if (ch == "}" && (cx.type == "block" || cx.type == "top" ||
-              cx.type == "interpolation" || cx.type == "restricted_atBlock")) {
-            // Resume indentation from parent context.
-            cx = cx.prev;
-            indent = cx.indent;
-          } else if (ch == ")" && (cx.type == "parens" || cx.type == "atBlock_parens") ||
-              ch == "{" && (cx.type == "at" || cx.type == "atBlock")) {
-            // Dedent relative to current context.
-            indent = Math.max(0, cx.indent - indentUnit);
-            cx = cx.prev;
-          }
+    indent: function(state, textAfter) {
+      var cx = state.context, ch = textAfter && textAfter.charAt(0);
+      var indent = cx.indent;
+      if (cx.type == "prop" && (ch == "}" || ch == ")")) cx = cx.prev;
+      if (cx.prev) {
+        if (ch == "}" && (cx.type == "block" || cx.type == "top" ||
+                          cx.type == "interpolation" || cx.type == "restricted_atBlock")) {
+          // Resume indentation from parent context.
+          cx = cx.prev;
+          indent = cx.indent;
+        } else if (ch == ")" && (cx.type == "parens" || cx.type == "atBlock_parens") ||
+            ch == "{" && (cx.type == "at" || cx.type == "atBlock")) {
+          // Dedent relative to current context.
+          indent = Math.max(0, cx.indent - indentUnit);
         }
-        return indent;
-      },
+      }
+      return indent;
+    },
 
-      electricChars: "}",
-      blockCommentStart: "/*",
-      blockCommentEnd: "*/",
-      fold: "brace"
-    };
-  });
+    electricChars: "}",
+    blockCommentStart: "/*",
+    blockCommentEnd: "*/",
+    blockCommentContinue: " * ",
+    lineComment: lineComment,
+    fold: "brace"
+  };
+});
 
   function keySet(array) {
     var keys = {};
@@ -468,7 +473,7 @@
     "border-top-left-radius", "border-top-right-radius", "border-top-style",
     "border-top-width", "border-width", "bottom", "box-decoration-break",
     "box-shadow", "box-sizing", "break-after", "break-before", "break-inside",
-    "caption-side", "clear", "clip", "color", "color-profile", "column-count",
+    "caption-side", "caret-color", "clear", "clip", "color", "color-profile", "column-count",
     "column-fill", "column-gap", "column-rule", "column-rule-color",
     "column-rule-style", "column-rule-width", "column-span", "column-width",
     "columns", "content", "counter-increment", "counter-reset", "crop", "cue",
@@ -489,7 +494,7 @@
     "grid-row-start", "grid-template", "grid-template-areas", "grid-template-columns",
     "grid-template-rows", "hanging-punctuation", "height", "hyphens",
     "icon", "image-orientation", "image-rendering", "image-resolution",
-    "inline-box-align", "justify-content", "left", "letter-spacing",
+    "inline-box-align", "justify-content", "justify-items", "justify-self", "left", "letter-spacing",
     "line-break", "line-height", "line-stacking", "line-stacking-ruby",
     "line-stacking-shift", "line-stacking-strategy", "list-style",
     "list-style-image", "list-style-position", "list-style-type", "margin",
@@ -504,7 +509,7 @@
     "padding", "padding-bottom", "padding-left", "padding-right", "padding-top",
     "page", "page-break-after", "page-break-before", "page-break-inside",
     "page-policy", "pause", "pause-after", "pause-before", "perspective",
-    "perspective-origin", "pitch", "pitch-range", "play-during", "position",
+    "perspective-origin", "pitch", "pitch-range", "place-content", "place-items", "place-self", "play-during", "position",
     "presentation-level", "punctuation-trim", "quotes", "region-break-after",
     "region-break-before", "region-break-inside", "region-fragment",
     "rendering-intent", "resize", "rest", "rest-after", "rest-before", "richness",
@@ -522,9 +527,9 @@
     "text-wrap", "top", "transform", "transform-origin", "transform-style",
     "transition", "transition-delay", "transition-duration",
     "transition-property", "transition-timing-function", "unicode-bidi",
-    "vertical-align", "visibility", "voice-balance", "voice-duration",
+    "user-select", "vertical-align", "visibility", "voice-balance", "voice-duration",
     "voice-family", "voice-pitch", "voice-range", "voice-rate", "voice-stress",
-    "voice-volume", "volume", "white-space", "widows", "width", "word-break",
+    "voice-volume", "volume", "white-space", "widows", "width", "will-change", "word-break",
     "word-spacing", "word-wrap", "z-index",
     // SVG-specific
     "clip-path", "clip-rule", "mask", "enable-background", "filter", "flood-color",
@@ -589,7 +594,7 @@
     "above", "absolute", "activeborder", "additive", "activecaption", "afar",
     "after-white-space", "ahead", "alias", "all", "all-scroll", "alphabetic", "alternate",
     "always", "amharic", "amharic-abegede", "antialiased", "appworkspace",
-    "arabic-indic", "armenian", "asterisks", "attr", "auto", "avoid", "avoid-column", "avoid-page",
+    "arabic-indic", "armenian", "asterisks", "attr", "auto", "auto-flow", "avoid", "avoid-column", "avoid-page",
     "avoid-region", "background", "backwards", "baseline", "below", "bidi-override", "binary",
     "bengali", "blink", "block", "block-axis", "bold", "bolder", "border", "border-box",
     "both", "bottom", "break", "break-all", "break-word", "bullets", "button", "button-bevel",
@@ -598,7 +603,7 @@
     "cell", "center", "checkbox", "circle", "cjk-decimal", "cjk-earthly-branch",
     "cjk-heavenly-stem", "cjk-ideographic", "clear", "clip", "close-quote",
     "col-resize", "collapse", "color", "color-burn", "color-dodge", "column", "column-reverse",
-    "compact", "condensed", "contain", "content",
+    "compact", "condensed", "contain", "content", "contents",
     "content-box", "context-menu", "continuous", "copy", "counter", "counters", "cover", "crop",
     "cross", "crosshair", "currentcolor", "cursive", "cyclic", "darken", "dashed", "decimal",
     "decimal-leading-zero", "default", "default-button", "dense", "destination-atop",
@@ -641,7 +646,7 @@
     "mix", "mongolian", "monospace", "move", "multiple", "multiply", "myanmar", "n-resize",
     "narrower", "ne-resize", "nesw-resize", "no-close-quote", "no-drop",
     "no-open-quote", "no-repeat", "none", "normal", "not-allowed", "nowrap",
-    "ns-resize", "numbers", "numeric", "nw-resize", "nwse-resize", "oblique", "octal", "open-quote",
+    "ns-resize", "numbers", "numeric", "nw-resize", "nwse-resize", "oblique", "octal", "opacity", "open-quote",
     "optimizeLegibility", "optimizeSpeed", "oriya", "oromo", "outset",
     "outside", "outside-shape", "overlay", "overline", "padding", "padding-box",
     "painted", "page", "paused", "persian", "perspective", "plus-darker", "plus-lighter",
@@ -653,17 +658,17 @@
     "rgb", "rgba", "ridge", "right", "rotate", "rotate3d", "rotateX", "rotateY",
     "rotateZ", "round", "row", "row-resize", "row-reverse", "rtl", "run-in", "running",
     "s-resize", "sans-serif", "saturation", "scale", "scale3d", "scaleX", "scaleY", "scaleZ", "screen",
-    "scroll", "scrollbar", "se-resize", "searchfield",
+    "scroll", "scrollbar", "scroll-position", "se-resize", "searchfield",
     "searchfield-cancel-button", "searchfield-decoration",
-    "searchfield-results-button", "searchfield-results-decoration",
+    "searchfield-results-button", "searchfield-results-decoration", "self-start", "self-end",
     "semi-condensed", "semi-expanded", "separate", "serif", "show", "sidama",
     "simp-chinese-formal", "simp-chinese-informal", "single",
     "skew", "skewX", "skewY", "skip-white-space", "slide", "slider-horizontal",
     "slider-vertical", "sliderthumb-horizontal", "sliderthumb-vertical", "slow",
     "small", "small-caps", "small-caption", "smaller", "soft-light", "solid", "somali",
-    "source-atop", "source-in", "source-out", "source-over", "space", "space-around", "space-between", "spell-out", "square",
+    "source-atop", "source-in", "source-out", "source-over", "space", "space-around", "space-between", "space-evenly", "spell-out", "square",
     "square-button", "start", "static", "status-bar", "stretch", "stroke", "sub",
-    "subpixel-antialiased", "super", "sw-resize", "symbolic", "symbols", "table",
+    "subpixel-antialiased", "super", "sw-resize", "symbolic", "symbols", "system-ui", "table",
     "table-caption", "table-cell", "table-column", "table-column-group",
     "table-footer-group", "table-header-group", "table-row", "table-row-group",
     "tamil",
@@ -671,9 +676,9 @@
     "thick", "thin", "threeddarkshadow", "threedface", "threedhighlight",
     "threedlightshadow", "threedshadow", "tibetan", "tigre", "tigrinya-er",
     "tigrinya-er-abegede", "tigrinya-et", "tigrinya-et-abegede", "to", "top",
-    "trad-chinese-formal", "trad-chinese-informal",
+    "trad-chinese-formal", "trad-chinese-informal", "transform",
     "translate", "translate3d", "translateX", "translateY", "translateZ",
-    "transparent", "ultra-condensed", "ultra-expanded", "underline", "up",
+    "transparent", "ultra-condensed", "ultra-expanded", "underline", "unset", "up",
     "upper-alpha", "upper-armenian", "upper-greek", "upper-hexadecimal",
     "upper-latin", "upper-norwegian", "upper-roman", "uppercase", "urdu", "url",
     "var", "vertical", "vertical-text", "visible", "visibleFill", "visiblePainted",
@@ -683,8 +688,8 @@
   ], valueKeywords = keySet(valueKeywords_);
 
   var allWords = documentTypes_.concat(mediaTypes_).concat(mediaFeatures_).concat(mediaValueKeywords_)
-      .concat(propertyKeywords_).concat(nonStandardPropertyKeywords_).concat(colorKeywords_)
-      .concat(valueKeywords_);
+    .concat(propertyKeywords_).concat(nonStandardPropertyKeywords_).concat(colorKeywords_)
+    .concat(valueKeywords_);
   CodeMirror.registerHelper("hintWords", "css", allWords);
 
   function tokenCComment(stream, state) {
@@ -730,6 +735,7 @@
     valueKeywords: valueKeywords,
     fontProperties: fontProperties,
     allowNested: true,
+    lineComment: "//",
     tokenHooks: {
       "/": function(stream, state) {
         if (stream.eat("/")) {
@@ -743,8 +749,8 @@
         }
       },
       ":": function(stream) {
-        if (stream.match(/\s*\{/))
-          return [null, "{"];
+        if (stream.match(/\s*\{/, false))
+          return [null, null]
         return false;
       },
       "$": function(stream) {
@@ -772,6 +778,7 @@
     valueKeywords: valueKeywords,
     fontProperties: fontProperties,
     allowNested: true,
+    lineComment: "//",
     tokenHooks: {
       "/": function(stream, state) {
         if (stream.eat("/")) {

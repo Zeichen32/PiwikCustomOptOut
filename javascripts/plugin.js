@@ -5,7 +5,7 @@
 $(document).ready(function () {
 
     // Check for CodeMirror
-    if(typeof CodeMirror == "undefined") {
+    if(typeof CodeMirror === "undefined") {
         return;
     }
 
@@ -17,7 +17,7 @@ $(document).ready(function () {
             mode : 'css',
             lineNumbers: true,
             gutters: ["CodeMirror-lint-markers"],
-            theme: (theme == "default" ? "default" : "blackboard"),
+            theme: (theme === "default" ? "default" : "blackboard"),
             lint: true,
             lineWrapping: true
         });
@@ -31,7 +31,7 @@ $(document).ready(function () {
             mode : 'javascript',
             lineNumbers: true,
             gutters: ["CodeMirror-lint-markers"],
-            theme: (theme == "default" ? "default" : "blackboard"),
+            theme: (theme === "default" ? "default" : "blackboard"),
             lint: true,
             lineWrapping: true
         });
