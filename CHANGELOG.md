@@ -1,5 +1,9 @@
 ## Changelog
 
+### CustomOptOut 1.0.2
+* (PR #53) CSS fix and libraries update
+* Update [CodeMirror Editor](http://codemirror.net)
+
 ### CustomOptOut 1.0.1
 * Fix settings listener
 
