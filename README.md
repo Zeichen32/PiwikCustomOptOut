@@ -29,13 +29,9 @@ or insert a URL to the file containing your custom CSS into the input field call
 
 5) Use the iframe code provided below the input fields to add the Piwiki Opt-Out to your website.
 
-## How to change the opt-out text
-
-I needed to remove this feature due to the breaking changes in [Piwik 2.11.0](https://github.com/piwik/piwik/blob/master/CHANGELOG.md#piwik-2110)
-
 ## Requirements
 
-+ Piwik >=3.0.0-b1
++ Matomo >=4.0.0-b1
 
 ## Authors
 
