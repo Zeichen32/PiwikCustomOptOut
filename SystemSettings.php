@@ -11,7 +11,7 @@ namespace Piwik\Plugins\CustomOptOut;
 use Piwik\Piwik;
 use Piwik\Settings\FieldConfig;
 use Piwik\Settings\Setting;
-
+use Piwik\Settings\Plugin\SystemSettings as BaseSettings;
 /**
  * Defines Settings for CustomOptOut.
  *
@@ -21,7 +21,7 @@ use Piwik\Settings\Setting;
  * $settings->metric->getValue();
  *
  */
-class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
+class SystemSettings extends BaseSettings
 {
     /**
      * @var Setting

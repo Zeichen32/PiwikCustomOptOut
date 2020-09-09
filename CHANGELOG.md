@@ -1,5 +1,9 @@
 ## Changelog
 
+### CustomOptOut 2.0.0
+* Matomo  4 compatibility
+* Fix spelling issue
+
 ### CustomOptOut 1.0.2, 1.0.3 (HotFix)
 * (PR #53) CSS fix and libraries update
 * Update [CodeMirror Editor](http://codemirror.net)

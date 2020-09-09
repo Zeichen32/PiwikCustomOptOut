@@ -61,20 +61,20 @@
         {% endif %}
         <tr>
             <td colspan="5">
-                {% set optOutUrl %}{% spaceless %}
+                {% set optOutUrl %}
                     {% if showOldLinks %}
                         {{ piwikUrl }}index.php?module=CustomOptOut&action=optOut&idsite={{ site.idsite|escape('url') }}&language={{ language }}
                     {% else %}
                         {{ piwikUrl }}index.php?module=CoreAdminHome&action=optOut&idsite={{ site.idsite|escape('url') }}&language={{ language }}
                     {% endif %}
-            {% endspaceless %}{% endset %}
+            {% endset %}
                 {% set iframeOptOut %}
                     <iframe style="border: 0; height: 200px; width: 600px;" src="{{ optOutUrl }}"></iframe>
                 {% endset %}
 
                 <code>{{ iframeOptOut|escape }}</code>
                 <br/>
-                {{ 'CoreAdminHome_OptOutExplanationBis'|translate("<a href='" ~ optOutUrl ~ "' target='_blank'>","</a>")|raw }}
+                {{ 'CoreAdminHome_OptOutExplanationIntro'|translate("<a href='" ~ optOutUrl ~ "' target='_blank'>","</a>")|raw }}
             </td>
         {% endfor %}
     </table>

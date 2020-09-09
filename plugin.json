@@ -1,6 +1,6 @@
 {
     "name": "CustomOptOut",
-    "version": "1.0.3",
+    "version": "2.0.0",
     "description": "Create your own opt-out iframe css styles",
     "keywords": [
         "Opt-Out",
@@ -10,8 +10,8 @@
     "license": "GPL-3.0+",
     "homepage": "https:\/\/www.zwei-entwickler.de",
     "require": {
-        "piwik": ">=3.0.0-b1,<4.0.0-b1",
-        "php": ">=5.5.9"
+        "matomo": ">=4.0.0-b1,<5.0.0-b1",
+        "php": ">=7.2.5"
     },
     "donate": {
         "paypal": "info@two-developers.com"
