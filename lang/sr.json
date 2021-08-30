@@ -3,6 +3,12 @@
         "ShowEditorOptionName": "Omogući CSS editor",
         "ShowEditorDescription": "Uključite ovu opciju kako biste prikazali korisnički definisan CSS kod u CSS editoru.",
         "EditorThemeOptionName": "Tema editora",
-        "EditorThemeDescription": "Izaberite temu za ovaj editor."
+        "EditorThemeDescription": "Izaberite temu za ovaj editor.",
+        "DefaultCssStyles": "Podrazumevani stilovi",
+        "DefaultCssStylesDescription": "Ovi CSS stilovi će biti korišćeni ukoliko nije izabrana nijedna stranica.",
+        "DefaultCssFile": "Podrazumevana CSS datoteka",
+        "DefaultCssFileDescription": "Ova CSS datoteka će biti korišćena ukoliko nije izabrana nijedna stranica.",
+        "EnableJavascriptInjectionDescription": "Uključite ovu opciju kako biste videli polje za unos JavaScript-a.",
+        "EnableJavascriptInjection": "Omogući JavaScript polja"
     }
 }

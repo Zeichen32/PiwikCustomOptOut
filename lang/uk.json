@@ -1,0 +1,14 @@
+{
+    "CustomOptOut": {
+        "ShowEditorOptionName": "Включити редактор CSS",
+        "ShowEditorDescription": "Ввімкніть цю опцію, щоб показати \"Custom CSS\" код в простому редакторі CSS.",
+        "EditorThemeOptionName": "Редактор Теми",
+        "EditorThemeDescription": "Виберіть тему для редагування.",
+        "DefaultCssStyles": "Стилі за замовчуванням",
+        "DefaultCssStylesDescription": "Цей CSS стиль буде використовуватися, якщо Ви не оберете сторінку.",
+        "DefaultCssFile": "Файл стилю за замовчуванням",
+        "DefaultCssFileDescription": "Цей файл CSS буде використовуватися, якщо Ви не оберете сторінку.",
+        "EnableJavascriptInjectionDescription": "Ввімкніть цю опцію, щоб показати поля для введення JavaScript.",
+        "EnableJavascriptInjection": "Включити поля Javascript"
+    }
+}

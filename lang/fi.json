@@ -1,0 +1,10 @@
+{
+    "CustomOptOut": {
+        "ShowEditorOptionName": "Ota käyttöön css-editori",
+        "EditorThemeOptionName": "Editorin teema",
+        "EditorThemeDescription": "Valitse teema editorille.",
+        "DefaultCssStyles": "Oletustyylit",
+        "DefaultCssFile": "Oletustyylitiedosto",
+        "EnableJavascriptInjection": "Ota käyttöön Javascript-kentät"
+    }
+}

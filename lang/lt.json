@@ -1,0 +1,14 @@
+{
+    "CustomOptOut": {
+        "ShowEditorOptionName": "Įjungti css redaktorių",
+        "ShowEditorDescription": "Įjunkite šią parinktį, kad paprastajame css redaktoriuje būtų rodomas \"tinkintas css\" kodas.",
+        "EditorThemeOptionName": "Redaktoriaus tema",
+        "EditorThemeDescription": "Pasirinkite redaktoriaus temą.",
+        "DefaultCssStyles": "Numatytieji stilių aprašai",
+        "DefaultCssStylesDescription": "Šis css stilius bus naudojamas, jei nebus pasirinktas joks puslapis.",
+        "DefaultCssFile": "Numatytasis stilių aprašų failas",
+        "DefaultCssFileDescription": "Šis css failas bus naudojamas, jei nebus pasirinktas joks puslapis.",
+        "EnableJavascriptInjectionDescription": "Įjunkite šią parinktį, kad būtų rodomi laukai į kuriuos įvesti javascript.",
+        "EnableJavascriptInjection": "Įjungti Javascript laukus"
+    }
+}

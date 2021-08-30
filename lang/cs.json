@@ -3,6 +3,12 @@
         "ShowEditorOptionName": "Povolit editor css",
         "ShowEditorDescription": "Povolte tuto možnost pro zobrazení vlastního css kódu v jednoduchém css editoru.",
         "EditorThemeOptionName": "Motiv editoru",
-        "EditorThemeDescription": "Zvolte motiv editoru"
+        "EditorThemeDescription": "Zvolte motiv editoru",
+        "DefaultCssStyles": "Výchozí šablona",
+        "DefaultCssStylesDescription": "Tento css styl bude použit, pokud nebude vybrána žádná stránka.",
+        "DefaultCssFile": "Výchozí soubor šablony",
+        "DefaultCssFileDescription": "Tento css soubor bude použit, pokud nebude vybrána žádná stránka.",
+        "EnableJavascriptInjectionDescription": "Povolte tuto možnost pro zobrazení polí k zadání javascriptu.",
+        "EnableJavascriptInjection": "Povolit javascriptová pole"
     }
 }

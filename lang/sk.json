@@ -1,0 +1,9 @@
+{
+    "CustomOptOut": {
+        "ShowEditorOptionName": "Aktivovať css editor",
+        "EditorThemeOptionName": "Téma Editoru",
+        "EditorThemeDescription": "Vyberte tému editoru.",
+        "DefaultCssStyles": "Predvolené štýly",
+        "DefaultCssFileDescription": "Tento css súbor bude použitý, ak nie je vybratá žiadna stránka."
+    }
+}

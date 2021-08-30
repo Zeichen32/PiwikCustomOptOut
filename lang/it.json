@@ -3,6 +3,12 @@
         "ShowEditorOptionName": "Abilita editor css",
         "ShowEditorDescription": "Abilita questa opzione per mostrare il codice \"css personalizzato\" in un semplice editor css.",
         "EditorThemeOptionName": "Editor Tema",
-        "EditorThemeDescription": "Scegli un tema per l'editor."
+        "EditorThemeDescription": "Scegli un tema per l'editor.",
+        "DefaultCssStyles": "Fogli di Stile Predefiniti",
+        "DefaultCssStylesDescription": "Questi stili CSS verranno utilizzati se non è selezionata alcuna pagina.",
+        "DefaultCssFile": "File predefinito dei Fogli di Stile",
+        "DefaultCssFileDescription": "Questo file CSS verrà utilizzato se non è selezionata alcuna pagina.",
+        "EnableJavascriptInjectionDescription": "Abilita questa opzione per mostrare i campi in cui scrivere il javascript.",
+        "EnableJavascriptInjection": "Abilita i campi Javascript"
     }
 }
