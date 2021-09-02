@@ -1,8 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "Schakel css editor in",
-        "ShowEditorDescription": "Schakel deze optie in om de \"custom css\" in een simpele css Editor weer te geven.",
+        "ShowEditorOptionName": "Schakel css-editor in",
+        "ShowEditorDescription": "Schakel deze optie in om de \"aangepaste css\" in een simpele css-editor weer te geven.",
         "EditorThemeOptionName": "Editor Thema",
-        "EditorThemeDescription": "Kies een thema voor de editor"
+        "EditorThemeDescription": "Kies een thema voor de editor.",
+        "DefaultCssStyles": "Standaard Stylesheets",
+        "DefaultCssStylesDescription": "Deze ccs styles zullen worden gebruikt wanneer geen pagina is geselecteeerd.",
+        "DefaultCssFile": "Standaard Stylesheets-bestand",
+        "DefaultCssFileDescription": "Dit css-bestand zal worden gebruikt wanneer er geen pagina is geselecteerd.",
+        "EnableJavascriptInjectionDescription": "Activeer deze optie om velden te tonen om Javascript toe te voegen.",
+        "EnableJavascriptInjection": "Javascript-velden inschakelen"
     }
 }

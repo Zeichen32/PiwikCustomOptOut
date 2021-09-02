@@ -3,6 +3,12 @@
         "ShowEditorOptionName": "Aktivera CSS-editor",
         "ShowEditorDescription": "Aktivera detta val för att visa anpassad CSS-kod i simple CSS editor.",
         "EditorThemeOptionName": "Tema",
-        "EditorThemeDescription": "Välj tema för editorn."
+        "EditorThemeDescription": "Välj tema för editorn.",
+        "DefaultCssStyles": "Standard stilmall",
+        "DefaultCssStylesDescription": "Följande css-mall kommer att användas om ingen sida är vald.",
+        "DefaultCssFile": "Standardfil för stilmallar",
+        "DefaultCssFileDescription": "Följande css-fil kommer att användas om ingen sida är vald.",
+        "EnableJavascriptInjectionDescription": "Slå på detta alternativ för att visa fält för anpassad javaskript.",
+        "EnableJavascriptInjection": "Slå på javaskriptfält"
     }
 }

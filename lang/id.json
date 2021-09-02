@@ -1,0 +1,8 @@
+{
+    "CustomOptOut": {
+        "ShowEditorOptionName": "Aktifkan editor css",
+        "EditorThemeOptionName": "Editor Tema",
+        "EditorThemeDescription": "Pilih sebuah tema untuk editor.",
+        "EnableJavascriptInjection": "Aktifkan kolom Javascript"
+    }
+}

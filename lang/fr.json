@@ -1,8 +1,14 @@
 {
     "CustomOptOut": {
         "ShowEditorOptionName": "Activer l'éditeur CSS",
-        "ShowEditorDescription": "Activez cette option pour afficher le \"css personnalisé\" dans un éditeur de css simple.",
-        "EditorThemeOptionName": "Editeur de Thème",
-        "EditorThemeDescription": "Sélectionnez un thème pour l'éditeur."
+        "ShowEditorDescription": "Activez cette option pour afficher le \"css personnalisé\" dans un éditeur simple.",
+        "EditorThemeOptionName": "Éditeur de Thème",
+        "EditorThemeDescription": "Sélectionnez un thème pour l'éditeur.",
+        "DefaultCssStyles": "Feuilles de style par défaut",
+        "DefaultCssStylesDescription": "Ces styles css seront utilisés si aucune page n'est sélectionnée.",
+        "DefaultCssFile": "Fichier de feuilles de style par défaut",
+        "DefaultCssFileDescription": "Ce fichier css sera utilisé si aucune page n'est sélectionnée.",
+        "EnableJavascriptInjectionDescription": "Activer cette option afin d'afficher des champs qui permettront de saisir du JavaScript.",
+        "EnableJavascriptInjection": "Activer les champs JavaScript"
     }
 }

@@ -1,0 +1,14 @@
+{
+    "CustomOptOut": {
+        "ShowEditorOptionName": "Habilitar editor CSS",
+        "ShowEditorDescription": "Habilitá esta opción para mostrar el código \"CSS personalizado\" en un editor CSS simple.",
+        "EditorThemeOptionName": "Editor de tema",
+        "EditorThemeDescription": "Elegí un tema para el editor.",
+        "DefaultCssStyles": "Hojas de estilo predeterminadas",
+        "DefaultCssStylesDescription": "Este estilo de CSS será usado si no se selecciona ninguna página.",
+        "DefaultCssFile": "Archivo de hojas de estilos predeterminado",
+        "DefaultCssFileDescription": "Este archivo de CSS será usado si no se selecciona ninguna página.",
+        "EnableJavascriptInjectionDescription": "Habilitá esta opción para mostrar campos para ingresar código JavaScript.",
+        "EnableJavascriptInjection": "Habilitar campos de JavaScript"
+    }
+}
