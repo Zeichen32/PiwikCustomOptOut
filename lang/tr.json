@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "CSS düzenleyici kullanılsın",
-        "ShowEditorDescription": "Bu seçenek etkinleştirildiğinde, \"özel CSS\" kodu basit bir CSS düzenleyici içinde görüntülenir.",
-        "EditorThemeOptionName": "Düzenleyici teması",
-        "EditorThemeDescription": "Düzenleyici temasını seçin.",
-        "DefaultCssStyles": "Varsayılan biçem sayfaları",
-        "DefaultCssStylesDescription": "Herhangi bir sayfa seçilmemiş ise kullanılacak CSS biçemleri.",
         "DefaultCssFile": "Varsayılan biçem sayfaları dosyası",
         "DefaultCssFileDescription": "Herhangi bir sayfa seçilmemiş ise kullanılacak CSS dosyası.",
+        "DefaultCssStyles": "Varsayılan biçem sayfaları",
+        "DefaultCssStylesDescription": "Herhangi bir sayfa seçilmemiş ise kullanılacak CSS biçemleri.",
+        "EditorThemeDescription": "Düzenleyici temasını seçin.",
+        "EditorThemeOptionName": "Düzenleyici teması",
+        "EnableJavascriptInjection": "JavaScript alanları kullanılsın",
         "EnableJavascriptInjectionDescription": "Bu seçenek etkinleştirildiğinde JavaScript yazılabilecek alanlar görüntülenir.",
-        "EnableJavascriptInjection": "JavaScript alanları kullanılsın"
+        "ShowEditorDescription": "Bu seçenek etkinleştirildiğinde, \"özel CSS\" kodu basit bir CSS düzenleyici içinde görüntülenir.",
+        "ShowEditorOptionName": "CSS düzenleyici kullanılsın"
     }
 }
