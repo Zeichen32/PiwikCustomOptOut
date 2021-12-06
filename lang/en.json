@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "Enable css editor",
-        "ShowEditorDescription": "Enable this option to show the \"custom css\" code in a simple css editor.",
+        "ShowEditorOptionName": "Enable CSS editor",
+        "ShowEditorDescription": "Turn on this option to show the \"custom CSS\" code in a simple CSS editor.",
         "EditorThemeOptionName": "Editor Theme",
         "EditorThemeDescription": "Choose a theme for the editor.",
-        "DefaultCssStyles": "Default Stylesheets",
-        "DefaultCssStylesDescription": "This css styles will be used if no page is selected.",
-        "DefaultCssFile": "Default Stylesheets file",
-        "DefaultCssFileDescription": "This css file will be used if no page is selected.",
-        "EnableJavascriptInjectionDescription": "Enable this option to show fields to enter javascript.",
-        "EnableJavascriptInjection": "Enable Javascript fields"
+        "DefaultCssStyles": "Default stylesheets",
+        "DefaultCssStylesDescription": "These CSS styles will be used if no page is selected.",
+        "DefaultCssFile": "Default stylesheet file",
+        "DefaultCssFileDescription": "This CSS file will be used if no page is selected.",
+        "EnableJavascriptInjectionDescription": "Turn on this option to show fields to enter JavaScript in.",
+        "EnableJavascriptInjection": "Enable JavaScript fields"
     }
 }
