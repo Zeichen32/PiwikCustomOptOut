@@ -1,9 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "Aktiver CSS-redigeringsprogram",
-        "ShowEditorDescription": "Aktiver dette valget for å vise «tilpasset css»-kode i en enkel css-redigerer.",
-        "EditorThemeOptionName": "Redigeringstema",
+        "DefaultCssFile": "Forvalgt stilarksfil",
+        "DefaultCssFileDescription": "Denne CSS-filen vil bli brukt hvis ingen side er valgt.",
+        "DefaultCssStyles": "Forvalgte stilark",
+        "DefaultCssStylesDescription": "Desse CSS-stilene vil bli brukt hvis ingen side er valgt.",
         "EditorThemeDescription": "Velg et tema for redigeringsvinduet.",
-        "EnableJavascriptInjection": "Aktiver Javascript-felter"
+        "EditorThemeOptionName": "Redigeringstema",
+        "EnableJavascriptInjection": "Aktiver Javascript-felter",
+        "EnableJavascriptInjectionDescription": "Skru på dette valget for å vise felter å skrive JavaScript i.",
+        "ShowEditorDescription": "Aktiver dette valget for å vise «tilpasset css»-kode i en enkel css-redigerer.",
+        "ShowEditorOptionName": "Aktiver CSS-redigeringsprogram"
     }
 }
