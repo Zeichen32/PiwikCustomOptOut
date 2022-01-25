@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "CSS Editor aktivieren",
-        "ShowEditorDescription": "Wenn aktiviert, wird der \"benutzerdefinierte CSS\" Code in einem einfachen CSS Editor angezeigt.",
-        "EditorThemeOptionName": "Editor Theme",
+        "DefaultCssFile": "Standard-Stylesheet-Datei",
+        "DefaultCssFileDescription": "Diese CSS-Datei wird genutzt, wenn keine Seite ausgewählt ist.",
+        "DefaultCssStyles": "Standard-Stylesheets",
+        "DefaultCssStylesDescription": "Diese CSS-Styles werden genutzt, wenn keine Seite ausgewählt ist.",
         "EditorThemeDescription": "Wähle einen Theme für den CSS Editor.",
-        "DefaultCssStyles": "Standard Stylesheets",
-        "DefaultCssStylesDescription": "Diese CSS styles werden genutzt, wenn keine Seite ausgewählt ist.",
-        "DefaultCssFile": "Standard Stildatei",
-        "DefaultCssFileDescription": "Diese CSS Datei wird genutzt, wenn keine Seite ausgewählt ist.",
-        "EnableJavascriptInjectionDescription": "Wenn aktiviert, werden Felder angezeigt, die Javascript beinhalten dürfen.",
-        "EnableJavascriptInjection": "JavaScript Felder aktivieren"
+        "EditorThemeOptionName": "Editor Theme",
+        "EnableJavascriptInjection": "JavaScript-Felder aktivieren",
+        "EnableJavascriptInjectionDescription": "Bei der Aktivierung werden Felder angezeigt, welche Javascript beinhalten dürfen.",
+        "ShowEditorDescription": "Wenn aktiviert, wird der \"benutzerdefinierte CSS\"-Code in einem einfachen CSS-Editor angezeigt.",
+        "ShowEditorOptionName": "CSS-Editor aktivieren"
     }
 }
