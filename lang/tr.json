@@ -1,6 +1,6 @@
 {
     "CustomOptOut": {
-        "DefaultCssFile": "Varsayılan biçem sayfaları dosyası",
+        "DefaultCssFile": "Varsayılan biçem sayfası dosyası",
         "DefaultCssFileDescription": "Herhangi bir sayfa seçilmemiş ise kullanılacak CSS dosyası.",
         "DefaultCssStyles": "Varsayılan biçem sayfaları",
         "DefaultCssStylesDescription": "Herhangi bir sayfa seçilmemiş ise kullanılacak CSS biçemleri.",
