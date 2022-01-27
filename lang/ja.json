@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "CSS エディタを有効にします",
-        "ShowEditorDescription": "このエディターの単純な css の「カスタム css」コードを表示するオプション有効にします。",
-        "EditorThemeOptionName": "エディターのテーマ",
-        "EditorThemeDescription": "エディターのテーマを選択します。",
-        "DefaultCssStyles": "デフォルトのスタイルシート",
-        "DefaultCssStylesDescription": "この CSS スタイルは、ページが選択されていない場合に使用されます。",
         "DefaultCssFile": "デフォルトのスタイルシートファイル",
-        "DefaultCssFileDescription": "この CSS ファイルは、ページが選択されていない場合に使用されます。",
-        "EnableJavascriptInjectionDescription": "このオプションを有効にすると、javascript を入力するフィールドが表示されます。",
-        "EnableJavascriptInjection": "Javascript フィールドを有効にする"
+        "DefaultCssFileDescription": "このCSSファイルは、ページが選択されていない場合に使用されます。",
+        "DefaultCssStyles": "デフォルトのスタイルシート",
+        "DefaultCssStylesDescription": "このCSSスタイルは、ページが選択されていない場合に使用されます。",
+        "EditorThemeDescription": "エディターのテーマを選択します。",
+        "EditorThemeOptionName": "エディターのテーマ",
+        "EnableJavascriptInjection": "JavaScriptフィールドを有効にする",
+        "EnableJavascriptInjectionDescription": "JavaScriptを入力するフィールドを見せるためにこのオプションをオンにしてください。",
+        "ShowEditorDescription": "「カスタムCSS」のコードが単純なCSSエディターで見せるためにこのオプションをオンにしてください。",
+        "ShowEditorOptionName": "CSSエディタを有効にします"
     }
 }

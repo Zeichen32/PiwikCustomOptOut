@@ -8,7 +8,7 @@
         "EditorThemeOptionName": "Redigeringstema",
         "EnableJavascriptInjection": "Aktiver Javascript-felter",
         "EnableJavascriptInjectionDescription": "Skru på dette valget for å vise felter å skrive JavaScript i.",
-        "ShowEditorDescription": "Aktiver dette valget for å vise «tilpasset css»-kode i en enkel css-redigerer.",
+        "ShowEditorDescription": "Skru på dette valget for å vise «tilpasset CSS»-kode i en enkel CSS-tekstbehandler.",
         "ShowEditorOptionName": "Aktiver CSS-redigeringsprogram"
     }
 }
