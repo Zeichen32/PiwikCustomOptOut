@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "Aktivizoni përpunues css-sh",
-        "ShowEditorDescription": "Aktivizojeni këtë mundësi që të shfaqet kodi \"css vetjake\" në një përpunues të thjeshtë css-je.",
-        "EditorThemeOptionName": "Temë Përpunuesi",
+        "DefaultCssFile": "Kartelë fletëstilesh parazgjedhje",
+        "DefaultCssFileDescription": "Kjo kartelë CSS do të përdoret nëse nuk përzgjidhet ndonjë faqe.",
+        "DefaultCssStyles": "Fletëstile parazgjedhje",
+        "DefaultCssStylesDescription": "Këto stile CSS do të përdoren nëse nuk përzgjidhet ndonjë faqe.",
         "EditorThemeDescription": "Zgjidhni për përpunuesin një temë.",
-        "DefaultCssStyles": "Fletëstile Parazgjedhje",
-        "DefaultCssStylesDescription": "Këto stile css do të përdoren nëse nuk përzgjidhet ndonjë faqe.",
-        "DefaultCssFile": "Kartelë Fletëstilesh Parazgjedhje",
-        "DefaultCssFileDescription": "Kjo kartelë css do të përdoret nëse nuk përzgjidhet ndonjë faqe.",
-        "EnableJavascriptInjectionDescription": "Aktivizojeni këtë mundësi që të shfaqen fusha ku të jepet javascript.",
-        "EnableJavascriptInjection": "Aktivizo fusha Javascript"
+        "EditorThemeOptionName": "Temë Përpunuesi",
+        "EnableJavascriptInjection": "Aktivizo fusha Javascript",
+        "EnableJavascriptInjectionDescription": "Aktivizojeni këtë mundësi që të shfaqen fusha ku të jepet Javascript.",
+        "ShowEditorDescription": "Aktivizojeni këtë mundësi që të shfaqet kodi “CSS vetjake” në një përpunues të thjeshtë CSS-je.",
+        "ShowEditorOptionName": "Aktivizoni përpunues CSS-je"
     }
 }
