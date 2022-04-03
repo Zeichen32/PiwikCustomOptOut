@@ -1,1 +1,14 @@
-{}
+{
+    "CustomOptOut": {
+        "DefaultCssFile": "Fitxer de full d'estil per defecte",
+        "DefaultCssFileDescription": "Aquest fitxer CSS s'utilitzarà si no se selecciona cap pàgina.",
+        "DefaultCssStyles": "Fulls d'estil per defecte",
+        "DefaultCssStylesDescription": "Aquests estils CSS s'utilitzaran si no se selecciona cap pàgina.",
+        "EditorThemeDescription": "Trieu un tema per a l'editor.",
+        "EditorThemeOptionName": "Editor de tema",
+        "EnableJavascriptInjection": "Activa els camps de JavaScript",
+        "EnableJavascriptInjectionDescription": "Activeu aquesta opció per mostrar els camps on introduir JavaScript.",
+        "ShowEditorDescription": "Activeu aquesta opció per mostrar el codi \"CSS personalitzat\" en un editor CSS senzill.",
+        "ShowEditorOptionName": "Activa l'editor CSS"
+    }
+}

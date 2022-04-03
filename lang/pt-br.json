@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "Ativar editor css",
-        "ShowEditorDescription": "Ative essa opção para mostrar o código \"css personalizado\" em um simples editor css.",
-        "EditorThemeOptionName": "Tema do Editor",
+        "DefaultCssFile": "Arquivo de folha de estilo padrão",
+        "DefaultCssFileDescription": "Esse estilo CSS será utilizado se nenhuma página for selecionada.",
+        "DefaultCssStyles": "Folhas de Estilo Padrão",
+        "DefaultCssStylesDescription": "Esse estilo CSS será utilizado se nenhuma página for selecionada.",
         "EditorThemeDescription": "Escolha um tema para o editor.",
-        "DefaultCssStyles": "Stylesheets Padrão",
-        "DefaultCssStylesDescription": "Esse css styles será utilizado se nenhuma página for selecionada.",
-        "DefaultCssFile": "arquivo Stylesheets Padrão",
-        "DefaultCssFileDescription": "Esse css styles será utilizado se nenhuma página for selecionada.",
-        "EnableJavascriptInjectionDescription": "Ative esta opção para mostrar campos para inserir javascript.",
-        "EnableJavascriptInjection": "Ativar campos Javascript."
+        "EditorThemeOptionName": "Tema do Editor",
+        "EnableJavascriptInjection": "Habilitar campos JavaScript",
+        "EnableJavascriptInjectionDescription": "Ative esta opção para mostrar campos para inserir JavaScript.",
+        "ShowEditorDescription": "Ative esta opção para mostrar o código 'CSS personalizado' em um editor CSS simples.",
+        "ShowEditorOptionName": "Habilitar editor CSS"
     }
 }

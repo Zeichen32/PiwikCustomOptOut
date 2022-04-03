@@ -1,8 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "Aktifkan editor css",
-        "EditorThemeOptionName": "Editor Tema",
+        "DefaultCssFile": "Berkas stylesheet asali",
+        "DefaultCssFileDescription": "Berkas CSS ini akan digunakan jika tidak ada halaman yang dipilih.",
+        "DefaultCssStyles": "Stylesheet Asali",
+        "DefaultCssStylesDescription": "Gaya CSS ini akan digunakan jika tidak ada halaman yang dipilih.",
         "EditorThemeDescription": "Pilih sebuah tema untuk editor.",
-        "EnableJavascriptInjection": "Aktifkan kolom Javascript"
+        "EditorThemeOptionName": "Editor Tema",
+        "EnableJavascriptInjection": "Aktifkan kolom JavaScript",
+        "EnableJavascriptInjectionDescription": "Aktifkan opsi ini untuk menampilkan kolom untuk memasukkan JavaScript.",
+        "ShowEditorDescription": "Aktifkan opsi ini untuk menampilkan kode \"CSS khusus\" di editor CSS sederhana.",
+        "ShowEditorOptionName": "Aktifkan editor CSS"
     }
 }
