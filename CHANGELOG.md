@@ -1,5 +1,15 @@
 ## Changelog
 
+### CustomOptOut 2.0.3
+* Update translation
+
+### CustomOptOut 2.0.2
+* Update translation
+
+### CustomOptOut 2.0.1
+* Update translations
+* Mantoma 4 compatibility
+
 ### CustomOptOut 2.0.0
 * Matomo  4 compatibility
 * Fix spelling issue
