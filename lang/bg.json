@@ -1,1 +1,14 @@
-{}
+{
+    "CustomOptOut": {
+        "DefaultCssFile": "Файл със стилова таблица по подразбиране",
+        "DefaultCssFileDescription": "Този CSS файл ще се използва, ако не е избрана страница.",
+        "DefaultCssStyles": "Таблици със стилове по подразбиране",
+        "DefaultCssStylesDescription": "Тези CSS стилове ще се използват, ако не е избрана страница.",
+        "EditorThemeDescription": "Изберете тема за редактора.",
+        "EditorThemeOptionName": "Тема на редактора",
+        "EnableJavascriptInjection": "Активиране на JavaScript полета",
+        "EnableJavascriptInjectionDescription": "Включете тази опция, за да показвате полета, в които да въведете JavaScript.",
+        "ShowEditorDescription": "Включете тази опция, за да покажете \"персонализирания CSS\" код в обикновен CSS редактор.",
+        "ShowEditorOptionName": "Активирайте CSS редактора"
+    }
+}
