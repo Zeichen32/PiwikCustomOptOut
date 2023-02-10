@@ -1,5 +1,8 @@
 ## Changelog
 
+### CustomOptOut 2.0.4
+* Update translation
+
 ### CustomOptOut 2.0.3
 * Update translation
 
