@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "Aktivera CSS-editor",
-        "ShowEditorDescription": "Aktivera detta val för att visa anpassad CSS-kod i simple CSS editor.",
-        "EditorThemeOptionName": "Tema",
-        "EditorThemeDescription": "Välj tema för editorn.",
-        "DefaultCssStyles": "Standard stilmall",
-        "DefaultCssStylesDescription": "Följande css-mall kommer att användas om ingen sida är vald.",
         "DefaultCssFile": "Standardfil för stilmallar",
-        "DefaultCssFileDescription": "Följande css-fil kommer att användas om ingen sida är vald.",
-        "EnableJavascriptInjectionDescription": "Slå på detta alternativ för att visa fält för anpassad javaskript.",
-        "EnableJavascriptInjection": "Slå på javaskriptfält"
+        "DefaultCssFileDescription": "Denna CSS-fil används om ingen sida är vald.",
+        "DefaultCssStyles": "Standard stilmallar",
+        "DefaultCssStylesDescription": "Dessa CSS-stilar kommer att användas om ingen sida är vald.",
+        "EditorThemeDescription": "Välj tema för editorn.",
+        "EditorThemeOptionName": "Tema",
+        "EnableJavascriptInjection": "Aktivera JavaScript-fält",
+        "EnableJavascriptInjectionDescription": "Aktivera det här alternativet för att visa fält där du kan skriva in JavaScript.",
+        "ShowEditorDescription": "Aktivera det här alternativet för att visa \"anpassad CSS\"-kod i en enkel CSS-redigerare.",
+        "ShowEditorOptionName": "Aktivera CSS-redigerare"
     }
 }
