@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "Włącz edytor CSS",
-        "ShowEditorDescription": "Włącz tą opcję aby zobaczyć \"dopasowany CSS\" w prostym edytorze CSS.",
-        "EditorThemeOptionName": "Wygląd edytora",
-        "EditorThemeDescription": "Wybierz wygląd edytora",
-        "DefaultCssStyles": "Domyślne arkusze stylów",
-        "DefaultCssStylesDescription": "Te style CSS zostaną użyte jeśli strona nie zostanie wybrana.",
         "DefaultCssFile": "Domyślny plik stylów",
         "DefaultCssFileDescription": "Ten plik CSS zostanie użyty jeśli strona nie zostanie wybrana.",
-        "EnableJavascriptInjectionDescription": "Zaznacz tą opcję aby wyświetlić pola wprowadzania kodu JavaScript.",
-        "EnableJavascriptInjection": "Włącz pola JavaScript"
+        "DefaultCssStyles": "Domyślne arkusze stylów",
+        "DefaultCssStylesDescription": "Te style CSS zostaną użyte jeśli strona nie zostanie wybrana.",
+        "EditorThemeDescription": "Wybierz motyw edytora.",
+        "EditorThemeOptionName": "Wygląd edytora",
+        "EnableJavascriptInjection": "Włącz pola JavaScript",
+        "EnableJavascriptInjectionDescription": "Włącz tę opcję aby wyświetlić pola wprowadzania kodu JavaScript.",
+        "ShowEditorDescription": "Włącz tę opcję aby zobaczyć \"dopasowany CSS\" w prostym edytorze CSS.",
+        "ShowEditorOptionName": "Włącz edytor CSS"
     }
 }

@@ -1,1 +1,6 @@
-{}
+{
+    "CustomOptOut": {
+        "EditorThemeOptionName": "Editore itxura",
+        "ShowEditorOptionName": "Gaitu CSS editorea"
+    }
+}
