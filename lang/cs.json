@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "Povolit editor css",
-        "ShowEditorDescription": "Povolte tuto možnost pro zobrazení vlastního css kódu v jednoduchém css editoru.",
-        "EditorThemeOptionName": "Motiv editoru",
-        "EditorThemeDescription": "Zvolte motiv editoru",
-        "DefaultCssStyles": "Výchozí šablona",
-        "DefaultCssStylesDescription": "Tento css styl bude použit, pokud nebude vybrána žádná stránka.",
         "DefaultCssFile": "Výchozí soubor šablony",
         "DefaultCssFileDescription": "Tento css soubor bude použit, pokud nebude vybrána žádná stránka.",
+        "DefaultCssStyles": "Výchozí šablona",
+        "DefaultCssStylesDescription": "Tento css styl bude použit, pokud nebude vybrána žádná stránka.",
+        "EditorThemeDescription": "Vyberte motiv editoru.",
+        "EditorThemeOptionName": "Motiv editoru",
+        "EnableJavascriptInjection": "Povolit javascriptová pole",
         "EnableJavascriptInjectionDescription": "Povolte tuto možnost pro zobrazení polí k zadání javascriptu.",
-        "EnableJavascriptInjection": "Povolit javascriptová pole"
+        "ShowEditorDescription": "Povolte tuto možnost pro zobrazení vlastního css kódu v jednoduchém css editoru.",
+        "ShowEditorOptionName": "Povolit editor css"
     }
 }
