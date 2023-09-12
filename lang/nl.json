@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "Schakel css-editor in",
-        "ShowEditorDescription": "Schakel deze optie in om de \"aangepaste css\" in een simpele css-editor weer te geven.",
-        "EditorThemeOptionName": "Editor Thema",
+        "DefaultCssFile": "Standaard stylesheet-bestand",
+        "DefaultCssFileDescription": "Dit CSS-bestand zal worden gebruikt wanneer er geen pagina geselecteerd is.",
+        "DefaultCssStyles": "Standaard stylesheets",
+        "DefaultCssStylesDescription": "Deze CSS-stijlen zullen worden gebruikt wanneer geen pagina geselecteerd is.",
         "EditorThemeDescription": "Kies een thema voor de editor.",
-        "DefaultCssStyles": "Standaard Stylesheets",
-        "DefaultCssStylesDescription": "Deze ccs styles zullen worden gebruikt wanneer geen pagina is geselecteeerd.",
-        "DefaultCssFile": "Standaard Stylesheets-bestand",
-        "DefaultCssFileDescription": "Dit css-bestand zal worden gebruikt wanneer er geen pagina is geselecteerd.",
-        "EnableJavascriptInjectionDescription": "Activeer deze optie om velden te tonen om Javascript toe te voegen.",
-        "EnableJavascriptInjection": "Javascript-velden inschakelen"
+        "EditorThemeOptionName": "Editor Thema",
+        "EnableJavascriptInjection": "Javascript-velden inschakelen",
+        "EnableJavascriptInjectionDescription": "Activeer deze optie om velden te tonen waarin Javascript kan toegevoegd worden.",
+        "ShowEditorDescription": "Schakel deze optie in om de \"aangepaste CSS\" in een eenvoudige CSS-editor weer te geven.",
+        "ShowEditorOptionName": "Schakel CSS-editor in"
     }
 }
