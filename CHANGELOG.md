@@ -1,5 +1,9 @@
 ## Changelog
 
+### CustomOptOut 3.0.0
+* Matomo 5 compatibility
+* Add deprecation notice
+
 ### CustomOptOut 2.0.4
 * Update translation
 

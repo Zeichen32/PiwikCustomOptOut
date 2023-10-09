@@ -1,4 +1,8 @@
-# Custom Opt-Out Styles Piwik Plugin
+# Custom Opt-Out Styles Piwik / Matomo Plugin
+
+## Deprecation
+You no longer need this plugin to change the CSS Styles in your opt-out. All features this plugin provides can
+be found in the Matomo core features. This plugin will be keep available to not break any websites using this plugin.
 
 ## Description
 
@@ -31,7 +35,7 @@ or insert a URL to the file containing your custom CSS into the input field call
 
 ## Requirements
 
-+ Matomo >=4.0.0-b1
++ Matomo >=5.0.0-b1
 
 ## Authors
 
