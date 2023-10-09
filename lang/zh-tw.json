@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "啟用 CSS 編輯器",
-        "ShowEditorDescription": "勾選這個核取方塊即可在「CUSTOM CSS」中顯示簡易 CSS 編輯器。",
-        "EditorThemeOptionName": "編輯器主題",
-        "EditorThemeDescription": "為編輯器選擇一個主題。",
-        "DefaultCssStyles": "預設樣式",
-        "DefaultCssStylesDescription": "如果沒有選擇任何網頁，將使用這個 CSS 樣式。",
         "DefaultCssFile": "預設樣式檔案",
         "DefaultCssFileDescription": "如果沒有選擇任何網頁，將使用這個 CSS 樣式檔案。",
+        "DefaultCssStyles": "預設樣式",
+        "DefaultCssStylesDescription": "如果沒有選擇任何網頁，將使用這個 CSS 樣式。",
+        "EditorThemeDescription": "為編輯器選擇一個主題。",
+        "EditorThemeOptionName": "編輯器主題",
+        "EnableJavascriptInjection": "啟用 Javascript 欄位",
         "EnableJavascriptInjectionDescription": "勾選這個核取方塊即可顯示輸入 Javascript 的欄位。",
-        "EnableJavascriptInjection": "啟用 Javascript 欄位"
+        "ShowEditorDescription": "勾選這個核取方塊即可在「指定 CSS」中顯示簡易 CSS 編輯器。",
+        "ShowEditorOptionName": "啟用 CSS 編輯器"
     }
 }

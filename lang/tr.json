@@ -7,8 +7,8 @@
         "EditorThemeDescription": "Düzenleyici temasını seçin.",
         "EditorThemeOptionName": "Düzenleyici teması",
         "EnableJavascriptInjection": "JavaScript alanları kullanılsın",
-        "EnableJavascriptInjectionDescription": "Bu seçenek etkinleştirildiğinde JavaScript yazılabilecek alanlar görüntülenir.",
-        "ShowEditorDescription": "Bu seçenek etkinleştirildiğinde, \"özel CSS\" kodu basit bir CSS düzenleyici içinde görüntülenir.",
+        "EnableJavascriptInjectionDescription": "Bu seçenek açıldığında JavaScript yazılabilecek alanlar görüntülenir.",
+        "ShowEditorDescription": "Bu seçenek açıldığında, \"özel CSS\" kodu basit bir CSS düzenleyici içinde görüntülenir.",
         "ShowEditorOptionName": "CSS düzenleyici kullanılsın"
     }
 }
