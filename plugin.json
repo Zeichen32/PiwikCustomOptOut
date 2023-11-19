@@ -1,6 +1,6 @@
 {
-    "name": "CustomOptOut",
-    "version": "3.0.0",
+    "name": "PiwikCustomOptOut",
+    "version": "3.0.2",
     "description": "Create your own opt-out iframe css styles",
     "keywords": [
         "Opt-Out",
