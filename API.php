@@ -6,10 +6,10 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
  * @category Piwik_Plugins
- * @package CustomOptOut
+ * @package PiwikCustomOptOut
  */
 
-namespace Piwik\Plugins\CustomOptOut;
+namespace Piwik\Plugins\PiwikCustomOptOut;
 
 use Piwik\Common;
 use Piwik\Db;

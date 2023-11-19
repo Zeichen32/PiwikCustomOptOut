@@ -9,7 +9,7 @@
  * @package CustomOptOut
  */
 
-namespace Piwik\Plugins\CustomOptOut;
+namespace Piwik\Plugins\PiwikCustomOptOut;
 
 use Piwik\Common;
 use Piwik\Piwik;
@@ -22,7 +22,7 @@ use Piwik\View;
 
 /**
  *
- * @package CustomOptOut
+ * @package PiwikCustomOptOut
  */
 class Controller extends ControllerAdmin
 {
@@ -73,14 +73,14 @@ class Controller extends ControllerAdmin
                 }
 
                 // Redirect to, clear POST vars
-                $this->redirectToIndex('CustomOptOut', 'index');
+                $this->redirectToIndex('PiwikCustomOptOut', 'index');
 
                 return;
 
             }
         }
 
-        $view = new View('@CustomOptOut/index.twig');
+        $view = new View('@PiwikCustomOptOut/index.twig');
         Site::clearCache();
 
         if (Piwik::hasUserSuperUserAccess()) {
