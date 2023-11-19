@@ -9,17 +9,17 @@
  * @package CustomOptOut
  */
 
-namespace Piwik\Plugins\CustomOptOut;
+namespace Piwik\Plugins\PiwikCustomOptOut;
 
 use Piwik\Common;
 use Piwik\Container\StaticContainer;
 use Piwik\Db;
-use Piwik\Plugins\CustomOptOut\SystemSettings as Settings;
+use Piwik\Plugins\PiwikCustomOptOut\SystemSettings as Settings;
 
 /**
- * @package CustomOptOut
+ * @package PiwikCustomOptOut
  */
-class CustomOptOut extends \Piwik\Plugin
+class PiwikCustomOptOut extends \Piwik\Plugin
 {
 
     /**
@@ -31,7 +31,7 @@ class CustomOptOut extends \Piwik\Plugin
             'AssetManager.getJavaScriptFiles' => 'getJsFiles',
             'AssetManager.getStylesheetFiles' => 'getStylesheetFiles',
             'Controller.CoreAdminHome.optOut' => 'addOptOutStyles',
-            'Settings.CustomOptOut.settingsUpdated' => 'onSettingsUpdate',
+            'Settings.PiwikCustomOptOut.settingsUpdated' => 'onSettingsUpdate',
             'SystemSettings.updated' => 'onSystemSettingsUpdate',
         );
     }
@@ -51,24 +51,24 @@ class CustomOptOut extends \Piwik\Plugin
     {
 
         // CodeMirror
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/codemirror.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/mode/css/css.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/mode/javascript/javascript.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/show-hint.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/css-hint.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/hint/javascript-hint.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/lint.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/css-lint.js";
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/codemirror/addon/lint/javascript-lint.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/codemirror/codemirror.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/codemirror/mode/css/css.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/codemirror/mode/javascript/javascript.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/codemirror/addon/hint/show-hint.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/codemirror/addon/hint/css-hint.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/codemirror/addon/hint/javascript-hint.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/codemirror/addon/lint/lint.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/codemirror/addon/lint/css-lint.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/codemirror/addon/lint/javascript-lint.js";
 
         // CSS Lint for CodeMirror
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/csslint/csslint.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/csslint/csslint.js";
 
         // CSS Lint for CodeMirror
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/jshint/jshint.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/jshint/jshint.js";
 
         // Plugin
-        $jsFiles[] = "plugins/CustomOptOut/javascripts/plugin.js";
+        $jsFiles[] = "plugins/PiwikCustomOptOut/javascripts/plugin.js";
 
     }
 
@@ -79,10 +79,10 @@ class CustomOptOut extends \Piwik\Plugin
     {
 
         // CodeMirror CSS
-        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/codemirror.css";
-        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/theme/blackboard.css";
-        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/lint.css";
-        $stylesheets[] = "plugins/CustomOptOut/stylesheets/codemirror/show-hint.css";
+        $stylesheets[] = "plugins/PiwikCustomOptOut/stylesheets/codemirror/codemirror.css";
+        $stylesheets[] = "plugins/PiwikCustomOptOut/stylesheets/codemirror/theme/blackboard.css";
+        $stylesheets[] = "plugins/PiwikCustomOptOut/stylesheets/codemirror/lint.css";
+        $stylesheets[] = "plugins/PiwikCustomOptOut/stylesheets/codemirror/show-hint.css";
 
     }
 
@@ -93,7 +93,7 @@ class CustomOptOut extends \Piwik\Plugin
     }
 
     public function onSystemSettingsUpdate(\Piwik\Settings\Plugin\SystemSettings $settings) {
-        if ($settings->getPluginName() == 'CustomOptOut') {
+        if ($settings->getPluginName() == 'PiwikCustomOptOut') {
             $this->install();
         }
     }
@@ -165,6 +165,14 @@ class CustomOptOut extends \Piwik\Plugin
         if ($jsEnabled && !empty($site['custom_js'])) {
             $manager->addJavascript($site['custom_js'], true);
         }
+    }
+
+    public function activate() {
+        $this->install();
+    }
+
+    public function deactivate() {
+        $this->uninstall();
     }
 
     /**
