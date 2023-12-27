@@ -4,7 +4,7 @@
         "DefaultCssFileDescription": "Αν δεν επιλεγεί σελίδα θα χρησιμοποιηθεί αυτό το αρχείο CSS.",
         "DefaultCssStyles": "Προκαθορισμένα stylesheet",
         "DefaultCssStylesDescription": "Αν δεν επιλεγεί σελίδα, θα χρησιμοποιηθούν αυτά τα στυλ CSS.",
-        "EditorThemeDescription": "Επιλέξτε μια θεματική παραλλαγή για τον επεξεργαστή.",
+        "EditorThemeDescription": "Επιλέξτε μια θεματική παραλλαγή για τον επεξεργαστή κειμένου.",
         "EditorThemeOptionName": "Θεματική παραλλαγή του επεξεργαστή",
         "EnableJavascriptInjection": "Ενεργοποίηση πεδίων JavaScript",
         "EnableJavascriptInjectionDescription": "Ενεργοποιήστε την επιλογή για εμφάνιση πεδίων για εισαγωγή JavaScript.",
