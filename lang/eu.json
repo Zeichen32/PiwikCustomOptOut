@@ -1,6 +1,14 @@
 {
     "CustomOptOut": {
-        "EditorThemeOptionName": "Editore itxura",
+        "DefaultCssFile": "Estilo-orrien fitxategi lehenetsia",
+        "DefaultCssFileDescription": "CSS fitxategi hau erabiliko da orririk ez bada hautatu.",
+        "DefaultCssStyles": "Estilo-orri lehenetsiak",
+        "DefaultCssStylesDescription": "CSS estilo hauek erabiliko dira orririk ez bada hautatu.",
+        "EditorThemeDescription": "Aukeratu editorearen gaia.",
+        "EditorThemeOptionName": "Editorearen gaia",
+        "EnableJavascriptInjection": "Gaitu JavaScript eremuak",
+        "EnableJavascriptInjectionDescription": "Aktibatu aukera hau JavaScript kodea sartzeko eremuak erakusteko.",
+        "ShowEditorDescription": "Aktibatu aukera hau \"CSS pertsonalizatuaren\" kodea CSS editore sinple batean erakusteko.",
         "ShowEditorOptionName": "Gaitu CSS editorea"
     }
 }
