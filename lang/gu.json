@@ -1,0 +1,14 @@
+{
+    "CustomOptOut": {
+        "DefaultCssFile": "ડિફૉલ્ટ સ્ટાઇલશીટ ફાઇલ",
+        "DefaultCssFileDescription": "જો કોઈ પેજ પસંદ કરવામાં ન આવે તો આ CSS ફાઇલનો ઉપયોગ કરવામાં આવશે.",
+        "DefaultCssStyles": "ડિફૉલ્ટ સ્ટાઇલશીટ્સ",
+        "DefaultCssStylesDescription": "જો કોઈ પેજ પસંદ કરવામાં ન આવે તો આ CSS શૈલીઓનો ઉપયોગ કરવામાં આવશે.",
+        "EditorThemeDescription": "એડિટર માટે એક થીમ પસંદ કરો.",
+        "EditorThemeOptionName": "એડિટર થીમ",
+        "EnableJavascriptInjection": "JavaScript ફીલ્ડ્સ સક્ષમ કરો",
+        "EnableJavascriptInjectionDescription": "JavaScript દાખલ કરવા માટે ફીલ્ડ્સ બતાવવા માટે આ વિકલ્પ ચાલુ કરો.",
+        "ShowEditorDescription": "સરળ CSS એડિટરમાં \"કસ્ટમ CSS\" કોડ બતાવવા માટે આ વિકલ્પ ચાલુ કરો.",
+        "ShowEditorOptionName": "CSS એડિટર સક્ષમ કરો"
+    }
+}
