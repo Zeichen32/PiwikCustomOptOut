@@ -4,11 +4,11 @@
         "DefaultCssFileDescription": "Diese CSS-Datei wird genutzt, wenn keine Seite ausgewählt ist.",
         "DefaultCssStyles": "Standard-Stylesheets",
         "DefaultCssStylesDescription": "Diese CSS-Styles werden genutzt, wenn keine Seite ausgewählt ist.",
-        "EditorThemeDescription": "Wähle einen Theme für den CSS Editor.",
+        "EditorThemeDescription": "Wähle einen Thema für den CSS-Editor.",
         "EditorThemeOptionName": "Editor Theme",
         "EnableJavascriptInjection": "JavaScript-Felder aktivieren",
-        "EnableJavascriptInjectionDescription": "Bei der Aktivierung werden Felder angezeigt, welche Javascript beinhalten dürfen.",
-        "ShowEditorDescription": "Wenn aktiviert, wird der \"benutzerdefinierte CSS\"-Code in einem einfachen CSS-Editor angezeigt.",
+        "EnableJavascriptInjectionDescription": "Bei der Aktivierung werden Felder angezeigt, welche JavaScript beinhalten dürfen.",
+        "ShowEditorDescription": "Wenn aktiviert, wird der „benutzerdefinierte CSS“-Code in einem einfachen CSS-Editor angezeigt.",
         "ShowEditorOptionName": "CSS-Editor aktivieren"
     }
 }

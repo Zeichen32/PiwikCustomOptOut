@@ -1,1 +1,14 @@
-{}
+{
+    "CustomOptOut": {
+        "DefaultCssFile": "இயல்புநிலை நடைதாள் கோப்பு",
+        "DefaultCssFileDescription": "எந்தப் பக்கமும் தேர்ந்தெடுக்கப்படாவிட்டால் இந்த சிஎச்எச் கோப்பு பயன்படுத்தப்படும்.",
+        "DefaultCssStyles": "இயல்புநிலை நடைதாள்",
+        "DefaultCssStylesDescription": "எந்தப் பக்கமும் தேர்ந்தெடுக்கப்படாவிட்டால் இந்த சிஎச்எச் பாணிகள் பயன்படுத்தப்படும்.",
+        "EditorThemeDescription": "எடிட்டருக்கு ஒரு கருப்பொருளைத் தேர்வுசெய்க.",
+        "EditorThemeOptionName": "ஆசிரியர் கருப்பொருள்",
+        "EnableJavascriptInjection": "சாவாச்கிரிப்ட் புலங்களை இயக்கவும்",
+        "EnableJavascriptInjectionDescription": "சாவாச்கிரிப்ட் உள்ளே நுழைய புலங்களைக் காட்ட இந்த விருப்பத்தை இயக்கவும்.",
+        "ShowEditorDescription": "எளிய சிஎச்எச் எடிட்டரில் \"தனிப்பயன் CSS\" குறியீட்டைக் காட்ட இந்த விருப்பத்தை இயக்கவும்.",
+        "ShowEditorOptionName": "சிஎச்எச் எடிட்டரை இயக்கவும்"
+    }
+}

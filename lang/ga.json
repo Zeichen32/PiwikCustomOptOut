@@ -1,1 +1,14 @@
-{}
+{
+    "CustomOptOut": {
+        "DefaultCssFile": "Comhad stílbhileog réamhshocraithe",
+        "DefaultCssFileDescription": "Úsáidfear an comhad CSS seo mura roghnaítear leathanach.",
+        "DefaultCssStyles": "Stílbhileoga réamhshocraithe",
+        "DefaultCssStylesDescription": "Úsáidfear na stíleanna CSS seo mura roghnaítear aon leathanach.",
+        "EditorThemeDescription": "Roghnaigh téama don eagarthóir.",
+        "EditorThemeOptionName": "Téama Eagarthóir",
+        "EnableJavascriptInjection": "Cumasaigh réimsí JavaScript",
+        "EnableJavascriptInjectionDescription": "Cuir an rogha seo ar siúl chun réimsí a thaispeáint inar féidir JavaScript a chur isteach.",
+        "ShowEditorDescription": "Cuir an rogha seo ar siúl chun an cód \"CSS saincheaptha\" a thaispeáint in eagarthóir CSS simplí.",
+        "ShowEditorOptionName": "Cumasaigh eagarthóir CSS"
+    }
+}

@@ -1,1 +1,14 @@
-{}
+{
+    "CustomOptOut": {
+        "DefaultCssFile": "Zadana datoteka popisa stilova",
+        "DefaultCssFileDescription": "Ova CSS datoteka će se koristiti ako nijedna stranica nije odabrana.",
+        "DefaultCssStyles": "Zadani popis stilova",
+        "DefaultCssStylesDescription": "Ovi CSS stilovi će se koristiti ako nijedna stranica nije odabrana.",
+        "EditorThemeDescription": "Odaberi temu za uređivač.",
+        "EditorThemeOptionName": "Tema uređivača",
+        "EnableJavascriptInjection": "Aktiviraj JavaScript polja",
+        "EnableJavascriptInjectionDescription": "Uključi ovu opciju za prikaz polja za unos JavaScripta.",
+        "ShowEditorDescription": "Uključite ovu opciju za prikazivanje koda „prilagođenog CSS-a” u jednostavnom CSS uređivaču.",
+        "ShowEditorOptionName": "Aktiviraj CSS uređivač"
+    }
+}

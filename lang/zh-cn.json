@@ -6,7 +6,7 @@
         "EditorThemeOptionName": "编辑主题",
         "EnableJavascriptInjection": "启用Javascript字段",
         "EnableJavascriptInjectionDescription": "启用此选项可显示要输入javascript的字段。",
-        "ShowEditorDescription": "启用此选项可在简单的CSS编辑器中显示“自定义CSS”代码。",
+        "ShowEditorDescription": "启用此选项可在简易CSS编辑器中显示“自定义CSS”代码。",
         "ShowEditorOptionName": "启用 CSS 编辑器"
     }
 }

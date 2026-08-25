@@ -1,14 +1,14 @@
 {
     "CustomOptOut": {
-        "ShowEditorOptionName": "Включить редактор css",
-        "ShowEditorDescription": "Включить эту опцию, чтобы показывать «пользовательский css» код в простом редакторе css.",
-        "EditorThemeOptionName": "Тема редактора",
-        "EditorThemeDescription": "Выбрать тему для редактора.",
-        "DefaultCssStyles": "Таблица стилей по умолчанию",
-        "DefaultCssStylesDescription": "Эти стили будут использованы, если страница не выбрана.",
         "DefaultCssFile": "Файл с таблицей стиля по умолчанию",
         "DefaultCssFileDescription": "Этот файл css будет использован, если страница не выбрана.",
+        "DefaultCssStyles": "Таблица стилей по умолчанию",
+        "DefaultCssStylesDescription": "Эти стили будут использованы, если страница не выбрана.",
+        "EditorThemeDescription": "Выбрать тему для редактора.",
+        "EditorThemeOptionName": "Тема редактора",
+        "EnableJavascriptInjection": "Включить поля Javascript",
         "EnableJavascriptInjectionDescription": "Включите эту опцию, чтобы показать поля для ввода JavaScript.",
-        "EnableJavascriptInjection": "Включить поля Javascript"
+        "ShowEditorDescription": "Включить эту опцию, чтобы показывать «пользовательский css» код в простом редакторе css.",
+        "ShowEditorOptionName": "Включить редактор css"
     }
 }
