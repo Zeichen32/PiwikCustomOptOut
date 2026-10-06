@@ -1,13 +1,13 @@
 {
     "CustomOptOut": {
         "DefaultCssFile": "Forvalgt stilarksfil",
-        "DefaultCssFileDescription": "Denne CSS-filen vil bli brukt hvis ingen side er valgt.",
+        "DefaultCssFileDescription": "Denne CSS-filen brukes hvis ingen side er valgt.",
         "DefaultCssStyles": "Forvalgte stilark",
         "DefaultCssStylesDescription": "Desse CSS-stilene vil bli brukt hvis ingen side er valgt.",
         "EditorThemeDescription": "Velg en drakt for redigeringsvinduet.",
         "EditorThemeOptionName": "Redigeringsdrakt",
-        "EnableJavascriptInjection": "Aktiver Javascript-felter",
-        "EnableJavascriptInjectionDescription": "Skru på dette valget for å vise felter å skrive JavaScript i.",
+        "EnableJavascriptInjection": "Skru på JavaScript-felt",
+        "EnableJavascriptInjectionDescription": "Skru på dette valget for å vise felt der du kan skrive inn JavaScript.",
         "ShowEditorDescription": "Skru på dette valget for å vise «tilpasset CSS»-kode i en enkel CSS-tekstbehandler.",
         "ShowEditorOptionName": "Aktiver CSS-redigeringsprogram"
     }
