@@ -1,1 +1,14 @@
-{}
+{
+    "CustomOptOut": {
+        "DefaultCssFile": "Standard stilarkfil",
+        "DefaultCssFileDescription": "Denne CSS-fila blir brukt viss inga side er vald.",
+        "DefaultCssStyles": "Standard stilark",
+        "DefaultCssStylesDescription": "Desse CSS-stilane blir brukte viss inga side er vald.",
+        "EditorThemeDescription": "Vel eit tema for redigeraren.",
+        "EditorThemeOptionName": "Tema for redigeraren",
+        "EnableJavascriptInjection": "Skru på JavaScript-felt",
+        "EnableJavascriptInjectionDescription": "Skru på dette valet for å vise felt der du kan skrive inn JavaScript.",
+        "ShowEditorDescription": "Skru på dette valet for å vise koden for «eigendefinert CSS» i ein enkel CSS-redigerar.",
+        "ShowEditorOptionName": "Skru på CSS-redigering"
+    }
+}
